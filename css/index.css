@@ -68,15 +68,43 @@ body {
     background-image: linear-gradient(#121212, #4a4a4a);
     border-top: 1px solid black;
     display: flex;
-    height: 80px;
+    height: 100px;
     justify-content: center;
+}
+
+.divIcon {
+    position: relative;
+}
+
+.ftrIconText {
+    right: 0px;
+    left: 0px;
+    bottom: 10px;
+    position: absolute;
+    visibility: hidden;
+    text-align: center;
+    white-space: nowrap;
+    font-size: 5px;
+    color: white;
+    font-weight: bold;
 }
 
 .ftrIcon {
     cursor: pointer;
     height: 50px;
     width: 50px;
-    margin: 15px 15px;
-    /* TO DO: Add hover text on icons */
+    margin: 18px 25px;
+    border-radius: 24px;
 }
+
+.divIcon:hover .ftrIconText {
+    visibility: visible;
+}
+
+.divIcon:hover .ftrIcon {
+    box-shadow: 0px 0px 15px black;
+}
+
+
+
 
