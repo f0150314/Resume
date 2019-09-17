@@ -14,7 +14,6 @@
     <div class="divNavRow">
         <div id="divName" class="divNavCol">John Chen</div>
         <div class="divNavCol divHover" onclick="showContent('ABOUT')">About</div>
-        <div class="divNavCol divHover" onclick="showContent('EDUCATION')">Education</div>
         <div class="divNavCol divHover" onclick="showContent('SKILLS')">Skills</div>
         <div class="divNavCol divHover" onclick="showContent('EXPERIENCE')">Experience</div>
         <div class="divNavCol divHover" onclick="showContent('PORTFOLIO')">Portfolio</div>
@@ -26,7 +25,6 @@
         <!-- About & Education & Skills & Contact-->
         <div class="divContentBody">
             About
-            Education
             Skills
             Contact
         </div>
@@ -72,7 +70,7 @@
             $('.divContentBody').each(function () {
                 divContentArray.push($(this));
             });
-
+            
             // Initialize body content and hover behavior
             showContent('ABOUT');
             divNavColArray[0].removeClass('divSelected');
@@ -101,24 +99,20 @@
                     divNavColArray[0].removeClass('divHover').addClass('divSelected');
                     divContentArray[0].show();
                     break;
-                case 'EDUCATION':
+                case 'SKILLS':
                     divNavColArray[1].removeClass('divHover').addClass('divSelected');
                     divContentArray[0].show();
                     break;
-                case 'SKILLS':
-                    divNavColArray[2].removeClass('divHover').addClass('divSelected');
-                    divContentArray[0].show();
-                    break;
                 case 'EXPERIENCE':
-                    divNavColArray[3].removeClass('divHover').addClass('divSelected');
+                    divNavColArray[2].removeClass('divHover').addClass('divSelected');
                     divContentArray[1].show();
                     break;
                 case 'PORTFOLIO':
-                    divNavColArray[4].removeClass('divHover').addClass('divSelected');
+                    divNavColArray[3].removeClass('divHover').addClass('divSelected');
                     divContentArray[1].show();
                     break;
                 case 'CONTACT':
-                    divNavColArray[5].removeClass('divHover').addClass('divSelected');
+                    divNavColArray[4].removeClass('divHover').addClass('divSelected');
                     divContentArray[0].show();
                     break;
             }
@@ -126,6 +120,21 @@
 
         $(document).ready(function () {
             init();
+
+            //Resize navigation bar when window width is changing
+            $(window).resize(function() {
+                if ($(window).width() < 1000) {
+                    $.each(divNavColArray, function(index, value) {
+                        divNavColArray[index].hide();
+                        $(divName).css('padding', '43px 0');
+                    })
+                } else {
+                    $.each(divNavColArray, function(index, value) {
+                        divNavColArray[index].show();
+                        $(divName).css('padding', '');                       
+                    })
+                }
+            });
         });
     </script>
 </body>
