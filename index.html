@@ -2,16 +2,15 @@
 <html>
 
 <head>
-    <!-- external reference -->
-    <link href="css/index.css" rel="stylesheet" />
-    <script src="js/jquery-3.4.1.min.js"></script>
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+    <!-- CSS  -->
+    <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="css/bootstrap.css" />
     <title>Resume</title>
 </head>
 
 <body>
     <!-- Navigation bar -->
-    <div class="divNavRow">
+    <div class="divNavRow fixed-top">
         <div id="divName" class="divNavCol">John Chen</div>
         <div class="divNavCol divHover" onclick="showContent('ABOUT')">About</div>
         <div class="divNavCol divHover" onclick="showContent('SKILLS')">Skills</div>
@@ -56,7 +55,11 @@
         </div>
     </div>
 
-    <!-- javascript -->
+
+    <!-- Javascript -->
+    <script src="js/index.js"></script>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
     <script>
         var divNavColArray = [],
             divContentArray = [];
@@ -74,6 +77,8 @@
             // Initialize body content and hover behavior
             showContent('ABOUT');
             divNavColArray[0].removeClass('divSelected');
+
+            windowResize();
         }
 
         function showContent(category) {
@@ -118,22 +123,26 @@
             }
         }
 
+        function windowResize () {
+            if ($(window).width() < 1000) {
+                $.each(divNavColArray, function(index, value) {
+                    divNavColArray[index].hide();
+                    $(divName).css('padding', '41px 0');
+                })
+            } else {
+                $.each(divNavColArray, function(index, value) {
+                    divNavColArray[index].show();
+                    $(divName).css('padding', '');                       
+                })
+            }
+        }
+
         $(document).ready(function () {
             init();
 
             //Resize navigation bar when window width is changing
             $(window).resize(function() {
-                if ($(window).width() < 1000) {
-                    $.each(divNavColArray, function(index, value) {
-                        divNavColArray[index].hide();
-                        $(divName).css('padding', '43px 0');
-                    })
-                } else {
-                    $.each(divNavColArray, function(index, value) {
-                        divNavColArray[index].show();
-                        $(divName).css('padding', '');                       
-                    })
-                }
+                windowResize();
             });
         });
     </script>

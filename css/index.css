@@ -13,7 +13,7 @@ body {
     display: flex;
     font-weight: bold;
     justify-content: center;
-    padding: 0px 15%;
+    padding: 0px 12.5%;
 }
 
 #divName {
@@ -29,7 +29,7 @@ body {
     font-size: 18px;
     padding: 50px 1%;
     text-align: center;
-    width: 13%; 
+    width: 14%; 
 }
 
 .divNavCol.divHover:hover {
@@ -51,7 +51,7 @@ body {
 /* Main Content */
 .divMainBody {
     background-color: silver;
-    height: 350px;
+    height: 700px;
     padding: 0px 15%;
 }
 
