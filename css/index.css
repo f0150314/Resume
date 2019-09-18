@@ -1,6 +1,6 @@
 body {
     font-family: Arial;
-    margin: 0px;   
+    margin: 0;   
 }
 
 /* Navigation bar */
@@ -8,12 +8,11 @@ body {
     align-items: baseline; /* align text */
     background-image: url('img/bgNavigationBar.jpg');
     background-size: contain;
-    border-bottom: 1px solid black;
-     
+    border-bottom: 1px solid black; 
     display: flex;
     font-weight: bold;
     justify-content: center;
-    padding: 0px 12.5%;
+    padding: 0 12.5%;
     position: fixed;
     top: 0;
     right: 0;
@@ -109,24 +108,35 @@ body {
 .divMainBody {
     background-color: silver;
     height: 700px;
-    padding: 0px 15%;
     margin-top: 128px;
+    left: 0;
+    right: 0;
 }
 
 .divMainBody .divContentBody {  
     display: none;
-    width: 100%;
 }
 
 /* Footer */
-.divFooter {
+footer {
+    justify-content: center;
+    height: 100px;
+    display: flex;
+    padding: 0 15%;
+    left: 0;
+    right: 0;
+    width: 100%;
+    bottom: 0;
     align-content: center;
     background-image: linear-gradient(#121212, #4a4a4a);
     border-top: 1px solid black;
+}
+
+.divFooter {
     display: flex;
-    height: 100px;
-    justify-content: center;
-    padding: 0px 15%;
+    justify-content: space-around;
+    max-width: 500px;
+    margin: 0 auto 0 auto;
 }
 
 .divFooter div {
@@ -134,23 +144,25 @@ body {
 }
 
 .divFooter .ftrIconText {
-    bottom: 10px;
     color: white;
     font-size: 15px;
     font-weight: bold;
-    left: 0px;
+    left: 0;
     position: absolute;
-    right: 0px;
+    right: 0;
     text-align: center;
     visibility: hidden;
-    white-space: nowrap;
+    /* top: 5px; */
+    top: 15px;
+    margin: -10px;
 }
 
 .divFooter .ftrIcon {
     border-radius: 24px;
     cursor: pointer;
     height: 50px;
-    margin: 1rem 1.8rem;
+    /* margin: 1.8rem 20px; */
+    margin: 2rem 0;
     width: 50px;
 }
 
@@ -159,7 +171,7 @@ body {
 }
 
 .divFooter div:hover .ftrIcon {
-    box-shadow: 0px 0px 15px black;
+    box-shadow: 0 0 15px black;
 }
 
 
