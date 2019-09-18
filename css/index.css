@@ -1,36 +1,41 @@
-/* Navigation bar */
 body {
     font-family: Arial;
-    margin: 0px;
+    margin: 0px;   
 }
 
+/* Navigation bar */
 .divNavRow {
     align-items: baseline; /* align text */
     background-image: url('img/bgNavigationBar.jpg');
     background-size: contain;
     border-bottom: 1px solid black;
-    color: #7a7a7a; 
-    font-weight: bold;
-    text-align: center;
+     
     display: flex;
-    padding: 0 15%;
-    width: 100%;
+    font-weight: bold;
+    justify-content: center;
+    padding: 0px 12.5%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 2;
 }
 
 #divName {
     color: white;
-    font-size: 35px;
+    font-size: 30px;
     padding: 0 1%;
+    text-align: center;
     white-space: nowrap; /* prevent name being wrapped */
-    width: 20%;
+    width: 23%;
 }
 
 .divNavCol {   
-    /* display: inline-table; */
+    color: #7a7a7a;
     font-size: 18px;
     padding: 50px 1%;
     text-align: center;
-    width: 15%;
+    width: 14%; 
 }
 
 .divNavCol.divHover:hover {
@@ -49,21 +54,73 @@ body {
     text-decoration: underline;  
 }
 
+.sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 4;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+  }
+  
+  .sidebar a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  .sidebar a:hover {
+    color: #f1f1f1;
+  }
+  
+  .sidebar .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+  
+  .openbtn {
+    font-size: 70px;
+    cursor: pointer;
+    background-color: transparent;
+    color: white;
+    border: none;
+    position: fixed;
+    z-index: 3;
+    height: 128px;
+    width: 128px;
+    top: 0;
+  }
+  
+  .openbtn:hover {
+    background: #0f0f0f;
+    opacity: 0.5;
+    color: white;
+  }
+
 /* Main Content */
 .divMainBody {
     background-color: silver;
-    height: 350px;
+    height: 700px;
     padding: 0px 15%;
-    width: 100%;
+    margin-top: 128px;
 }
 
-.divContentBody {  
+.divMainBody .divContentBody {  
     display: none;
 }
 
 /* Footer */
 .divFooter {
-    width: 100%;
     align-content: center;
     background-image: linear-gradient(#121212, #4a4a4a);
     border-top: 1px solid black;
@@ -105,3 +162,6 @@ body {
 .divIcon:hover .ftrIcon {
     box-shadow: 0px 0px 15px black;
 }
+
+
+  

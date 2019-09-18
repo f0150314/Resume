@@ -1,32 +1,42 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <!-- external reference -->
-    <link href="css/index.css" rel="stylesheet" />
-    <script src="js/jquery-3.4.1.min.js"></script>
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+    <!-- CSS  -->
+    <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Resume</title>
 </head>
 
 <body>
-    <!-- Navigation bar -->
-    <div class="divNavRow">
-        <div id="divName" class="divNavCol">John Chen</div>
-        <div class="divNavCol divHover" onclick="showContent('ABOUT')">About</div>
-        <div class="divNavCol divHover" onclick="showContent('EDUCATION')">Education</div>
-        <div class="divNavCol divHover" onclick="showContent('SKILLS')">Skills</div>
-        <div class="divNavCol divHover" onclick="showContent('EXPERIENCE')">Experience</div>
-        <div class="divNavCol divHover" onclick="showContent('PORTFOLIO')">Portfolio</div>
-        <div class="divNavCol divHover" onclick="showContent('CONTACT')">Contact</div>
-    </div>
-
+    <header>
+        <!-- Navigation bar -->
+        <div class="divNavRow">
+            <div id="divName" class="divNavCol">John Chen</div>
+            <div class="divNavCol divHover" onclick="showContent('ABOUT')">About</div>
+            <div class="divNavCol divHover" onclick="showContent('SKILLS')">Skills</div>
+            <div class="divNavCol divHover" onclick="showContent('EXPERIENCE')">Experience</div>
+            <div class="divNavCol divHover" onclick="showContent('PORTFOLIO')">Portfolio</div>
+            <div class="divNavCol divHover" onclick="showContent('CONTACT')">Contact</div>
+        </div>
+    
+        <button id="btnMenu" class="openbtn" onclick="openSidebar()">☰</button>
+        <div id="divSidebar" class="sidebar">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeSidebar()">×</a>
+            <a href="#">About</a>
+            <a href="#">Services</a>
+            <a href="#">Clients</a>
+            <a href="#">Contact</a>
+        </div> 
+    </header>
+    
     <!-- Main content -->
     <div class="divMainBody">
         <!-- About & Education & Skills & Contact-->
         <div class="divContentBody">
             About
-            Education
             Skills
             Contact
         </div>
@@ -57,8 +67,12 @@
             <span class="ftrIconText">Contact details</span>
         </div>
     </div>
+    
 
-    <!-- javascript -->
+    <!-- Javascript -->
+    <script src="js/index.js"></script>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
     <script>
         var divNavColArray = [],
             divContentArray = [];
@@ -72,10 +86,12 @@
             $('.divContentBody').each(function () {
                 divContentArray.push($(this));
             });
-
+            
             // Initialize body content and hover behavior
             showContent('ABOUT');
             divNavColArray[0].removeClass('divSelected');
+
+            windowResize();
         }
 
         function showContent(category) {
@@ -101,32 +117,58 @@
                     divNavColArray[0].removeClass('divHover').addClass('divSelected');
                     divContentArray[0].show();
                     break;
-                case 'EDUCATION':
+                case 'SKILLS':
                     divNavColArray[1].removeClass('divHover').addClass('divSelected');
                     divContentArray[0].show();
                     break;
-                case 'SKILLS':
-                    divNavColArray[2].removeClass('divHover').addClass('divSelected');
-                    divContentArray[0].show();
-                    break;
                 case 'EXPERIENCE':
-                    divNavColArray[3].removeClass('divHover').addClass('divSelected');
+                    divNavColArray[2].removeClass('divHover').addClass('divSelected');
                     divContentArray[1].show();
                     break;
                 case 'PORTFOLIO':
-                    divNavColArray[4].removeClass('divHover').addClass('divSelected');
+                    divNavColArray[3].removeClass('divHover').addClass('divSelected');
                     divContentArray[1].show();
                     break;
                 case 'CONTACT':
-                    divNavColArray[5].removeClass('divHover').addClass('divSelected');
+                    divNavColArray[4].removeClass('divHover').addClass('divSelected');
                     divContentArray[0].show();
                     break;
             }
         }
 
+        function windowResize () {
+            if ($(window).width() < 1000) {
+                $.each(divNavColArray, function(index, value) {
+                    divNavColArray[index].hide();
+                    $('#divName').css('padding', '41px 0');
+                    $('#btnMenu').show();
+                })
+            } else {
+                $.each(divNavColArray, function(index, value) {
+                    divNavColArray[index].show();
+                    $('#divName').css('padding', '');
+                    $('#btnMenu').hide();         
+                })
+            }
+        }
+
+        function openSidebar() {
+            $("#divSidebar").width('200px');
+        }
+
+        function closeSidebar() {
+            $("#divSidebar").width('0px');
+        }
+
         $(document).ready(function () {
             init();
+
+            //Resize navigation bar when window width is changing
+            $(window).resize(function() {
+                windowResize();
+            });
         });
+
     </script>
 </body>
 
