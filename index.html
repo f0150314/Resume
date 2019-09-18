@@ -2,9 +2,12 @@
 <html lang="en">
 
 <head>
-    <!-- CSS  -->
+    <!-- External reference  -->
     <link rel="stylesheet" href="css/index.css" />
     <link rel="stylesheet" href="css/bootstrap.css" />
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Resume</title>
@@ -21,154 +24,62 @@
             <div class="divNavCol divHover" onclick="showContent('PORTFOLIO')">Portfolio</div>
             <div class="divNavCol divHover" onclick="showContent('CONTACT')">Contact</div>
         </div>
-    
-        <button id="btnMenu" class="openbtn" onclick="openSidebar()">☰</button>
+
+        <!-- Sidebar -->
+        <div id="divMenu" class="openbtn" onclick="openSidebar()">☰</div>
         <div id="divSidebar" class="sidebar">
             <a href="javascript:void(0)" class="closebtn" onclick="closeSidebar()">×</a>
-            <a href="#">About</a>
-            <a href="#">Services</a>
-            <a href="#">Clients</a>
-            <a href="#">Contact</a>
-        </div> 
+            <div onclick="showContent('ABOUT')">About</div>
+            <div onclick="showContent('SKILLS')">Skills</div>
+            <div onclick="showContent('EXPERIENCE')">Experience</div>
+            <div onclick="showContent('PORTFOLIO')">Portfolio</div>
+            <div onclick="showContent('CONTACT')">Contact</div>
+        </div>
     </header>
-    
+
     <!-- Main content -->
     <div class="divMainBody">
         <!-- About & Education & Skills & Contact-->
         <div class="divContentBody">
-            About
-            Skills
-            Contact
+            About Skills Contact
         </div>
-        
+
         <!-- Experience & Portfolio-->
         <div class="divContentBody">
-            Experience
-            Portfolio
+            Experience Portfolio
         </div>
-    </div>   
-    
+    </div>
+
     <!-- footer -->
-    <div class="divFooter">     
-        <div class="divIcon" onclick="location.href='https://www.facebook.com/'">
+    <div class="divFooter">
+        <div onclick="location.href='https://www.facebook.com/'">
             <img src="css/img/icons/icnFacebook.svg" alt="Facebook" class="ftrIcon">
             <span class="ftrIconText">Facebook</span>
         </div>
-        <div class="divIcon" onclick="location.href='https://www.linkedin.com/'">
+        <div onclick="location.href='https://www.linkedin.com/'">
             <img src="css/img/icons/icnLinkedIn.svg" alt="LinkedIn" class="ftrIcon">
             <span class="ftrIconText">LinkedIn</span>
         </div>
-        <div class="divIcon" onclick="location.href='https://github.com/'">
+        <div onclick="location.href='https://github.com/'">
             <img src="css/img/icons/icnGitHub.svg" alt="GitHub" class="ftrIcon">
             <span class="ftrIconText">GitHub</span>
         </div>
-        <div class="divIcon" onclick="showContent('CONTACT')">
+        <div onclick="showContent('CONTACT')">
             <img src="css/img/icons/icnContact.svg" alt="Contact Details" class="ftrIcon">
-            <span class="ftrIconText">Contact details</span>
+            <span class="ftrIconText">Contact</span>
         </div>
     </div>
-    
 
-    <!-- Javascript -->
-    <script src="js/index.js"></script>
-    <script src="js/jquery-3.4.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <!-- javascript -->
     <script>
-        var divNavColArray = [],
-            divContentArray = [];
-
-        function init() {
-            // Populate div arrays
-            $('.divHover').each(function () {
-                divNavColArray.push($(this));
-            })
-
-            $('.divContentBody').each(function () {
-                divContentArray.push($(this));
-            });
-            
-            // Initialize body content and hover behavior
-            showContent('ABOUT');
-            divNavColArray[0].removeClass('divSelected');
-
-            windowResize();
-        }
-
-        function showContent(category) {
-            // Hide all contents and add hover behavior 
-            // and remove selected behavior to all navigation columns
-            for (var i = 0; i < divNavColArray.length; i++) {
-                if (!divNavColArray[i].hasClass('divHover')) {
-                    divNavColArray[i].addClass('divHover');
-                }
-
-                if (divNavColArray[i].hasClass('divSelected')) {
-                    divNavColArray[i].removeClass('divSelected');
-                }
-            }
-
-            for (var i = 0; i < divContentArray.length; i++) {
-                divContentArray[i].hide();
-            }
-            
-            // Show selected contents and remove hover behavior
-            switch (category) {
-                case 'ABOUT':
-                    divNavColArray[0].removeClass('divHover').addClass('divSelected');
-                    divContentArray[0].show();
-                    break;
-                case 'SKILLS':
-                    divNavColArray[1].removeClass('divHover').addClass('divSelected');
-                    divContentArray[0].show();
-                    break;
-                case 'EXPERIENCE':
-                    divNavColArray[2].removeClass('divHover').addClass('divSelected');
-                    divContentArray[1].show();
-                    break;
-                case 'PORTFOLIO':
-                    divNavColArray[3].removeClass('divHover').addClass('divSelected');
-                    divContentArray[1].show();
-                    break;
-                case 'CONTACT':
-                    divNavColArray[4].removeClass('divHover').addClass('divSelected');
-                    divContentArray[0].show();
-                    break;
-            }
-        }
-
-        function windowResize () {
-            if ($(window).width() < 1000) {
-                $.each(divNavColArray, function(index, value) {
-                    divNavColArray[index].hide();
-                    $('#divName').css('padding', '41px 0');
-                    $('#btnMenu').show();
-                })
-            } else {
-                $.each(divNavColArray, function(index, value) {
-                    divNavColArray[index].show();
-                    $('#divName').css('padding', '');
-                    $('#btnMenu').hide();         
-                })
-            }
-        }
-
-        function openSidebar() {
-            $("#divSidebar").width('200px');
-        }
-
-        function closeSidebar() {
-            $("#divSidebar").width('0px');
-        }
-
         $(document).ready(function () {
             init();
 
             //Resize navigation bar when window width is changing
-            $(window).resize(function() {
+            $(window).resize(function () {
                 windowResize();
             });
         });
-
     </script>
 </body>
 
