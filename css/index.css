@@ -9,11 +9,16 @@ body {
     background-image: url('img/bgNavigationBar.jpg');
     background-size: contain;
     border-bottom: 1px solid black;
-    color: #7a7a7a; 
+     
     display: flex;
     font-weight: bold;
     justify-content: center;
     padding: 0px 12.5%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 2;
 }
 
 #divName {
@@ -26,6 +31,7 @@ body {
 }
 
 .divNavCol {   
+    color: #7a7a7a;
     font-size: 18px;
     padding: 50px 1%;
     text-align: center;
@@ -48,14 +54,68 @@ body {
     text-decoration: underline;  
 }
 
+.sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 4;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+  }
+  
+  .sidebar a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  .sidebar a:hover {
+    color: #f1f1f1;
+  }
+  
+  .sidebar .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+  
+  .openbtn {
+    font-size: 70px;
+    cursor: pointer;
+    background-color: transparent;
+    color: white;
+    border: none;
+    position: fixed;
+    z-index: 3;
+    height: 128px;
+    width: 128px;
+    top: 0;
+  }
+  
+  .openbtn:hover {
+    background: #0f0f0f;
+    opacity: 0.5;
+    color: white;
+  }
+
 /* Main Content */
 .divMainBody {
     background-color: silver;
     height: 700px;
     padding: 0px 15%;
+    margin-top: 128px;
 }
 
-.divContentBody {  
+.divMainBody .divContentBody {  
     display: none;
 }
 
@@ -102,3 +162,6 @@ body {
 .divIcon:hover .ftrIcon {
     box-shadow: 0px 0px 15px black;
 }
+
+
+  

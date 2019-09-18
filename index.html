@@ -1,24 +1,37 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
     <!-- CSS  -->
     <link rel="stylesheet" href="css/index.css" />
     <link rel="stylesheet" href="css/bootstrap.css" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Resume</title>
 </head>
 
 <body>
-    <!-- Navigation bar -->
-    <div class="divNavRow fixed-top">
-        <div id="divName" class="divNavCol">John Chen</div>
-        <div class="divNavCol divHover" onclick="showContent('ABOUT')">About</div>
-        <div class="divNavCol divHover" onclick="showContent('SKILLS')">Skills</div>
-        <div class="divNavCol divHover" onclick="showContent('EXPERIENCE')">Experience</div>
-        <div class="divNavCol divHover" onclick="showContent('PORTFOLIO')">Portfolio</div>
-        <div class="divNavCol divHover" onclick="showContent('CONTACT')">Contact</div>
-    </div>
-
+    <header>
+        <!-- Navigation bar -->
+        <div class="divNavRow">
+            <div id="divName" class="divNavCol">John Chen</div>
+            <div class="divNavCol divHover" onclick="showContent('ABOUT')">About</div>
+            <div class="divNavCol divHover" onclick="showContent('SKILLS')">Skills</div>
+            <div class="divNavCol divHover" onclick="showContent('EXPERIENCE')">Experience</div>
+            <div class="divNavCol divHover" onclick="showContent('PORTFOLIO')">Portfolio</div>
+            <div class="divNavCol divHover" onclick="showContent('CONTACT')">Contact</div>
+        </div>
+    
+        <button id="btnMenu" class="openbtn" onclick="openSidebar()">☰</button>
+        <div id="divSidebar" class="sidebar">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeSidebar()">×</a>
+            <a href="#">About</a>
+            <a href="#">Services</a>
+            <a href="#">Clients</a>
+            <a href="#">Contact</a>
+        </div> 
+    </header>
+    
     <!-- Main content -->
     <div class="divMainBody">
         <!-- About & Education & Skills & Contact-->
@@ -54,7 +67,7 @@
             <span class="ftrIconText">Contact details</span>
         </div>
     </div>
-
+    
 
     <!-- Javascript -->
     <script src="js/index.js"></script>
@@ -127,14 +140,24 @@
             if ($(window).width() < 1000) {
                 $.each(divNavColArray, function(index, value) {
                     divNavColArray[index].hide();
-                    $(divName).css('padding', '41px 0');
+                    $('#divName').css('padding', '41px 0');
+                    $('#btnMenu').show();
                 })
             } else {
                 $.each(divNavColArray, function(index, value) {
                     divNavColArray[index].show();
-                    $(divName).css('padding', '');                       
+                    $('#divName').css('padding', '');
+                    $('#btnMenu').hide();         
                 })
             }
+        }
+
+        function openSidebar() {
+            $("#divSidebar").width('200px');
+        }
+
+        function closeSidebar() {
+            $("#divSidebar").width('0px');
         }
 
         $(document).ready(function () {
@@ -145,6 +168,7 @@
                 windowResize();
             });
         });
+
     </script>
 </body>
 
