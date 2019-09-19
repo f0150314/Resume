@@ -66,7 +66,7 @@ body {
   }
   
   .sidebar a, .sidebar div {
-    padding: 8px 8px 8px 32px;
+    padding: 8px 8px 8px 30px;
     text-decoration: none;
     font-size: 25px;
     color: #818181;
@@ -106,11 +106,11 @@ body {
 
 /* Main Content */
 .divMainBody {
-    background-color: silver;
+    background-color: #f0f0f0;
     height: 700px;
-    margin-top: 128px;
-    left: 0;
-    right: 0;
+    padding-top: 128px;
+    /* left: 0; */
+    /* right: 0; */
 }
 
 .divMainBody .divContentBody {  
@@ -121,29 +121,31 @@ body {
 footer {
     justify-content: center;
     height: 100px;
-    display: flex;
     padding: 0 15%;
     left: 0;
     right: 0;
     width: 100%;
     bottom: 0;
     align-content: center;
-    background-image: linear-gradient(#121212, #4a4a4a);
+    background-image: linear-gradient(#121212, #5c5c5c);
     border-top: 1px solid black;
+    display: flex;
+    display: -webkit-flex;
 }
 
-.divFooter {
+.divIconRow {
     display: flex;
     justify-content: space-around;
     max-width: 500px;
     margin: 0 auto 0 auto;
+    height: inherit;
 }
 
-.divFooter div {
+.divIconRow div {
     position: relative;
 }
 
-.divFooter .ftrIconText {
+.divIconRow .ftrIconText {
     color: white;
     font-size: 15px;
     font-weight: bold;
@@ -157,7 +159,7 @@ footer {
     margin: -10px;
 }
 
-.divFooter .ftrIcon {
+.divIconRow .ftrIcon {
     border-radius: 24px;
     cursor: pointer;
     height: 50px;
@@ -166,12 +168,20 @@ footer {
     width: 50px;
 }
 
-.divFooter div:hover .ftrIconText {
+.divIconRow div:hover .ftrIconText {
     visibility: visible;
 }
 
-.divFooter div:hover .ftrIcon {
+.divIconRow div:hover .ftrIcon {
     box-shadow: 0 0 15px black;
+}
+
+#divCopyRight {
+    background-color: #2e2e2e;
+    color: white;
+    text-align: center;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
 }
 
 

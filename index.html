@@ -5,9 +5,6 @@
     <!-- External reference  -->
     <link rel="stylesheet" href="css/index.css" />
     <link rel="stylesheet" href="css/bootstrap.css" />
-    <script type="text/javascript" src="js/index.js"></script>
-    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Resume</title>
@@ -52,7 +49,7 @@
 
     <!-- footer -->
     <footer>
-        <div class="divFooter">
+        <div class="divIconRow">
             <div onclick="location.href='https://www.facebook.com/'">
                 <img src="css/img/icons/icnFacebook.svg" alt="Facebook" class="ftrIcon">
                 <span class="ftrIconText">Facebook</span>
@@ -69,11 +66,15 @@
                 <img src="css/img/icons/icnContact.svg" alt="Contact Details" class="ftrIcon">
                 <span class="ftrIconText">Contact</span>
             </div>
-        </div>
+        </div>   
     </footer>
+    <div id="divCopyRight">Copyright © 2019 John Chen</div>
 
     <!-- javascript -->
-    <script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript">
         $(document).ready(function () {
             init();
 
