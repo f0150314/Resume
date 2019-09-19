@@ -66,7 +66,7 @@ body {
   }
   
   .sidebar a, .sidebar div {
-    padding: 8px 8px 8px 32px;
+    padding: 8px 8px 8px 30px;
     text-decoration: none;
     font-size: 25px;
     color: #818181;
@@ -106,9 +106,9 @@ body {
 
 /* Main Content */
 .divMainBody {
-    background-color: silver;
+    background-color: #f0f0f0;
     height: 700px;
-    margin-top: 128px;
+    padding-top: 128px;
     left: 0;
     right: 0;
 }
@@ -121,15 +121,16 @@ body {
 footer {
     justify-content: center;
     height: 100px;
-    display: flex;
     padding: 0 15%;
     left: 0;
     right: 0;
     width: 100%;
     bottom: 0;
     align-content: center;
-    background-image: linear-gradient(#121212, #4a4a4a);
+    background-image: linear-gradient(#121212, #5c5c5c);
     border-top: 1px solid black;
+    display: flex;
+    display: -webkit-flex;
 }
 
 .divFooter {
