@@ -4,7 +4,7 @@ body {
 }
 
 /* Navigation bar */
-.divNavRow {
+#divNavRow {
     align-items: baseline; /* align text */
     background-image: url('img/bgNavigationBar.jpg');
     background-size: contain;
@@ -40,7 +40,7 @@ body {
     width: 14%; 
 }
 
-.divNavRow .divNavCol.divHover:hover, .divNavRow .divSelected {
+#divNavRow .divNavCol.divHover:hover, #divNavRow .divSelected {
     background: #0f0f0f;
     color: white;
     cursor: pointer;
@@ -48,11 +48,11 @@ body {
     text-decoration: underline;  
 }
 
-.divNavRow .divSelected {
+#divNavRow .divSelected {
     cursor: auto;
 }
 
-.sidebar {
+#divSidebar {
     height: 100%;
     width: 0;
     position: fixed;
@@ -65,7 +65,7 @@ body {
     padding-top: 60px;
   }
   
-  .sidebar a, .sidebar div {
+  #divSidebar a, #divSidebar div {
     padding: 8px 8px 8px 30px;
     text-decoration: none;
     font-size: 25px;
@@ -74,13 +74,13 @@ body {
     transition: 0.3s; 
   }
   
-  .sidebar a:hover, .sidebar div:hover {
+  #divSidebar a:hover, #divSidebar div:hover {
     color: #f1f1f1;
     text-decoration: underline; 
     cursor: pointer;
   }
   
-  .sidebar .closebtn {
+  #divSidebar a {
     position: absolute;
     top: 0;
     right: 25px;
@@ -105,7 +105,7 @@ body {
   }
 
 /* Main Content */
-.divMainBody {
+#divMainBody {
     background-color: #f0f0f0;
     height: 700px;
     padding-top: 128px;
@@ -113,7 +113,7 @@ body {
     /* right: 0; */
 }
 
-.divMainBody .divContentBody {  
+#divMainBody .divContentBody {  
     display: none;
 }
 
@@ -133,7 +133,7 @@ footer {
     display: -webkit-flex;
 }
 
-.divIconRow {
+#divIconRow {
     display: flex;
     justify-content: space-around;
     max-width: 500px;
@@ -141,11 +141,11 @@ footer {
     height: inherit;
 }
 
-.divIconRow div {
+#divIconRow div {
     position: relative;
 }
 
-.divIconRow .ftrIconText {
+#divIconRow .ftrIconText {
     color: white;
     font-size: 15px;
     font-weight: bold;
@@ -159,7 +159,7 @@ footer {
     margin: -10px;
 }
 
-.divIconRow .ftrIcon {
+#divIconRow .ftrIcon {
     border-radius: 24px;
     cursor: pointer;
     height: 50px;
@@ -168,11 +168,11 @@ footer {
     width: 50px;
 }
 
-.divIconRow div:hover .ftrIconText {
+#divIconRow div:hover .ftrIconText {
     visibility: visible;
 }
 
-.divIconRow div:hover .ftrIcon {
+#divIconRow div:hover .ftrIcon {
     box-shadow: 0 0 15px black;
 }
 

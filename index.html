@@ -13,7 +13,7 @@
 <body>
     <header>
         <!-- Navigation bar -->
-        <div class="divNavRow">
+        <div id="divNavRow">
             <div id="divName" class="divNavCol">John Chen</div>
             <div class="divNavCol divHover" onclick="showContent('ABOUT')">About</div>
             <div class="divNavCol divHover" onclick="showContent('SKILLS')">Skills</div>
@@ -24,8 +24,8 @@
 
         <!-- Sidebar -->
         <div id="divMenu" class="openbtn" onclick="openSidebar()">☰</div>
-        <div id="divSidebar" class="sidebar">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeSidebar()">×</a>
+        <div id="divSidebar">
+            <a href="javascript:void(0)" onclick="closeSidebar()">×</a>
             <div onclick="showContent('ABOUT')">About</div>
             <div onclick="showContent('SKILLS')">Skills</div>
             <div onclick="showContent('EXPERIENCE')">Experience</div>
@@ -35,7 +35,7 @@
     </header>
 
     <!-- Main content -->
-    <div class="divMainBody">
+    <div id="divMainBody">
         <!-- About & Education & Skills & Contact-->
         <div class="divContentBody container">
             About Skills Contact
@@ -49,7 +49,7 @@
 
     <!-- footer -->
     <footer>
-        <div class="divIconRow">
+        <div id="divIconRow">
             <div onclick="location.href='https://www.facebook.com/'">
                 <img src="css/img/icons/icnFacebook.svg" alt="Facebook" class="ftrIcon">
                 <span class="ftrIconText">Facebook</span>
