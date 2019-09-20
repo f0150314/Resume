@@ -19,6 +19,9 @@ function init() {
 
     // Initialize webpage size
     windowResize();
+
+    // Initialize skill chart
+    renderSkillChart();
 }
 
 function showContent(category) {
@@ -52,6 +55,12 @@ function showContent(category) {
         case 'SKILLS':
             divNavColArray[1].removeClass('divHover').addClass('divSelected');
             divContentArray[0].show();
+            
+            $('html, body').animate({
+                scrollTop: $('#divSkillChart').offset().top - 143
+            }, 500);
+            
+            renderSkillChart();
             break;
         case 'EXPERIENCE':
             divNavColArray[2].removeClass('divHover').addClass('divSelected');

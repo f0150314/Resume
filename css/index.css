@@ -107,7 +107,6 @@ body {
 /* Main Content */
 #divMainBody {
     background-color: #f0f0f0;
-    height: 700px;
     padding-top: 128px;
     /* left: 0; */
     /* right: 0; */
@@ -115,6 +114,13 @@ body {
 
 #divMainBody .divContentBody {  
     display: none;
+}
+
+#divMainBody .divContentBody #divSkillChart {
+    min-width: 310px;
+    max-width: 500px;
+    height: 400px;
+    margin: 0 auto;
 }
 
 /* Footer */
