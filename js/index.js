@@ -170,7 +170,7 @@ function buildHTML(attribute) {
                 case 2:
                 case 4:
                     if (i == 1) {
-                        rowHTML += '<td class="tdAttrName">Multi-tasking</td>';
+                        rowHTML += '<td class="tdAttrName">Multitasker</td>';
                     } else if (i == 2) {
                         rowHTML += '<td class="tdAttrName">Fast-learner</td>';
                     } else if (i == 4) {
@@ -187,24 +187,16 @@ function buildHTML(attribute) {
                     } 
                     break;
                 case 0:
-                    rowHTML += '<td class="tdAttrName">Self-motivated</td>';
-
+                case 3:
+                    if (i == 0) {
+                        rowHTML += '<td class="tdAttrName">Self-motivated</td>';
+                    } else if (i == 3) {
+                        rowHTML += '<td class="tdAttrName">Teamwork</td>';
+                    }
+                    
                     // Add thumbs up
                     for (var j = 0; j < numThumbs; j++) {
                         rowHTML += addThumbsUp_fill;
-                    }
-                    break;
-                case 3: 
-                    rowHTML += '<td class="tdAttrName">Interpersonality</td>';
-
-                    // Add thumbs up
-                    for (var j = 0; j < numThumbs; j++) {
-                        if (j < 3) {
-                            rowHTML += addThumbsUp_fill;
-                        } else {
-                            rowHTML += addThumbsUp;
-                        }
-                        
                     }
                     break;
             }
