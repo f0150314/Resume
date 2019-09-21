@@ -13,30 +13,53 @@ function createChartOptions() {
         chart: {
             renderTo: $('#divSkillChart')[0],
             type: 'bar',
-            marginRight: 50
+            marginRight: 40,
+            backgroundColor: '#474747',
+            borderColor: '#ffffff',
+            borderWidth: 2
         },
         title: {
-            text: 'Skill set'
+            text: '<b>Skill set</b>',
+            style: {
+                color: '#ffffff'
+            }
         },
         subtitle: {
-            text: 'Programming languages'
+            text: 'Programming languages',
+            style: {
+                color: '#c9c9c9'
+            }
         },
         xAxis: {
-            categories: ['Python', 'C#', 'Visual Basic', 
-                        'HTML', 'CSS', 'Javascript', 'TSQL',
-                        '.NET', 'ASP.NET', 'Xamarin', 'Jquery'],
+            categories: ['Python', 'C#', 'Visual Basic', 'HTML', 'CSS', 'Javascript', 
+                        'TSQL', '.NET', 'ASP.NET', 'Xamarin', 'Jquery', 'Java'],
             title: {
-                text: '<b>Skills</b>'
+                text: '<b>Skills</b>',
+                style: {
+                    color: '#ffffff'
+                }
+            },
+            labels: {
+                style: {
+                    color: '#c9c9c9'
+                }
             }
         },
         yAxis: {
+            max: 100,
             min: 0,
             title: {
                 text: '<b>Skill level</b>',
-                align: 'high'
+                align: 'high',
+                style: {
+                    color: '#ffffff'
+                }
             },
             labels: {
-                overflow: 'justify'
+                overflow: 'justify',
+                style: {
+                    color: '#c9c9c9'
+                }
             }
         },
         tooltip: {
@@ -57,8 +80,8 @@ function createChartOptions() {
         },
         series: [{
             name: '<b>Level</b>',
-            data: [70, 31, 63, 20, 21, 30, 
-                    40, 90, 80, 36, 78]
+            data: [50, 85, 75, 70, 65, 70, 
+                    75, 70, 65, 35, 75, 45]
         }]
     }
 }

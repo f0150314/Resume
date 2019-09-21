@@ -17,11 +17,14 @@ function init() {
     showContent('ABOUT');
     divNavColArray[0].removeClass('divSelected');
 
-    // Initialize webpage size
-    windowResize();
+    // Initialize navigation bar
+    resizeNavbar();
 
     // Initialize skill chart
     renderSkillChart();
+
+    // Initialize attribute tables
+    createAttributeTables();
 }
 
 function showContent(category) {
@@ -58,8 +61,8 @@ function showContent(category) {
             
             $('html, body').animate({
                 scrollTop: $('#divSkillChart').offset().top - 143
-            }, 500);
-            
+            }, 300);
+
             renderSkillChart();
             break;
         case 'EXPERIENCE':
@@ -77,7 +80,7 @@ function showContent(category) {
     }
 }
 
-function windowResize() {
+function resizeNavbar() {
     // Show sidebar and hide navigation bar
     if ($(window).width() < 1000) {
         $.each(divNavColArray, function (index, value) {
@@ -102,5 +105,9 @@ function openSidebar() {
 
 function closeSidebar() {
     $("#divSidebar").width('0px');
+}
+
+function createAttributeTables() {
+
 }
 

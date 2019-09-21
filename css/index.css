@@ -1,6 +1,10 @@
 body {
     font-family: Arial;
-    margin: 0;   
+    margin: 0; 
+}
+
+#divBase {
+    background-color: #474747;
 }
 
 /* Navigation bar */
@@ -10,6 +14,7 @@ body {
     background-size: contain;
     border-bottom: 1px solid black; 
     display: flex;
+    display: -webkit-flex;
     font-weight: bold;
     justify-content: center;
     padding: 0 12.5%;
@@ -29,7 +34,7 @@ body {
     width: 23%;
     justify-content: center;
     display: flex;
-
+    display: -webkit-flex;
 }
 
 .divNavCol {   
@@ -106,21 +111,68 @@ body {
 
 /* Main Content */
 #divMainBody {
-    background-color: #f0f0f0;
     padding-top: 128px;
-    /* left: 0; */
-    /* right: 0; */
+    margin: 0 auto;
+    max-width: 1000px;
 }
 
 #divMainBody .divContentBody {  
     display: none;
 }
 
-#divMainBody .divContentBody #divSkillChart {
-    min-width: 310px;
-    max-width: 500px;
-    height: 400px;
+@media screen and (min-width: 1000px) {
+    #divMainBody .divContentBody .divContentRow {
+        display: flex;
+        display: -webkit-flex;
+    }
+}
+
+.divContentBody .divContentRow .divContentCell {
+    width: 100%;
+    padding: 15px;
+    height: 450px;
+    background-color: #474747;  
+}
+
+.divContentBody .divContentRow .divContentCell #divAttributes {
+    height: 100%;
+    border: 2px solid white;
+}
+
+.divContentCell #divAttributes span {
+    text-align: center;
+    color: white;
+}
+
+#divAttributes #tblLanguages, #divAttributes #tblCharacteristics {
+    margin: 20px auto;
+    width: 85%;
+    height: 20%;
+} 
+
+    #divAttributes #tblCharacteristics {
+        height: 50%;
+    }
+
+#divAttributes td {
+    width: 12%;
+    text-align: center;
+    color: #c9c9c9;
+}
+
+    #divAttributes .tdAttrName {
+        width: 28%;
+    }
+
+#divAttributes .icnThumbUp {
+    height: 25px;
+    width: 25px;
+}
+
+.divLine {
     margin: 0 auto;
+    width: 80%;
+    border-top: 1px solid grey;
 }
 
 /* Footer */
@@ -141,9 +193,10 @@ footer {
 
 #divIconRow {
     display: flex;
+    display: -webkit-flex;
     justify-content: space-around;
     max-width: 500px;
-    margin: 0 auto 0 auto;
+    margin: 0 auto;
     height: inherit;
 }
 
@@ -160,7 +213,6 @@ footer {
     right: 0;
     text-align: center;
     visibility: hidden;
-    /* top: 5px; */
     top: 15px;
     margin: -10px;
 }
@@ -169,7 +221,6 @@ footer {
     border-radius: 24px;
     cursor: pointer;
     height: 50px;
-    /* margin: 1.8rem 20px; */
     margin: 2rem 0;
     width: 50px;
 }
