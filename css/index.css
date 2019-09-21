@@ -1,15 +1,20 @@
 body {
     font-family: Arial;
-    margin: 0;   
+    margin: 0; 
+}
+
+#divBase {
+    background-color: #474747;
 }
 
 /* Navigation bar */
-.divNavRow {
+#divNavRow {
     align-items: baseline; /* align text */
     background-image: url('img/bgNavigationBar.jpg');
     background-size: contain;
     border-bottom: 1px solid black; 
     display: flex;
+    display: -webkit-flex;
     font-weight: bold;
     justify-content: center;
     padding: 0 12.5%;
@@ -29,7 +34,7 @@ body {
     width: 23%;
     justify-content: center;
     display: flex;
-
+    display: -webkit-flex;
 }
 
 .divNavCol {   
@@ -40,7 +45,7 @@ body {
     width: 14%; 
 }
 
-.divNavRow .divNavCol.divHover:hover, .divNavRow .divSelected {
+#divNavRow .divNavCol.divHover:hover, #divNavRow .divSelected {
     background: #0f0f0f;
     color: white;
     cursor: pointer;
@@ -48,11 +53,11 @@ body {
     text-decoration: underline;  
 }
 
-.divNavRow .divSelected {
+#divNavRow .divSelected {
     cursor: auto;
 }
 
-.sidebar {
+#divSidebar {
     height: 100%;
     width: 0;
     position: fixed;
@@ -65,7 +70,7 @@ body {
     padding-top: 60px;
   }
   
-  .sidebar a, .sidebar div {
+  #divSidebar a, #divSidebar div {
     padding: 8px 8px 8px 30px;
     text-decoration: none;
     font-size: 25px;
@@ -74,13 +79,13 @@ body {
     transition: 0.3s; 
   }
   
-  .sidebar a:hover, .sidebar div:hover {
+  #divSidebar a:hover, #divSidebar div:hover {
     color: #f1f1f1;
     text-decoration: underline; 
     cursor: pointer;
   }
   
-  .sidebar .closebtn {
+  #divSidebar a {
     position: absolute;
     top: 0;
     right: 25px;
@@ -105,16 +110,69 @@ body {
   }
 
 /* Main Content */
-.divMainBody {
-    background-color: #f0f0f0;
-    height: 700px;
+#divMainBody {
     padding-top: 128px;
-    /* left: 0; */
-    /* right: 0; */
+    margin: 0 auto;
+    max-width: 1000px;
 }
 
-.divMainBody .divContentBody {  
+#divMainBody .divContentBody {  
     display: none;
+}
+
+@media screen and (min-width: 1000px) {
+    #divMainBody .divContentBody .divContentRow {
+        display: flex;
+        display: -webkit-flex;
+    }
+}
+
+.divContentBody .divContentRow .divContentCell {
+    width: 100%;
+    padding: 15px;
+    height: 450px;
+    background-color: #474747;  
+}
+
+.divContentBody .divContentRow .divContentCell #divAttributes {
+    height: 100%;
+    border: 2px solid white;
+}
+
+.divContentCell #divAttributes span {
+    text-align: center;
+    color: white;
+}
+
+#divAttributes #tblLanguages, #divAttributes #tblCharacteristics {
+    margin: 20px auto;
+    width: 85%;
+    height: 20%;
+} 
+
+    #divAttributes #tblCharacteristics {
+        height: 50%;
+    }
+
+#divAttributes td {
+    width: 12%;
+    text-align: center;
+    color: #c9c9c9;
+}
+
+    #divAttributes .tdAttrName {
+        width: 28%;
+    }
+
+#divAttributes .icnThumbUp {
+    height: 25px;
+    width: 25px;
+}
+
+.divLine {
+    margin: 0 auto;
+    width: 80%;
+    border-top: 1px solid grey;
 }
 
 /* Footer */
@@ -133,19 +191,20 @@ footer {
     display: -webkit-flex;
 }
 
-.divIconRow {
+#divIconRow {
     display: flex;
+    display: -webkit-flex;
     justify-content: space-around;
     max-width: 500px;
-    margin: 0 auto 0 auto;
+    margin: 0 auto;
     height: inherit;
 }
 
-.divIconRow div {
+#divIconRow div {
     position: relative;
 }
 
-.divIconRow .ftrIconText {
+#divIconRow .ftrIconText {
     color: white;
     font-size: 15px;
     font-weight: bold;
@@ -154,25 +213,23 @@ footer {
     right: 0;
     text-align: center;
     visibility: hidden;
-    /* top: 5px; */
     top: 15px;
     margin: -10px;
 }
 
-.divIconRow .ftrIcon {
+#divIconRow .ftrIcon {
     border-radius: 24px;
     cursor: pointer;
     height: 50px;
-    /* margin: 1.8rem 20px; */
     margin: 2rem 0;
     width: 50px;
 }
 
-.divIconRow div:hover .ftrIconText {
+#divIconRow div:hover .ftrIconText {
     visibility: visible;
 }
 
-.divIconRow div:hover .ftrIcon {
+#divIconRow div:hover .ftrIcon {
     box-shadow: 0 0 15px black;
 }
 
