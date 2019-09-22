@@ -14,9 +14,9 @@ function createChartOptions() {
             renderTo: $('#divSkillChart')[0],
             type: 'bar',
             marginRight: 40,
-            backgroundColor: '#474747',
-            borderColor: '#ffffff',
-            borderWidth: 2
+            backgroundColor: '#474747'
+            // borderColor: '#ffffff',
+            // borderWidth: 2
         },
         title: {
             text: '<b>Skill set</b>',

@@ -131,40 +131,48 @@ body {
     width: 100%;
     padding: 15px;
     height: 450px;
-    background-color: #474747;  
 }
 
-.divContentBody .divContentRow .divContentCell #divAttributes {
+/* Removable if not adding border line. */
+.divContentBody .divContentRow .divContentCell .divInnerCell {
     height: 100%;
     border: 2px solid white;
 }
 
-.divContentCell #divAttributes span {
+.divContentBody .divContentRow .divContentCell .divInnerCell .divInnerCellRow {
+    margin: 0 5% 20px;
+    color: #c9c9c9;
+}
+
+.divContentCell .divInnerCell span {
     text-align: center;
+}
+
+h1, h2, h3, h4, h5 {
     color: white;
 }
 
-#divAttributes #tblLanguages, #divAttributes #tblCharacteristics {
+.divInnerCell #tblLanguages, .divInnerCell #tblCharacteristics {
     margin: 20px auto;
     width: 85%;
     height: 20%;
 } 
 
-    #divAttributes #tblCharacteristics {
+    .divInnerCell #tblCharacteristics {
         height: 50%;
     }
 
-#divAttributes td {
+.divInnerCell td {
     width: 12%;
     text-align: center;
     color: #c9c9c9;
 }
 
-    #divAttributes .tdAttrName {
-        width: 28%;
-    }
+.divInnerCell .tdAttrName {
+    width: 28%;
+}
 
-#divAttributes .icnThumbUp {
+.divInnerCell .icnThumbUp {
     height: 25px;
     width: 25px;
 }

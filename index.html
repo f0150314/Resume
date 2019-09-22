@@ -12,88 +12,111 @@
 
 <body>
     <div id="divBase">
-            <header>
-                    <!-- Navigation bar -->
-                    <div id="divNavRow">
-                        <div id="divName" class="divNavCol">John Chen</div>
-                        <div class="divNavCol divHover" onclick="showContent('ABOUT')">About</div>
-                        <div class="divNavCol divHover" onclick="showContent('SKILLS')">Skills</div>
-                        <div class="divNavCol divHover" onclick="showContent('EXPERIENCE')">Experience</div>
-                        <div class="divNavCol divHover" onclick="showContent('PORTFOLIO')">Portfolio</div>
-                        <div class="divNavCol divHover" onclick="showContent('CONTACT')">Contact</div>
-                    </div>
+        <header>
+            <!-- Navigation bar -->
+            <div id="divNavRow">
+                <div id="divName" class="divNavCol">John Chen</div>
+                <div class="divNavCol divHover" onclick="showContent('ABOUT')">About</div>
+                <div class="divNavCol divHover" onclick="showContent('SKILLS')">Skills</div>
+                <div class="divNavCol divHover" onclick="showContent('EXPERIENCE')">Experience</div>
+                <div class="divNavCol divHover" onclick="showContent('PORTFOLIO')">Portfolio</div>
+                <div class="divNavCol divHover" onclick="showContent('CONTACT')">Contact</div>
+            </div>
+    
+            <!-- Sidebar -->
+            <div id="divMenu" class="openbtn" onclick="openSidebar()">☰</div>
+            <div id="divSidebar">
+                <a href="javascript:void(0)" onclick="closeSidebar()">×</a>
+                <div onclick="showContent('ABOUT')">About</div>
+                <div onclick="showContent('SKILLS')">Skills</div>
+                <div onclick="showContent('EXPERIENCE')">Experience</div>
+                <div onclick="showContent('PORTFOLIO')">Portfolio</div>
+                <div onclick="showContent('CONTACT')">Contact</div>
+            </div>
+        </header>
             
-                    <!-- Sidebar -->
-                    <div id="divMenu" class="openbtn" onclick="openSidebar()">☰</div>
-                    <div id="divSidebar">
-                        <a href="javascript:void(0)" onclick="closeSidebar()">×</a>
-                        <div onclick="showContent('ABOUT')">About</div>
-                        <div onclick="showContent('SKILLS')">Skills</div>
-                        <div onclick="showContent('EXPERIENCE')">Experience</div>
-                        <div onclick="showContent('PORTFOLIO')">Portfolio</div>
-                        <div onclick="showContent('CONTACT')">Contact</div>
-                    </div>
-                </header>
-            
-                <!-- Main content -->
-                <div id="divMainBody">
-                    <!-- About & Education & Skills & Contact-->
-                    <div class="divContentBody container">
-                        About <br><br><br><br><br><br><br><br><br>
-                        
-                        <div class="divContentRow">
-                            <!-- Skill chart container -->
-                            <div id="divSkillChart" class="divContentCell"></div>
-            
-                            <!-- Attribute containter -->
-                            <div class="divContentCell">
-                                <div id="divAttributes">
-                                    <!-- Language section -->
-                                    <span><h5>Languages</h5></span>
-                                    <table id="tblLanguages"></table>
-                                    
-                                    <!-- divided line -->
-                                    <div class="divLine"></div>
-                                    
-                                    <!-- Characteristic section -->
-                                    <span><h5>Characteristics</h5></span>
-                                    <table id="tblCharacteristics"></table>
-                                </div>
+        <!-- Main content -->
+        <div id="divMainBody">
+            <!-- About & Education & Skills & Contact-->
+            <div class="divContentBody container">
+                
+                <!-- First row -->
+                <div class="divContentRow">
+                    <div id="divAboutMe" class="divContentCell">
+                        <div class="divInnerCell">                           
+                            <div class="divInnerCellRow">
+                                <h3>About me</h3><br>
+                                I'm John from Taiwan. I like Australi and wish to find a stable job in here and get a beautiful wife and by a amazing house. <br>
+                                I'm a sofware developer. <br>
+                            </div>                       
+                            
+                            <div class="divInnerCellRow">
+                                <h5>Education</h3>
+                            
                             </div>
-                        </div>           
-                        <br><br><br><br><br><br><br><br><br><br><br><br>
-                        Contact
-                    </div>
-            
-                    <!-- Experience & Portfolio-->
-                    <div class="divContentBody container">
-                        Experience Portfolio
+
+                            <div class="divInnerCellRow">
+                                <h5>Achievement</h3>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Second row -->
+                <div class="divContentRow">
+                    <!-- Skill chart container -->
+                    <div id="divSkillChart" class="divContentCell"></div>
+    
+                    <!-- Attribute containter -->
+                    <div class="divContentCell">
+                        <div class="divInnerCell">
+                            <!-- Language section -->
+                            <span><h5>Languages</h5></span>
+                            <table id="tblLanguages"></table>
+                            
+                            <!-- divided line -->
+                            <div class="divLine"></div>
+                            
+                            <!-- Characteristic section -->
+                            <span><h5>Characteristics</h5></span>
+                            <table id="tblCharacteristics"></table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Third row -->
+                <br><br><br><br><br><br><br><br><br><br><br><br>
+                Contact
+            </div>
+    
+            <!-- Experience & Portfolio-->
+            <div class="divContentBody container">
+                Experience Portfolio
+            </div>
+        </div>
             
-                <!-- footer -->
-                <footer>
-                    <div id="divIconRow">
-                        <div onclick="location.href='https://www.facebook.com/'">
-                            <img src="css/img/icons/icnFacebook.svg" alt="Facebook" class="ftrIcon">
-                            <span class="ftrIconText">Facebook</span>
-                        </div>
-                        <div onclick="location.href='https://www.linkedin.com/'">
-                            <img src="css/img/icons/icnLinkedIn.svg" alt="LinkedIn" class="ftrIcon">
-                            <span class="ftrIconText">LinkedIn</span>
-                        </div>
-                        <div onclick="location.href='https://github.com/'">
-                            <img src="css/img/icons/icnGitHub.svg" alt="GitHub" class="ftrIcon">
-                            <span class="ftrIconText">GitHub</span>
-                        </div>
-                        <div onclick="showContent('CONTACT')">
-                            <img src="css/img/icons/icnContact.svg" alt="Contact Details" class="ftrIcon">
-                            <span class="ftrIconText">Contact</span>
-                        </div>
-                    </div>   
-                </footer>
-                <div id="divCopyRight">Copyright © 2019 John Chen</div>
-            
+        <!-- footer -->
+        <footer>
+            <div id="divIconRow">
+                <div onclick="location.href='https://www.facebook.com/'">
+                    <img src="css/img/icons/icnFacebook.svg" alt="Facebook" class="ftrIcon">
+                    <span class="ftrIconText">Facebook</span>
+                </div>
+                <div onclick="location.href='https://www.linkedin.com/'">
+                    <img src="css/img/icons/icnLinkedIn.svg" alt="LinkedIn" class="ftrIcon">
+                    <span class="ftrIconText">LinkedIn</span>
+                </div>
+                <div onclick="location.href='https://github.com/'">
+                    <img src="css/img/icons/icnGitHub.svg" alt="GitHub" class="ftrIcon">
+                    <span class="ftrIconText">GitHub</span>
+                </div>
+                <div onclick="showContent('CONTACT')">
+                    <img src="css/img/icons/icnContact.svg" alt="Contact Details" class="ftrIcon">
+                    <span class="ftrIconText">Contact</span>
+                </div>
+            </div>   
+        </footer>
+        <div id="divCopyRight">Copyright © 2019 John Chen</div>      
     </div>
     
     <!-- javascript -->

@@ -29,6 +29,10 @@ function init() {
 }
 
 function showContent(category) {
+    var focusDiv = null,
+        hoverClass = 'divHover',
+        selectedClass = 'divSelected';
+
     // Close sidebar if it is open after clicking item
     if ($("#divSidebar").width() > 0) {
         closeSidebar();
@@ -37,12 +41,12 @@ function showContent(category) {
     // Hide all contents and add hover behavior 
     // and remove selected behavior for all navigation columns
     for (var i = 0; i < divNavColArray.length; i++) {
-        if (!divNavColArray[i].hasClass('divHover')) {
-            divNavColArray[i].addClass('divHover');
+        if (!divNavColArray[i].hasClass(hoverClass)) {
+            divNavColArray[i].addClass(hoverClass);
         }
 
-        if (divNavColArray[i].hasClass('divSelected')) {
-            divNavColArray[i].removeClass('divSelected');
+        if (divNavColArray[i].hasClass(selectedClass)) {
+            divNavColArray[i].removeClass(selectedClass);
         }
     }
 
@@ -53,29 +57,33 @@ function showContent(category) {
     // Show selected contents and remove hover behavior
     switch (category) {
         case 'ABOUT':
-            divNavColArray[0].removeClass('divHover').addClass('divSelected');
-            divContentArray[0].show();
-            break;
-        case 'SKILLS':
-            divNavColArray[1].removeClass('divHover').addClass('divSelected');
+            divNavColArray[0].removeClass(hoverClass).addClass(selectedClass);
             divContentArray[0].show();
             
-            $('html, body').animate({
-                scrollTop: $('#divSkillChart').offset().top - 143
-            }, 300);
+            // Scroll to the content
+            focusDiv = $('#divAboutMe');
+            getFocus(focusDiv);
+            break;
+        case 'SKILLS':
+            divNavColArray[1].removeClass(hoverClass).addClass(selectedClass);
+            divContentArray[0].show();
+            
+            focusDiv = $('#divSkillChart');
+            getFocus(focusDiv);
 
+            // Render skill chart
             renderSkillChart();
             break;
         case 'EXPERIENCE':
-            divNavColArray[2].removeClass('divHover').addClass('divSelected');
+            divNavColArray[2].removeClass(hoverClass).addClass(selectedClass);
             divContentArray[1].show();
             break;
         case 'PORTFOLIO':
-            divNavColArray[3].removeClass('divHover').addClass('divSelected');
+            divNavColArray[3].removeClass(hoverClass).addClass(selectedClass);
             divContentArray[1].show();
             break;
         case 'CONTACT':
-            divNavColArray[4].removeClass('divHover').addClass('divSelected');
+            divNavColArray[4].removeClass(hoverClass).addClass(selectedClass);
             divContentArray[0].show();
             break;
     }
@@ -108,6 +116,12 @@ function closeSidebar() {
     $("#divSidebar").width('0px');
 }
 
+function getFocus(focusDiv) {
+    $('html, body').animate({
+        scrollTop: focusDiv.offset().top - 128
+    }, 300);
+}
+
 function createAttributeTables(attribute) {
     // Build html
     var htmlText = null;  
@@ -118,7 +132,7 @@ function createAttributeTables(attribute) {
         $('#tblLanguages').append(htmlText);
     } 
 
-    if (attribute == 'char'&& $('#tblCharacteristics').length) {
+    if (attribute == 'char' && $('#tblCharacteristics').length) {
         $('#tblCharacteristics').append(htmlText);
     }     
 }
