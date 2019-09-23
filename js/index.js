@@ -136,7 +136,7 @@ function createAttributeTables() {
 function buildHTML() {
     var rowHTML = '',
         numChar = 5,
-        numThumbs = 6,
+        numThumbs = 5,
         addThumbsUp_fill = '<td><img src="css/img/icons/icnThumbsUp_fill.svg" alt="ThumbsUp" class="icnThumbUp"></td>',
         addThumbsUp = '<td><img src="css/img/icons/icnThumbsUp.svg" alt="ThumbsUp" class="icnThumbUp"></td>';
 
@@ -150,16 +150,16 @@ function buildHTML() {
             case 2:
             case 4:
                 if (i == 1) {
-                    rowHTML += '<td class="tdAttrName">Multitasker</td>';
+                    rowHTML += '<td class="tdAttrName">Multi-tasking</td>';
                 } else if (i == 2) {
-                    rowHTML += '<td class="tdAttrName">Fastlearner</td>';
+                    rowHTML += '<td class="tdAttrName">Fast-learner</td>';
                 } else if (i == 4) {
-                    rowHTML += '<td class="tdAttrName">Tasksolver</td>';
+                    rowHTML += '<td class="tdAttrName">Problem-solving</td>';
                 }
 
                 // Add thumbs up
                 for (var j = 0; j < numThumbs; j++) {
-                    if (j < 5) {
+                    if (j < 4) {
                         rowHTML += addThumbsUp_fill;
                     } else {
                         rowHTML += addThumbsUp;
@@ -169,9 +169,9 @@ function buildHTML() {
             case 0:
             case 3:
                 if (i == 0) {
-                    rowHTML += '<td class="tdAttrName">Self-driven</td>';
+                    rowHTML += '<td class="tdAttrName">Self-motivated</td>';
                 } else if (i == 3) {
-                    rowHTML += '<td class="tdAttrName">Teamwork</td>';
+                    rowHTML += '<td class="tdAttrName">Team-oriented</td>';
                 }
                 
                 // Add thumbs up

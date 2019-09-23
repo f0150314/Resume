@@ -136,6 +136,7 @@ body {
 /* Removable if not adding border line. */
 .divContentBody .divContentRow .divContentCell .divInnerCell {
     height: 100%;
+    padding-top: 4px;
     /* border: 2px solid white; */
 }
 
@@ -169,13 +170,13 @@ h1, h2, h3, h4, h5 {
 } 
 
 .divInnerCell td {
-    width: 12%;
-    text-align: center;
+    width: 11%;
+    text-align: left;
     color: #c9c9c9;
 }
 
 .divInnerCell .tdAttrName {
-    width: 28%;
+    width: 45%;
     height: 10%;
 }
 
@@ -185,6 +186,7 @@ h1, h2, h3, h4, h5 {
 }
 
 .divLine {
+    padding-bottom: 4px;
     margin: 0 auto;
     width: 80%;
     border-top: 1px solid grey;
