@@ -32,6 +32,7 @@
                 <div onclick="showContent('EXPERIENCE')">Experience</div>
                 <div onclick="showContent('PORTFOLIO')">Portfolio</div>
                 <div onclick="showContent('CONTACT')">Contact</div>
+                <!-- TO DO: Add more rows -->
             </div>
         </header>
             
@@ -67,12 +68,16 @@
                     <!-- Skill chart container -->
                     <div id="divSkillChart" class="divContentCell"></div>
     
-                    <!-- Attribute containter -->
+                    <!-- Ability containter -->
                     <div class="divContentCell">
                         <div class="divInnerCell">
+                            
                             <!-- Language section -->
                             <span><h5>Languages</h5></span>
-                            <table id="tblLanguages"></table>
+                            <div class="divLangContainer">
+                                <div id="divEnglishChart" class="divLanguageCell"></div>
+                                <div id="divChineseChart" class="divLanguageCell"></div>
+                            </div>
                             
                             <!-- divided line -->
                             <div class="divLine"></div>
@@ -122,9 +127,13 @@
     <!-- javascript -->
     <script src="js/index.js"></script>
     <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/chart.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/highcharts.js"></script>
-    <script src="js/chart.js"></script>
+    <script src="js/highcharts-more.js"></script>
+    <script src="js/solid-gauge.js"></script>
+    <script src="js/timeline.js"></script>
+    
     <script>
         $(document).ready(function () {
             init();

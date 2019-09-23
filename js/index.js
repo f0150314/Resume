@@ -21,11 +21,13 @@ function init() {
     resizeNavbar();
 
     // Initialize skill chart
-    renderSkillChart();
+    // TO DO: Use loop to render charts
+    renderChart('Skill');
+    renderChart('English');
+    renderChart('Chinese');
 
-    // Initialize attribute tables
-    createAttributeTables('lang');
-    createAttributeTables('char');
+    // Initialize characteristic tables
+    createAttributeTables();
 }
 
 function showContent(category) {
@@ -72,7 +74,7 @@ function showContent(category) {
             getFocus(focusDiv);
 
             // Render skill chart
-            renderSkillChart();
+            renderChart('Skill');
             break;
         case 'EXPERIENCE':
             divNavColArray[2].removeClass(hoverClass).addClass(selectedClass);
@@ -122,100 +124,63 @@ function getFocus(focusDiv) {
     }, 300);
 }
 
-function createAttributeTables(attribute) {
-    // Build html
+function createAttributeTables() {
     var htmlText = null;  
-    htmlText = buildHTML(attribute);
+    htmlText = buildHTML();
 
-    // Append html to tables
-    if (attribute == 'lang' && $('#tblLanguages').length) {
-        $('#tblLanguages').append(htmlText);
-    } 
-
-    if (attribute == 'char' && $('#tblCharacteristics').length) {
+    if ($('#tblCharacteristics').length) {
         $('#tblCharacteristics').append(htmlText);
     }     
 }
 
-function buildHTML(attribute) {
+function buildHTML() {
     var rowHTML = '',
-        numLang = 2,
         numChar = 5,
         numThumbs = 6,
         addThumbsUp_fill = '<td><img src="css/img/icons/icnThumbsUp_fill.svg" alt="ThumbsUp" class="icnThumbUp"></td>',
         addThumbsUp = '<td><img src="css/img/icons/icnThumbsUp.svg" alt="ThumbsUp" class="icnThumbUp"></td>';
 
-    // Add language section
-    if (attribute == 'lang') {
-        for (var i = 0; i < numLang; i++) {
-            rowHTML += '<tr>'
-            
-            // First language: English
-            if (i == 0) {
-                rowHTML += '<td class="tdAttrName">English</td>';
-                
-                // Add thumbsup
+    // Add characteristic section
+    for (var i = 0; i < numChar; i++) {
+        rowHTML += '<tr>'
+
+        // Five characteristics
+        switch (i) {
+            case 1:
+            case 2:
+            case 4:
+                if (i == 1) {
+                    rowHTML += '<td class="tdAttrName">Multitasker</td>';
+                } else if (i == 2) {
+                    rowHTML += '<td class="tdAttrName">Fastlearner</td>';
+                } else if (i == 4) {
+                    rowHTML += '<td class="tdAttrName">Tasksolver</td>';
+                }
+
+                // Add thumbs up
                 for (var j = 0; j < numThumbs; j++) {
-                    if (j < 4) {
+                    if (j < 5) {
                         rowHTML += addThumbsUp_fill;
                     } else {
                         rowHTML += addThumbsUp;
                     }
-                }            
-            } else {
-                // Second language: Chinese
-                rowHTML += '<td class="tdAttrName">Chinese</td>';
+                } 
+                break;
+            case 0:
+            case 3:
+                if (i == 0) {
+                    rowHTML += '<td class="tdAttrName">Self-driven</td>';
+                } else if (i == 3) {
+                    rowHTML += '<td class="tdAttrName">Teamwork</td>';
+                }
                 
-                // Add thumbsup
+                // Add thumbs up
                 for (var j = 0; j < numThumbs; j++) {
                     rowHTML += addThumbsUp_fill;
                 }
-            }
-            rowHTML += '</tr>';
+                break;
         }
-    } else if (attribute == 'char') {
-        // Add characteristic section
-        for (var i = 0; i < numChar; i++) {
-            rowHTML += '<tr>'
-
-            // Five characteristics
-            switch (i) {
-                case 1:
-                case 2:
-                case 4:
-                    if (i == 1) {
-                        rowHTML += '<td class="tdAttrName">Multitasker</td>';
-                    } else if (i == 2) {
-                        rowHTML += '<td class="tdAttrName">Fast-learner</td>';
-                    } else if (i == 4) {
-                        rowHTML += '<td class="tdAttrName">Problem-solving</td>';
-                    }
-
-                    // Add thumbs up
-                    for (var j = 0; j < numThumbs; j++) {
-                        if (j < 5) {
-                            rowHTML += addThumbsUp_fill;
-                        } else {
-                            rowHTML += addThumbsUp;
-                        }
-                    } 
-                    break;
-                case 0:
-                case 3:
-                    if (i == 0) {
-                        rowHTML += '<td class="tdAttrName">Self-motivated</td>';
-                    } else if (i == 3) {
-                        rowHTML += '<td class="tdAttrName">Teamwork</td>';
-                    }
-                    
-                    // Add thumbs up
-                    for (var j = 0; j < numThumbs; j++) {
-                        rowHTML += addThumbsUp_fill;
-                    }
-                    break;
-            }
-            rowHTML += '</tr>';
-        }
+        rowHTML += '</tr>';
     }
     return rowHTML;
 }
