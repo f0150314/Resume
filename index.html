@@ -13,7 +13,6 @@
 <body>
     <div id="divBase">
         <header>
-            <!-- Navigation bar -->
             <div id="divNavRow">
                 <div id="divName" class="divNavCol">John Chen</div>
                 <div class="divNavCol divHover" onclick="showContent('ABOUT')">About</div>
@@ -23,7 +22,6 @@
                 <div class="divNavCol divHover" onclick="showContent('CONTACT')">Contact</div>
             </div>
     
-            <!-- Sidebar -->
             <div id="divMenu" class="openbtn" onclick="openSidebar()">☰</div>
             <div id="divSidebar">
                 <a href="javascript:void(0)" onclick="closeSidebar()">×</a>
@@ -66,33 +64,35 @@
                 <!-- Second row -->
                 <div class="divContentRow">
                     
-                    <!-- Ability containter -->
-                    <div class="divContentCell">
+                    <div id="divAbilityChart" class="divContentCell">
                         <div class="divInnerCell">
-                            
-                            <!-- Language section -->
+
                             <span><h5>Languages</h5></span>
                             <div class="divLangContainer">
                                 <div id="divEnglishChart" class="divLanguageCell"></div>
                                 <div id="divChineseChart" class="divLanguageCell"></div>
                             </div>
                             
-                            <!-- divided line -->
                             <div class="divLine"></div>
                             
-                            <!-- Characteristic section -->
                             <span><h5>Characteristics</h5></span>
                             <table id="tblCharacteristics"></table>
                         </div>
                     </div>
 
-                    <!-- Skill chart container -->
                     <div id="divSkillChart" class="divContentCell"></div>
                 </div>
 
                 <!-- Third row -->
-                <br><br><br><br><br><br><br><br><br><br><br><br>
-                Contact
+                <div class="divContentRow">
+
+                    <!-- Tool chart container -->
+                    <div id="divToolChart" class="divContentCell"></div>
+
+                    <!-- Personal info section -->
+                    <div id="divContactInfo" class="divContentCell">
+                    </div>
+                </div>
             </div>
     
             <!-- Experience & Portfolio-->
@@ -132,6 +132,7 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/highcharts.js"></script>
     <script src="js/highcharts-more.js"></script>
+    <script src="js/highcharts-3d.js"></script>
     <script src="js/solid-gauge.js"></script>
     <script src="js/timeline.js"></script>
     

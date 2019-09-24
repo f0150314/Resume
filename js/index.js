@@ -25,6 +25,7 @@ function init() {
     renderChart('Skill');
     renderChart('English');
     renderChart('Chinese');
+    renderChart('Tool');
 
     // Initialize characteristic tables
     createAttributeTables();

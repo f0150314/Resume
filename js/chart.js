@@ -5,6 +5,10 @@ function renderChart(chartType) {
     // Create chart option 
     chartOptions = createChartOptions(chartType);
 
+    if (Highcharts.chart[0]) {
+        Highcharts.chart[0].destroy();
+    }
+
     // Render chart
     chart = new Highcharts.chart(chartOptions);
 }
@@ -140,7 +144,7 @@ function createChartOptions(chartType) {
                             formatter: function() {
                                 return '<div style="width: 100%; text-align: center;">\
                                             <span style="font-size: 1.2em; color: ' + '#c9c9c9' + '; font-weight: bold;">' + this.point.series.name + '</span><br/>\
-                                            <span style="font-size: 2em; color: ' + Highcharts.getOptions().colors[4] + '; font-weight: bold;">' + Highcharts.numberFormat(this.y, 0) + '%</span>\
+                                            <span style="font-size: 2em; color: ' + Highcharts.getOptions().colors[4] + '; font-weight: bold;">' + this.y + '%</span>\
                                         </div>';
                             }
                         },
@@ -209,7 +213,7 @@ function createChartOptions(chartType) {
                             formatter: function() {
                                 return '<div style="width: 100%; text-align: center;">\
                                             <span style="font-size: 1.2em; color: ' + '#c9c9c9' + '; font-weight: bold;">' + this.point.series.name + '</span><br/>\
-                                            <span style="font-size: 2em; color: ' + Highcharts.getOptions().colors[4] + '; font-weight: bold;">' + Highcharts.numberFormat(this.y, 0) + '%</span>\
+                                            <span style="font-size: 2em; color: ' + Highcharts.getOptions().colors[4] + '; font-weight: bold;">' + this.y + '%</span>\
                                         </div>';
                             }
                         },
@@ -227,7 +231,73 @@ function createChartOptions(chartType) {
                     }]
                 }]
             };
-            break;   
+            break;
+        case 'Tool':
+            chartOption = {
+                chart: {
+                    type: 'pie',
+                    options3d: {
+                        enabled: true,
+                        alpha: 45
+                    },
+                    renderTo: $('#divToolChart')[0],
+                    backgroundColor: '#474747',
+                },
+                title: {
+                    text: '<b>Development tools</b>',
+                    style: {
+                        color: '#ffffff'
+                    }
+                },
+                subtitle: {
+                    text: 'Software & Approach',
+                    style: {
+                        color: '#c9c9c9'
+                    }
+                },
+                tooltip: {
+                    valueSuffix: ' %'
+                },
+                plotOptions: {
+                    pie: {
+                        innerSize: 80,
+                        depth: 45,
+                        dataLabels: {
+                            style: {
+                                color: '#c9c9c9'
+                            },
+                            useHTML: true
+                        },
+                        colors: [
+                            Highcharts.getOptions().colors[9],
+                            Highcharts.getOptions().colors[7],
+                            Highcharts.getOptions().colors[2],
+                            Highcharts.getOptions().colors[6],
+                            Highcharts.getOptions().colors[3],
+                            Highcharts.getOptions().colors[8],
+                            Highcharts.getOptions().colors[4],
+                            Highcharts.getOptions().colors[0]
+                        ]
+                    }
+                },
+                credits: {
+                    enabled: false
+                },
+                series: [{
+                    name: '<b>Usage</b>',
+                    data: [
+                        ['GitHub', 5],
+                        ['Git', 13],
+                        ['Bitbucket', 12],
+                        ['Visual Studio', 22],
+                        ['Sourcetree', 12],
+                        ['TFS', 6],
+                        ['Atlassian', 12],
+                        ['SQL server', 19],
+                    ]
+                }]
+            }
+            break;
     }
     return chartOption;
 }
