@@ -135,12 +135,7 @@ function createChartOptions(chartType) {
                             enabled: true,
                             y: -30,
                             borderWidth: 0,
-                            backgroundColor: 'none',
                             useHTML: true,
-                            shadow: false,
-                            style: {
-                                fontSize: '10px'
-                            },
                             formatter: function() {
                                 return '<div style="width: 100%; text-align: center;">\
                                             <span style="font-size: 1.2em; color: ' + '#c9c9c9' + '; font-weight: bold;">' + this.point.series.name + '</span><br/>\
@@ -204,12 +199,7 @@ function createChartOptions(chartType) {
                             enabled: true,
                             y: -30,
                             borderWidth: 0,
-                            backgroundColor: 'none',
                             useHTML: true,
-                            shadow: false,
-                            style: {
-                                fontSize: '10px'
-                            },
                             formatter: function() {
                                 return '<div style="width: 100%; text-align: center;">\
                                             <span style="font-size: 1.2em; color: ' + '#c9c9c9' + '; font-weight: bold;">' + this.point.series.name + '</span><br/>\
@@ -260,6 +250,7 @@ function createChartOptions(chartType) {
                 },
                 plotOptions: {
                     pie: {
+                        allowPointSelect: true,
                         innerSize: 80,
                         depth: 45,
                         dataLabels: {
@@ -287,12 +278,12 @@ function createChartOptions(chartType) {
                     name: '<b>Usage</b>',
                     data: [
                         ['GitHub', 5],
-                        ['Git', 13],
                         ['Bitbucket', 12],
-                        ['Visual Studio', 22],
+                        ['Git', 13],
                         ['Sourcetree', 12],
-                        ['TFS', 6],
+                        ['Visual Studio', 22],
                         ['Atlassian', 12],
+                        ['TFS', 6],
                         ['SQL server', 19],
                     ]
                 }]
