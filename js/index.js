@@ -4,6 +4,13 @@ var divNavColArray = [],
     divContentArray = [];
 
 function init() {
+    //Set Chart timeozonOffset
+    Highcharts.setOptions({
+        time: {
+            timezoneOffset: -10 * 60
+        }
+    });
+
     // Populate div arrays
     $('.divHover').each(function () {
         divNavColArray.push($(this));

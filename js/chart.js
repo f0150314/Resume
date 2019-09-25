@@ -28,7 +28,7 @@ function createChartOptions(chartType) {
                     // borderWidth: 2
                 },
                 title: {
-                    text: '<b>Skill set</b>',
+                    text: '<strong>Skill set</strong>',
                     style: {
                         color: '#ffffff'
                     }
@@ -43,7 +43,7 @@ function createChartOptions(chartType) {
                     categories: ['Python', 'C#', 'Visual Basic', 'HTML', 'CSS', 'Javascript', 
                                 'TSQL', '.NET', 'ASP.NET', 'Xamarin', 'Jquery', 'Java'],
                     title: {
-                        text: '<b>Skills</b>',
+                        text: '<strong>Skills</strong>',
                         style: {
                             color: '#ffffff'
                         }
@@ -58,7 +58,7 @@ function createChartOptions(chartType) {
                     max: 100,
                     min: 0,
                     title: {
-                        text: '<b>Skill level</b>',
+                        text: '<strong>Skill level</strong>',
                         align: 'high',
                         style: {
                             color: '#ffffff'
@@ -88,7 +88,7 @@ function createChartOptions(chartType) {
                     enabled: false
                 },
                 series: [{
-                    name: '<b>Level</b>',
+                    name: '<strong>Level</strong>',
                     data: [50, 85, 75, 70, 65, 70, 
                             75, 70, 65, 35, 75, 45]
                 }]
@@ -201,10 +201,10 @@ function createChartOptions(chartType) {
                             borderWidth: 0,
                             useHTML: true,
                             formatter: function() {
-                                return '<div style="width: 100%; text-align: center;">\
-                                            <span style="font-size: 1.2em; color: ' + '#c9c9c9' + '; font-weight: bold;">' + this.point.series.name + '</span><br/>\
-                                            <span style="font-size: 2em; color: ' + Highcharts.getOptions().colors[4] + '; font-weight: bold;">' + this.y + '%</span>\
-                                        </div>';
+                                return '<div style="width: 100%; text-align: center;">' + 
+                                            '<span style="font-size: 1.2em; color: ' + '#c9c9c9' + '; font-weight: bold;">' + this.point.series.name + '</span><br/>'
+                                            '<span style="font-size: 2em; color: ' + Highcharts.getOptions().colors[4] + '; font-weight: bold;">' + this.y + '%</span>'
+                                        '</div>';
                             }
                         },
                         linecap: 'round',
@@ -234,7 +234,7 @@ function createChartOptions(chartType) {
                     backgroundColor: '#474747'
                 },
                 title: {
-                    text: '<b>Development tools</b>',
+                    text: '<strong>Development tools</strong>',
                     style: {
                         color: '#ffffff'
                     }
@@ -275,7 +275,13 @@ function createChartOptions(chartType) {
                     enabled: false
                 },
                 series: [{
-                    name: '<b>Usage</b>',
+                    dataLabels: {
+                        format: '<div style="width: 100%; text-align: center;">' + 
+                                    '<span style="color: {point.color}; font-weight: bold;">{point.name}</span><br>' + 
+                                    '<span style="color: {point.color};">{point.y} %</span>' + 
+                                '</div>'
+                    },
+                    name: '<strong>Usage</strong>',
                     data: [
                         ['GitHub', 5],
                         ['Bitbucket', 12],
@@ -294,25 +300,28 @@ function createChartOptions(chartType) {
                 chart: {
                     type: 'timeline',
                     renderTo: $('#divCareerChart')[0],
-                    backgroundColor: '#474747'
+                    backgroundColor: '#474747',
                 },
                 xAxis: {
-                    visible: false
+                    visible: false,
                 },
                 yAxis: {
                     visible: false
                 },
                 title: {
-                    text: '<b>Timeline of Space Exploration</b>',
+                    text: '<strong>Education & Employment<strong>',
                     style: {
                         color: '#ffffff'
                     }
                 },
                 subtitle: {
-                    text: 'test',
+                    text: 'Achievements & Awards (hover chart to see)',
                     style: {
                         color: '#c9c9c9'
                     }
+                },
+                credits: {
+                    enabled: false
                 },
                 colors: [
                     '#4185F3',
@@ -322,34 +331,27 @@ function createChartOptions(chartType) {
                     '#3B4A68',
                     '#363C46'
                 ],
-                credits: {
-                    enabled: false
-                },
                 series: [{
                     data: [{
-                        name: 'First dogs',
-                        label: '1951: First dogs in space',
-                        description: '22 July 1951 First dogs in space (Dezik and Tsygan) '
+                        name: '<em>2008 - 2012</em>',
+                        label: '<strong>Shih Hsin University (Taiwan):</strong><br>Batchlor of Communication Management',
+                        description: '<strong>Shih Hsin University:</strong> Batchlor of Communication Management'
                     }, {
-                        name: 'Sputnik 1',
-                        label: '1957: First artificial satellite',
-                        description: '4 October 1957 First artificial satellite. First signals from space.'
+                        name: '<em>2013 - 2014</em>',
+                        label: '<strong>Dashi Junior High School (Taiwan):</strong><br>Mathematis Teacher',
+                        description: '<strong>Dashi Junior High School:</strong><br>Mathematis Teacher'
                     }, {
-                        name: 'First human spaceflight',
-                        label: '1961: First human spaceflight (Yuri Gagarin)',
-                        description: 'First human spaceflight (Yuri Gagarin), and the first human-crewed orbital flight'
+                        name: '<em>2015 - 2016</em>',
+                        label: '<strong>Sushi Train (Australia):</strong><br>Waiter',
+                        description: '<strong>Working Holiday in Japanese restaurant</strong><br>Waiter'
+                    },{
+                        name: '<em>2017 - 2018</em>',
+                        label: '<strong>Queensland University of Technology (Australia):</strong><br>Master of Information Technology',
+                        description: '<strong>Queensland University of Technology:</strong><br>Master of Information Technology'
                     }, {
-                        name: 'First human on the Moon',
-                        label: '1969: First human on the Moon',
-                        description: 'First human on the Moon, and first space launch from a celestial body other than the Earth. First sample return from the Moon'
-                    }, {
-                        name: 'First space station',
-                        label: '1971: First space station',
-                        description: 'Salyut 1 was the first space station of any kind, launched into low Earth orbit by the Soviet Union on April 19, 1971.'
-                    }, {
-                        name: 'Apollo–Soyuz Test Project',
-                        label: '1975: First multinational manned mission',
-                        description: 'The mission included both joint and separate scientific experiments, and provided useful engineering experience for future joint US–Russian space flights, such as the Shuttle–Mir Program and the International Space Station.'
+                        name: '<em>2019 - Current</em>',
+                        label: '<strong>Tyeware (Australia):</strong><br>ASP.NET developer',
+                        description: '<strong>Working in Tyeware:</strong><br>ASP.NET developer'
                     }]
                 }]
             }
