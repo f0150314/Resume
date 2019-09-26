@@ -90,7 +90,7 @@ function createChartOptions(chartType) {
                 series: [{
                     name: '<strong>Level</strong>',
                     data: [50, 85, 75, 70, 65, 70, 
-                            75, 70, 65, 35, 75, 45]
+                            75, 70, 60, 35, 75, 45]
                 }]
             };
             break;
@@ -137,10 +137,10 @@ function createChartOptions(chartType) {
                             borderWidth: 0,
                             useHTML: true,
                             formatter: function() {
-                                return '<div style="width: 100%; text-align: center;">\
-                                            <span style="font-size: 1.2em; color: ' + '#c9c9c9' + '; font-weight: bold;">' + this.point.series.name + '</span><br/>\
-                                            <span style="font-size: 2em; color: ' + Highcharts.getOptions().colors[4] + '; font-weight: bold;">' + this.y + '%</span>\
-                                        </div>';
+                                return '<div style="width: 100%; text-align: center;">' +
+                                            '<span style="font-size: 1.2em; color: ' + '#c9c9c9' + '; font-weight: bold;">' + this.point.series.name + '</span><br/>' + 
+                                            '<span style="font-size: 2em; color: ' + Highcharts.getOptions().colors[4] + '; font-weight: bold;">' + this.y + '%</span>' + 
+                                        '</div>';
                             }
                         },
                         linecap: 'round',
@@ -202,8 +202,8 @@ function createChartOptions(chartType) {
                             useHTML: true,
                             formatter: function() {
                                 return '<div style="width: 100%; text-align: center;">' + 
-                                            '<span style="font-size: 1.2em; color: ' + '#c9c9c9' + '; font-weight: bold;">' + this.point.series.name + '</span><br/>'
-                                            '<span style="font-size: 2em; color: ' + Highcharts.getOptions().colors[4] + '; font-weight: bold;">' + this.y + '%</span>'
+                                            '<span style="font-size: 1.2em; color: ' + '#c9c9c9' + '; font-weight: bold;">' + this.point.series.name + '</span><br/>' +
+                                            '<span style="font-size: 2em; color: ' + Highcharts.getOptions().colors[4] + '; font-weight: bold;">' + this.y + '%</span>' +
                                         '</div>';
                             }
                         },
@@ -217,7 +217,7 @@ function createChartOptions(chartType) {
                         color: Highcharts.getOptions().colors[0],
                         radius: '118%',
                         innerRadius: '88%',
-                        y: 100
+                        y: 95
                     }]
                 }]
             };
@@ -231,7 +231,8 @@ function createChartOptions(chartType) {
                         alpha: 45
                     },
                     renderTo: $('#divToolChart')[0],
-                    backgroundColor: '#474747'
+                    backgroundColor: '#474747',
+                    marginTop: -10
                 },
                 title: {
                     text: '<strong>Development tools</strong>',
@@ -251,7 +252,7 @@ function createChartOptions(chartType) {
                 plotOptions: {
                     pie: {
                         allowPointSelect: true,
-                        innerSize: 80,
+                        innerSize: 50,
                         depth: 45,
                         dataLabels: {
                             style: {
@@ -315,7 +316,7 @@ function createChartOptions(chartType) {
                     }
                 },
                 subtitle: {
-                    text: 'Achievements & Awards (hover chart to see)',
+                    text: 'Achievements acquired in University (click timeline)',
                     style: {
                         color: '#c9c9c9'
                     }
@@ -332,26 +333,35 @@ function createChartOptions(chartType) {
                     '#363C46'
                 ],
                 series: [{
+                    dataLabels: {
+                        allowOverlap: false,
+                        style: {
+                            fontSize: 10
+                        }
+                    },
                     data: [{
                         name: '<em>2008 - 2012</em>',
                         label: '<strong>Shih Hsin University (Taiwan):</strong><br>Batchlor of Communication Management',
-                        description: '<strong>Shih Hsin University:</strong> Batchlor of Communication Management'
+                        description: '<strong>Honours & Awards:</strong><br>None'
                     }, {
                         name: '<em>2013 - 2014</em>',
-                        label: '<strong>Dashi Junior High School (Taiwan):</strong><br>Mathematis Teacher',
-                        description: '<strong>Dashi Junior High School:</strong><br>Mathematis Teacher'
+                        label: '<strong>Dashi Junior High School (Taiwan):</strong><br>Mathematics Teacher',
+                        description: '<strong>Honours & Awards:</strong><br>None'
                     }, {
                         name: '<em>2015 - 2016</em>',
                         label: '<strong>Sushi Train (Australia):</strong><br>Waiter',
-                        description: '<strong>Working Holiday in Japanese restaurant</strong><br>Waiter'
+                        description: '<strong>Honours & Awards:</strong><br>None'
                     },{
                         name: '<em>2017 - 2018</em>',
-                        label: '<strong>Queensland University of Technology (Australia):</strong><br>Master of Information Technology',
-                        description: '<strong>Queensland University of Technology:</strong><br>Master of Information Technology'
+                        label: '<strong>Queensland University of Technology (Australia):</strong><br>Master of IT (GPA: 6.3/7)',
+                        description: '<strong>Honours & Awards:</strong>' + 
+                                        '<br>Member of Golden Key International Student Society - Sep 2018 ~ current' + 
+                                        '<br>Dean\'s list - Semester 1, 2018' + 
+                                        '<br>Dean\'s list - Semester 2, 2017'
                     }, {
                         name: '<em>2019 - Current</em>',
                         label: '<strong>Tyeware (Australia):</strong><br>ASP.NET developer',
-                        description: '<strong>Working in Tyeware:</strong><br>ASP.NET developer'
+                        description: '<strong>Honours & Awards:</strong><br>None'
                     }]
                 }]
             }

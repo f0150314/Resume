@@ -28,7 +28,6 @@ function init() {
     resizeNavbar();
 
     // Initialize skill chart
-    // TO DO: Use loop to render charts
     renderChart('Skill');
     renderChart('English');
     renderChart('Chinese');
@@ -70,34 +69,47 @@ function showContent(category) {
         case 'ABOUT':
             divNavColArray[0].removeClass(hoverClass).addClass(selectedClass);
             divContentArray[0].show();
-            
-            // Scroll to the content
             focusDiv = $('#divAboutMe');
-            getFocus(focusDiv);
             break;
         case 'SKILLS':
             divNavColArray[1].removeClass(hoverClass).addClass(selectedClass);
             divContentArray[0].show();
-            
             focusDiv = $('#divSkillChart');
-            getFocus(focusDiv);
-
-            // Render skill chart
             renderChart('Skill');
             break;
         case 'EXPERIENCE':
             divNavColArray[2].removeClass(hoverClass).addClass(selectedClass);
             divContentArray[1].show();
+            focusDiv = $('#divExperience');
             break;
         case 'PORTFOLIO':
             divNavColArray[3].removeClass(hoverClass).addClass(selectedClass);
             divContentArray[1].show();
+            focusDiv = $('#divPortfolio');
             break;
         case 'CONTACT':
             divNavColArray[4].removeClass(hoverClass).addClass(selectedClass);
             divContentArray[0].show();
+            focusDiv = $('#divContactInfo');
+            break;
+        case 'TOOLS': 
+            divContentArray[0].show();
+            focusDiv = $('#divToolChart');
+            renderChart('Tool');
+            break;
+        case 'CAREER':
+            divContentArray[0].show();
+            focusDiv = $('#divCareerChart');
+            renderChart('Career');
+            break;
+        case 'ABILITIES':
+            divContentArray[0].show();
+            focusDiv = $('#divEnglishChart');
+            renderChart('English');
+            renderChart('Chinese');
             break;
     }
+    getFocus(focusDiv);
 }
 
 function resizeNavbar() {
