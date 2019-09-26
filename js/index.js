@@ -4,6 +4,13 @@ var divNavColArray = [],
     divContentArray = [];
 
 function init() {
+    //Set Chart timeozonOffset
+    Highcharts.setOptions({
+        time: {
+            timezoneOffset: -10 * 60
+        }
+    });
+
     // Populate div arrays
     $('.divHover').each(function () {
         divNavColArray.push($(this));
@@ -21,14 +28,21 @@ function init() {
     resizeNavbar();
 
     // Initialize skill chart
-    renderSkillChart();
+    renderChart('Skill');
+    renderChart('English');
+    renderChart('Chinese');
+    renderChart('Tool');
+    renderChart('Career');
 
-    // Initialize attribute tables
-    createAttributeTables('lang');
-    createAttributeTables('char');
+    // Initialize characteristic tables
+    createAttributeTables();
 }
 
 function showContent(category) {
+    var focusDiv = null,
+        hoverClass = 'divHover',
+        selectedClass = 'divSelected';
+
     // Close sidebar if it is open after clicking item
     if ($("#divSidebar").width() > 0) {
         closeSidebar();
@@ -37,12 +51,12 @@ function showContent(category) {
     // Hide all contents and add hover behavior 
     // and remove selected behavior for all navigation columns
     for (var i = 0; i < divNavColArray.length; i++) {
-        if (!divNavColArray[i].hasClass('divHover')) {
-            divNavColArray[i].addClass('divHover');
+        if (!divNavColArray[i].hasClass(hoverClass)) {
+            divNavColArray[i].addClass(hoverClass);
         }
 
-        if (divNavColArray[i].hasClass('divSelected')) {
-            divNavColArray[i].removeClass('divSelected');
+        if (divNavColArray[i].hasClass(selectedClass)) {
+            divNavColArray[i].removeClass(selectedClass);
         }
     }
 
@@ -53,32 +67,49 @@ function showContent(category) {
     // Show selected contents and remove hover behavior
     switch (category) {
         case 'ABOUT':
-            divNavColArray[0].removeClass('divHover').addClass('divSelected');
+            divNavColArray[0].removeClass(hoverClass).addClass(selectedClass);
             divContentArray[0].show();
+            focusDiv = $('#divAboutMe');
             break;
         case 'SKILLS':
-            divNavColArray[1].removeClass('divHover').addClass('divSelected');
+            divNavColArray[1].removeClass(hoverClass).addClass(selectedClass);
             divContentArray[0].show();
-            
-            $('html, body').animate({
-                scrollTop: $('#divSkillChart').offset().top - 143
-            }, 300);
-
-            renderSkillChart();
+            focusDiv = $('#divSkillChart');
+            renderChart('Skill');
             break;
         case 'EXPERIENCE':
-            divNavColArray[2].removeClass('divHover').addClass('divSelected');
+            divNavColArray[2].removeClass(hoverClass).addClass(selectedClass);
             divContentArray[1].show();
+            focusDiv = $('#divExperience');
             break;
         case 'PORTFOLIO':
-            divNavColArray[3].removeClass('divHover').addClass('divSelected');
+            divNavColArray[3].removeClass(hoverClass).addClass(selectedClass);
             divContentArray[1].show();
+            focusDiv = $('#divPortfolio');
             break;
         case 'CONTACT':
-            divNavColArray[4].removeClass('divHover').addClass('divSelected');
+            divNavColArray[4].removeClass(hoverClass).addClass(selectedClass);
             divContentArray[0].show();
+            focusDiv = $('#divContactInfo');
+            break;
+        case 'TOOLS': 
+            divContentArray[0].show();
+            focusDiv = $('#divToolChart');
+            renderChart('Tool');
+            break;
+        case 'CAREER':
+            divContentArray[0].show();
+            focusDiv = $('#divCareerChart');
+            renderChart('Career');
+            break;
+        case 'ABILITIES':
+            divContentArray[0].show();
+            focusDiv = $('#divEnglishChart');
+            renderChart('English');
+            renderChart('Chinese');
             break;
     }
+    getFocus(focusDiv);
 }
 
 function resizeNavbar() {
@@ -108,108 +139,69 @@ function closeSidebar() {
     $("#divSidebar").width('0px');
 }
 
-function createAttributeTables(attribute) {
-    // Build html
+function getFocus(focusDiv) {
+    $('html, body').animate({
+        scrollTop: focusDiv.offset().top - 128
+    }, 300);
+}
+
+function createAttributeTables() {
     var htmlText = null;  
-    htmlText = buildHTML(attribute);
+    htmlText = buildHTML();
 
-    // Append html to tables
-    if (attribute == 'lang' && $('#tblLanguages').length) {
-        $('#tblLanguages').append(htmlText);
-    } 
-
-    if (attribute == 'char'&& $('#tblCharacteristics').length) {
+    if ($('#tblCharacteristics').length) {
         $('#tblCharacteristics').append(htmlText);
     }     
 }
 
-function buildHTML(attribute) {
+function buildHTML() {
     var rowHTML = '',
-        numLang = 2,
         numChar = 5,
-        numThumbs = 6,
+        numThumbs = 5,
         addThumbsUp_fill = '<td><img src="css/img/icons/icnThumbsUp_fill.svg" alt="ThumbsUp" class="icnThumbUp"></td>',
         addThumbsUp = '<td><img src="css/img/icons/icnThumbsUp.svg" alt="ThumbsUp" class="icnThumbUp"></td>';
 
-    // Add language section
-    if (attribute == 'lang') {
-        for (var i = 0; i < numLang; i++) {
-            rowHTML += '<tr>'
-            
-            // First language: English
-            if (i == 0) {
-                rowHTML += '<td class="tdAttrName">English</td>';
-                
-                // Add thumbsup
+    // Add characteristic section
+    for (var i = 0; i < numChar; i++) {
+        rowHTML += '<tr>'
+
+        // Five characteristics
+        switch (i) {
+            case 1:
+            case 2:
+            case 4:
+                if (i == 1) {
+                    rowHTML += '<td class="tdAttrName">Multi-tasking</td>';
+                } else if (i == 2) {
+                    rowHTML += '<td class="tdAttrName">Fast-learner</td>';
+                } else if (i == 4) {
+                    rowHTML += '<td class="tdAttrName">Problem-solving</td>';
+                }
+
+                // Add thumbs up
                 for (var j = 0; j < numThumbs; j++) {
                     if (j < 4) {
                         rowHTML += addThumbsUp_fill;
                     } else {
                         rowHTML += addThumbsUp;
                     }
-                }            
-            } else {
-                // Second language: Chinese
-                rowHTML += '<td class="tdAttrName">Chinese</td>';
+                } 
+                break;
+            case 0:
+            case 3:
+                if (i == 0) {
+                    rowHTML += '<td class="tdAttrName">Self-motivated</td>';
+                } else if (i == 3) {
+                    rowHTML += '<td class="tdAttrName">Team-oriented</td>';
+                }
                 
-                // Add thumbsup
+                // Add thumbs up
                 for (var j = 0; j < numThumbs; j++) {
                     rowHTML += addThumbsUp_fill;
                 }
-            }
-            rowHTML += '</tr>';
+                break;
         }
-    } else if (attribute == 'char') {
-        // Add characteristic section
-        for (var i = 0; i < numChar; i++) {
-            rowHTML += '<tr>'
-
-            // Five characteristics
-            switch (i) {
-                case 1:
-                case 2:
-                case 4:
-                    if (i == 1) {
-                        rowHTML += '<td class="tdAttrName">Multi-tasking</td>';
-                    } else if (i == 2) {
-                        rowHTML += '<td class="tdAttrName">Fast-learner</td>';
-                    } else if (i == 4) {
-                        rowHTML += '<td class="tdAttrName">Problem-solving</td>';
-                    }
-
-                    // Add thumbs up
-                    for (var j = 0; j < numThumbs; j++) {
-                        if (j < 5) {
-                            rowHTML += addThumbsUp_fill;
-                        } else {
-                            rowHTML += addThumbsUp;
-                        }
-                    } 
-                    break;
-                case 0:
-                    rowHTML += '<td class="tdAttrName">Self-motivated</td>';
-
-                    // Add thumbs up
-                    for (var j = 0; j < numThumbs; j++) {
-                        rowHTML += addThumbsUp_fill;
-                    }
-                    break;
-                case 3: 
-                    rowHTML += '<td class="tdAttrName">Interpersonality</td>';
-
-                    // Add thumbs up
-                    for (var j = 0; j < numThumbs; j++) {
-                        if (j < 3) {
-                            rowHTML += addThumbsUp_fill;
-                        } else {
-                            rowHTML += addThumbsUp;
-                        }
-                        
-                    }
-                    break;
-            }
-            rowHTML += '</tr>';
-        }
+        rowHTML += '</tr>';
     }
     return rowHTML;
 }

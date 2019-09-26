@@ -131,45 +131,62 @@ body {
     width: 100%;
     padding: 15px;
     height: 450px;
-    background-color: #474747;  
 }
 
-.divContentBody .divContentRow .divContentCell #divAttributes {
+/* Removable if not adding border line. */
+.divContentBody .divContentRow .divContentCell .divInnerCell {
     height: 100%;
-    border: 2px solid white;
+    padding-top: 4px;
+    /* border: 2px solid white; */
 }
 
-.divContentCell #divAttributes span {
-    text-align: center;
-    color: white;
-}
-
-#divAttributes #tblLanguages, #divAttributes #tblCharacteristics {
-    margin: 20px auto;
-    width: 85%;
-    height: 20%;
-} 
-
-    #divAttributes #tblCharacteristics {
-        height: 50%;
-    }
-
-#divAttributes td {
-    width: 12%;
-    text-align: center;
+.divContentBody .divContentRow .divContentCell .divInnerCell .divInnerCellRow {
+    margin: 0 5% 20px;
     color: #c9c9c9;
 }
 
-    #divAttributes .tdAttrName {
-        width: 28%;
-    }
+.divContentCell .divInnerCell span {
+    text-align: center;
+}
 
-#divAttributes .icnThumbUp {
+.divContentCell .divInnerCell .divLangContainer {
+    display: flex;
+}
+
+.divContentCell .divInnerCell .divLangContainer .divLanguageCell {
+    padding: 5px;
+    width: 85%;
+    height: 160px;
+}
+
+h1, h2, h3, h4, h5 {
+    color: white;
+}
+
+.divInnerCell #tblCharacteristics {
+    margin: 15px auto;
+    width: 85%;
+    height: 40%;
+} 
+
+.divInnerCell td {
+    width: 11%;
+    text-align: left;
+    color: #c9c9c9;
+}
+
+.divInnerCell .tdAttrName {
+    width: 45%;
+    height: 10%;
+}
+
+.divInnerCell .icnThumbUp {
     height: 25px;
     width: 25px;
 }
 
 .divLine {
+    padding-bottom: 4px;
     margin: 0 auto;
     width: 80%;
     border-top: 1px solid grey;
@@ -240,6 +257,3 @@ footer {
     border-top: 1px solid white;
     border-bottom: 1px solid white;
 }
-
-
-  

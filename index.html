@@ -12,96 +12,124 @@
 
 <body>
     <div id="divBase">
-            <header>
-                    <!-- Navigation bar -->
-                    <div id="divNavRow">
-                        <div id="divName" class="divNavCol">John Chen</div>
-                        <div class="divNavCol divHover" onclick="showContent('ABOUT')">About</div>
-                        <div class="divNavCol divHover" onclick="showContent('SKILLS')">Skills</div>
-                        <div class="divNavCol divHover" onclick="showContent('EXPERIENCE')">Experience</div>
-                        <div class="divNavCol divHover" onclick="showContent('PORTFOLIO')">Portfolio</div>
-                        <div class="divNavCol divHover" onclick="showContent('CONTACT')">Contact</div>
+        <header>
+            <div id="divNavRow">
+                <div id="divName" class="divNavCol">John Chen</div>
+                <div class="divNavCol divHover" onclick="showContent('ABOUT')">About</div>
+                <div class="divNavCol divHover" onclick="showContent('SKILLS')">Skills</div>
+                <div class="divNavCol divHover" onclick="showContent('EXPERIENCE')">Experiences</div>
+                <div class="divNavCol divHover" onclick="showContent('PORTFOLIO')">Portfolios</div>
+                <div class="divNavCol divHover" onclick="showContent('CONTACT')">Contact</div>
+            </div>
+    
+            <div id="divMenu" class="openbtn" onclick="openSidebar()">☰</div>
+            <div id="divSidebar">
+                <a href="javascript:void(0)" onclick="closeSidebar()">×</a>
+                <div onclick="showContent('ABOUT')">About</div>
+                <div onclick="showContent('CAREER')">Career</div>
+                <div onclick="showContent('EXPERIENCE')">Experiences</div>
+                <div onclick="showContent('PORTFOLIO')">Portfolios</div>
+                <div onclick="showContent('ABILITIES')">Abilities</div>
+                <div onclick="showContent('SKILLS')">Skills</div>
+                <div onclick="showContent('TOOLS')">Tools</div>
+                <div onclick="showContent('CONTACT')">Contact</div>
+            </div>
+        </header>
+            
+        <!-- Main content -->
+        <div id="divMainBody">
+            <!-- About & Education & Skills & Contact-->
+            <div class="divContentBody container">
+                
+                <!-- First row -->
+                <div class="divContentRow">
+                    <div id="divAboutMe" class="divContentCell">
+                    TO DO: Add brief introduction 
                     </div>
-            
-                    <!-- Sidebar -->
-                    <div id="divMenu" class="openbtn" onclick="openSidebar()">☰</div>
-                    <div id="divSidebar">
-                        <a href="javascript:void(0)" onclick="closeSidebar()">×</a>
-                        <div onclick="showContent('ABOUT')">About</div>
-                        <div onclick="showContent('SKILLS')">Skills</div>
-                        <div onclick="showContent('EXPERIENCE')">Experience</div>
-                        <div onclick="showContent('PORTFOLIO')">Portfolio</div>
-                        <div onclick="showContent('CONTACT')">Contact</div>
-                    </div>
-                </header>
-            
-                <!-- Main content -->
-                <div id="divMainBody">
-                    <!-- About & Education & Skills & Contact-->
-                    <div class="divContentBody container">
-                        About <br><br><br><br><br><br><br><br><br>
-                        
-                        <div class="divContentRow">
-                            <!-- Skill chart container -->
-                            <div id="divSkillChart" class="divContentCell"></div>
-            
-                            <!-- Attribute containter -->
-                            <div class="divContentCell">
-                                <div id="divAttributes">
-                                    <!-- Language section -->
-                                    <span><h5>Languages</h5></span>
-                                    <table id="tblLanguages"></table>
-                                    
-                                    <!-- divided line -->
-                                    <div class="divLine"></div>
-                                    
-                                    <!-- Characteristic section -->
-                                    <span><h5>Characteristics</h5></span>
-                                    <table id="tblCharacteristics"></table>
-                                </div>
+
+                    <div id="divCareerChart" class="divContentCell"></div>
+                </div>
+
+                <!-- Second row -->
+                <div class="divContentRow">
+                    
+                    <div id="divAbilityChart" class="divContentCell">
+                        <div class="divInnerCell">
+
+                            <span><h5>Languages</h5></span>
+                            <div class="divLangContainer">
+                                <div id="divEnglishChart" class="divLanguageCell"></div>
+                                <div id="divChineseChart" class="divLanguageCell"></div>
                             </div>
-                        </div>           
-                        <br><br><br><br><br><br><br><br><br><br><br><br>
-                        Contact
+                            
+                            <div class="divLine"></div>
+                            
+                            <span><h5>Characteristics</h5></span>
+                            <table id="tblCharacteristics"></table>
+                        </div>
                     </div>
-            
-                    <!-- Experience & Portfolio-->
-                    <div class="divContentBody container">
-                        Experience Portfolio
+
+                    <div id="divSkillChart" class="divContentCell"></div>
+                </div>
+
+                <!-- Third row -->
+                <div class="divContentRow">
+
+                    <!-- Tool chart container -->
+                    <div id="divToolChart" class="divContentCell"></div>
+
+                    <!-- Personal info section -->
+                    <div id="divContactInfo" class="divContentCell">
+                    TO DO: Add personal information
+                    
                     </div>
                 </div>
+            </div>
+    
+            <!-- Experience & Portfolio-->
+            <div class="divContentBody container">
+                TO DO: Experience Portfolios
+                <div id="divExperience"></div>
+                <div id="divPortfolio"></div>
+            </div>
+        </div>
             
-                <!-- footer -->
-                <footer>
-                    <div id="divIconRow">
-                        <div onclick="location.href='https://www.facebook.com/'">
-                            <img src="css/img/icons/icnFacebook.svg" alt="Facebook" class="ftrIcon">
-                            <span class="ftrIconText">Facebook</span>
-                        </div>
-                        <div onclick="location.href='https://www.linkedin.com/'">
-                            <img src="css/img/icons/icnLinkedIn.svg" alt="LinkedIn" class="ftrIcon">
-                            <span class="ftrIconText">LinkedIn</span>
-                        </div>
-                        <div onclick="location.href='https://github.com/'">
-                            <img src="css/img/icons/icnGitHub.svg" alt="GitHub" class="ftrIcon">
-                            <span class="ftrIconText">GitHub</span>
-                        </div>
-                        <div onclick="showContent('CONTACT')">
-                            <img src="css/img/icons/icnContact.svg" alt="Contact Details" class="ftrIcon">
-                            <span class="ftrIconText">Contact</span>
-                        </div>
-                    </div>   
-                </footer>
-                <div id="divCopyRight">Copyright © 2019 John Chen</div>
-            
+        <!-- footer -->
+        <footer>
+            <div id="divIconRow">
+                <div onclick="location.href='https://www.facebook.com/'">
+                    <img src="css/img/icons/icnFacebook.svg" alt="Facebook" class="ftrIcon">
+                    <span class="ftrIconText">Facebook</span>
+                </div>
+                <div onclick="location.href='https://www.linkedin.com/'">
+                    <img src="css/img/icons/icnLinkedIn.svg" alt="LinkedIn" class="ftrIcon">
+                    <span class="ftrIconText">LinkedIn</span>
+                </div>
+                <div onclick="location.href='https://github.com/'">
+                    <img src="css/img/icons/icnGitHub.svg" alt="GitHub" class="ftrIcon">
+                    <span class="ftrIconText">GitHub</span>
+                </div>
+                <div onclick="showContent('CONTACT')">
+                    <img src="css/img/icons/icnContact.svg" alt="Contact Details" class="ftrIcon">
+                    <span class="ftrIconText">Contact</span>
+                </div>
+            </div>   
+        </footer>
+        <div id="divCopyRight">Copyright © 2019 John Chen</div>      
     </div>
     
     <!-- javascript -->
     <script src="js/index.js"></script>
     <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/chart.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/highcharts.js"></script>
-    <script src="js/chart.js"></script>
+    <script src="js/highcharts-more.js"></script>
+    <script src="js/highcharts-3d.js"></script>
+    <script src="js/solid-gauge.js"></script>
+    <script src="js/timeline.js"></script>
+    <script src="js/moment.min.js"></script>
+    
     <script>
         $(document).ready(function () {
             init();
