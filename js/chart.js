@@ -360,7 +360,7 @@ function createChartOptions(chartType) {
                                         '<br>Dean\'s list - Semester 2, 2017'
                     }, {
                         name: '<em>2019 - Current</em>',
-                        label: '<strong>Tyeware (Australia):</strong><br>ASP.NET developer',
+                        label: '<strong>Tyeware (Australia):</strong><br>Web developer',
                         description: '<strong>Honours & Awards:</strong><br>None'
                     }]
                 }]
