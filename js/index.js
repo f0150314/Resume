@@ -161,6 +161,7 @@ function buildHTML() {
         addThumbsUp_fill = '<td><img src="css/img/icons/icnThumbsUp_fill.svg" alt="ThumbsUp" class="icnThumbUp"></td>',
         addThumbsUp = '<td><img src="css/img/icons/icnThumbsUp.svg" alt="ThumbsUp" class="icnThumbUp"></td>';
 
+    rowHTML += '<tbody>';
     // Add characteristic section
     for (var i = 0; i < numChar; i++) {
         rowHTML += '<tr>'
@@ -175,7 +176,7 @@ function buildHTML() {
                 } else if (i == 2) {
                     rowHTML += '<td class="tdAttrName">Fast-learner</td>';
                 } else if (i == 4) {
-                    rowHTML += '<td class="tdAttrName">Problem-solving</td>';
+                    rowHTML += '<td class="tdAttrName">Problem-solver</td>';
                 }
 
                 // Add thumbs up
@@ -203,6 +204,7 @@ function buildHTML() {
         }
         rowHTML += '</tr>';
     }
+    rowHTML += '</tbody';
     return rowHTML;
 }
 
