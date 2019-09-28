@@ -1,6 +1,11 @@
 body {
     font-family: Arial;
     margin: 0; 
+    
+}
+
+h1, h2, h3, h4, h5 {
+    color: white;
 }
 
 #divBase {
@@ -140,11 +145,6 @@ body {
     /* border: 2px solid white; */
 }
 
-.divContentBody .divContentRow .divContentCell .divInnerCell .divInnerCellRow {
-    margin: 0 5% 20px;
-    color: #c9c9c9;
-}
-
 .divContentCell .divInnerCell span {
     text-align: center;
 }
@@ -159,13 +159,13 @@ body {
     height: 160px;
 }
 
-h1, h2, h3, h4, h5 {
-    color: white;
+.divInnerCell table {
+    margin: 15px auto;
+    width: 85%;
+    height: 85%;
 }
 
 .divInnerCell #tblCharacteristics {
-    margin: 15px auto;
-    width: 85%;
     height: 40%;
 } 
 
@@ -175,9 +175,19 @@ h1, h2, h3, h4, h5 {
     color: #c9c9c9;
 }
 
+.divInnerCell #tblInfo td {
+    vertical-align: text-top;
+    font-size: 1em;
+    color: #999999;
+}
+
+.divInnerCell #tblInfo .tdInfoName {
+    width: 5%;
+    color: #c9c9c9;
+}
+
 .divInnerCell .tdAttrName {
     width: 45%;
-    height: 10%;
 }
 
 .divInnerCell .icnThumbUp {
