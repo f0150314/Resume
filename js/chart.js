@@ -1,3 +1,5 @@
+'use strict';
+
 function renderChart(chartType) {
     var chart = null,
         chartOptions = null;
@@ -5,149 +7,111 @@ function renderChart(chartType) {
     // Create chart option 
     chartOptions = createChartOptions(chartType);
 
-    if (Highcharts.chart[0]) {
-        Highcharts.chart[0].destroy();
-    }
-
     // Render chart
     chart = new Highcharts.chart(chartOptions);
 }
 
 function createChartOptions(chartType) {
-    var chartOption = null;
-    
+    // Common chart attributes
+    var chartOption,
+        chartContainer,
+        chartActualType,
+        chartBackgroundColor = '#474747',
+        chartMarginRight,
+        chartMarginLeft,
+        chartMarginTop,
+        titleText = '',
+        titleTextColor = '#ffffff',
+        subtitleText = '',
+        subtitleTextColor = '#c9c9c9',
+        seriesData;
+
+    // Set attributes of general chartOption 
     switch (chartType) {
         case 'Skill':
-            chartOption = {
-                chart: {
-                    renderTo: $('#divSkillChart')[0],
-                    type: 'bar',
-                    marginRight: 40,
-                    backgroundColor: '#474747'
-                    // borderColor: '#ffffff',
-                    // borderWidth: 2
+            chartContainer = $('#divSkillChart')[0];
+            chartActualType = 'bar';
+            chartMarginRight = 40;
+            titleText = '<strong>Skill set</strong>';
+            subtitleText = 'Programming languages';
+            seriesData = [{
+                name: '<strong>Level</strong>',
+                data: [70, 75, 65, 70, 65, 70, 
+                        70, 65, 50, 35, 70, 35]
+            }];
+            break;
+        case 'Tool':
+            chartContainer = $('#divToolChart')[0];
+            chartActualType = 'pie';
+            chartMarginTop = -10;
+            titleText = '<strong>Development tools</strong>';
+            subtitleText = 'Softwares';
+            seriesData = [{
+                dataLabels: {
+                    format: '<div style="width: 100%; text-align: center;">' + 
+                                '<span style="color: {point.color}; font-weight: bold;">{point.name}</span><br>' + 
+                                '<span style="color: {point.color};">{point.y} %</span>' + 
+                            '</div>'
                 },
-                title: {
-                    text: '<strong>Skill set</strong>',
+                name: '<strong>Usage</strong>',
+                data: [
+                    ['GitHub', 5],
+                    ['Bitbucket', 12],
+                    ['Git', 13],
+                    ['Sourcetree', 12],
+                    ['Visual Studio', 22],
+                    ['Atlassian', 12],
+                    ['TFS', 6],
+                    ['SQL server', 19]
+                ]
+            }];
+            break;
+        case 'Career':
+            chartContainer = $('#divCareerChart')[0];
+            chartActualType = 'timeline';
+            titleText = '<strong>Education & Employment<strong>'
+            subtitleText = 'Achievements acquired in University (click timeline)';
+            seriesData = [{
+                dataLabels: {
+                    allowOverlap: false,
                     style: {
-                        color: '#ffffff'
+                        fontSize: 10
                     }
                 },
-                subtitle: {
-                    text: 'Programming languages',
-                    style: {
-                        color: '#c9c9c9'
-                    }
-                },
-                xAxis: {
-                    categories: ['Python', 'C#', 'Visual Basic', 'HTML', 'CSS', 'Javascript', 
-                                'TSQL', '.NET', 'ASP.NET', 'Xamarin', 'Jquery', 'Java'],
-                    title: {
-                        text: '<strong>Skills</strong>',
-                        style: {
-                            color: '#ffffff'
-                        }
-                    },
-                    labels: {
-                        style: {
-                            color: '#c9c9c9'
-                        }
-                    }
-                },
-                yAxis: {
-                    max: 100,
-                    min: 0,
-                    title: {
-                        text: '<strong>Skill level</strong>',
-                        align: 'high',
-                        style: {
-                            color: '#ffffff'
-                        }
-                    },
-                    labels: {
-                        overflow: 'justify',
-                        style: {
-                            color: '#c9c9c9'
-                        }
-                    }
-                },
-                tooltip: {
-                    valueSuffix: ' %'
-                },
-                plotOptions: {
-                    bar: {
-                        dataLabels: {
-                            enabled: true
-                        }
-                    }
-                },
-                legend: {
-                    enabled: false
-                },
-                credits: {
-                    enabled: false
-                },
-                series: [{
-                    name: '<strong>Level</strong>',
-                    data: [50, 85, 75, 70, 65, 70, 
-                            75, 70, 60, 35, 75, 45]
+                data: [{
+                    name: '<em>2008 - 2012</em>',
+                    label: '<strong>Shih Hsin University (Taiwan):</strong><br>Batchlor of Communication Management',
+                    description: '<strong>Honours & Awards:</strong><br>None'
+                }, {
+                    name: '<em>2013 - 2014</em>',
+                    label: '<strong>Dashi Junior High School (Taiwan):</strong><br>Mathematics Teacher',
+                    description: '<strong>Honours & Awards:</strong><br>None'
+                }, {
+                    name: '<em>2015 - 2016</em>',
+                    label: '<strong>Sushi Train (Australia):</strong><br>Waiter',
+                    description: '<strong>Honours & Awards:</strong><br>None'
+                },{
+                    name: '<em>2017 - 2018</em>',
+                    label: '<strong>Queensland University of Technology (Australia):</strong><br>Master of IT (GPA: 6.3/7)',
+                    description: '<strong>Honours & Awards:</strong>' + 
+                                    '<br>Member of Golden Key International Student Society - Sep 2018 ~ current' + 
+                                    '<br>Dean\'s list - Semester 1, 2018' + 
+                                    '<br>Dean\'s list - Semester 2, 2017'
+                }, {
+                    name: '<em>2019 - Current</em>',
+                    label: '<strong>Tyeware (Australia):</strong><br>Web developer',
+                    description: '<strong>Honours & Awards:</strong><br>None'
                 }]
-            };
+            }];
             break;
         case 'English':
-            chartOption = {
-                chart: {
-                    type: 'solidgauge',
-                    backgroundColor: '#474747',
-                    marginLeft: 20,
-                    renderTo: $('#divEnglishChart')[0]
-                },
-                credits: {
-                    enabled: false
-                },
-                title: {
-                    text: ''
-                },
-                tooltip: {
-                    enabled: false
-                },
-                pane: {
-                    startAngle: 0,
-                    endAngle: 360,
-                    background: [{
-                        outerRadius: '118%',
-                        innerRadius: '88%',
-                        backgroundColor: Highcharts.Color(Highcharts.getOptions().colors[0])
-                            .setOpacity(0.3)
-                            .get(),
-                        borderWidth: 0
-                    }]
-                },
-                yAxis: {
-                    min: 0,
-                    max: 100,
-                    lineWidth: 0,
-                    tickPositions: []
-                },
-                plotOptions: {
-                    solidgauge: {
-                        dataLabels: {
-                            enabled: true,
-                            y: -30,
-                            borderWidth: 0,
-                            useHTML: true,
-                            formatter: function() {
-                                return '<div style="width: 100%; text-align: center;">' +
-                                            '<span style="font-size: 1.2em; color: ' + '#c9c9c9' + '; font-weight: bold;">' + this.point.series.name + '</span><br/>' + 
-                                            '<span style="font-size: 2em; color: ' + Highcharts.getOptions().colors[4] + '; font-weight: bold;">' + this.y + '%</span>' + 
-                                        '</div>';
-                            }
-                        },
-                        linecap: 'round',
-                        rounded: true
-                    }
-                },
-                series: [{
+        case 'Chinese':
+            chartActualType = 'solidgauge';
+
+            if (chartType == 'English') {
+                chartContainer = $('#divEnglishChart')[0];
+                chartMarginLeft = 20;
+                seriesData = [{
                     name: 'English',
                     data: [{
                         color: Highcharts.getOptions().colors[0],
@@ -155,63 +119,11 @@ function createChartOptions(chartType) {
                         innerRadius: '88%',
                         y: 83
                     }]
-                }]
-            };
-            break; 
-        case 'Chinese':
-            chartOption = {
-                chart: {
-                    type: 'solidgauge',
-                    backgroundColor: '#474747',
-                    marginRight: 20,
-                    renderTo: $('#divChineseChart')[0]
-                },
-                credits: {
-                    enabled: false
-                },
-                title: {
-                    text: ''
-                },
-                tooltip: {
-                    enabled: false
-                },
-                pane: {
-                    startAngle: 0,
-                    endAngle: 360,
-                    background: [{
-                        outerRadius: '118%',
-                        innerRadius: '88%',
-                        backgroundColor: Highcharts.Color(Highcharts.getOptions().colors[0])
-                            .setOpacity(0.3)
-                            .get(),
-                        borderWidth: 0
-                    }]
-                },
-                yAxis: {
-                    min: 0,
-                    max: 100,
-                    lineWidth: 0,
-                    tickPositions: []
-                },
-                plotOptions: {
-                    solidgauge: {
-                        dataLabels: {
-                            enabled: true,
-                            y: -30,
-                            borderWidth: 0,
-                            useHTML: true,
-                            formatter: function() {
-                                return '<div style="width: 100%; text-align: center;">' + 
-                                            '<span style="font-size: 1.2em; color: ' + '#c9c9c9' + '; font-weight: bold;">' + this.point.series.name + '</span><br/>' +
-                                            '<span style="font-size: 2em; color: ' + Highcharts.getOptions().colors[4] + '; font-weight: bold;">' + this.y + '%</span>' +
-                                        '</div>';
-                            }
-                        },
-                        linecap: 'round',
-                        rounded: true
-                    }
-                },
-                series: [{
+                }];
+            } else {
+                chartContainer = $('#divChineseChart')[0];
+                chartMarginRight = 20;
+                seriesData = [{
                     name: 'Chinese',
                     data: [{
                         color: Highcharts.getOptions().colors[0],
@@ -219,153 +131,178 @@ function createChartOptions(chartType) {
                         innerRadius: '88%',
                         y: 95
                     }]
-                }]
-            };
-            break;
-        case 'Tool':
-            chartOption = {
-                chart: {
-                    type: 'pie',
-                    options3d: {
-                        enabled: true,
-                        alpha: 45
-                    },
-                    renderTo: $('#divToolChart')[0],
-                    backgroundColor: '#474747',
-                    marginTop: -10
-                },
-                title: {
-                    text: '<strong>Development tools</strong>',
-                    style: {
-                        color: '#ffffff'
-                    }
-                },
-                subtitle: {
-                    text: 'Software & Approach',
-                    style: {
-                        color: '#c9c9c9'
-                    }
-                },
-                tooltip: {
-                    valueSuffix: ' %'
-                },
-                plotOptions: {
-                    pie: {
-                        allowPointSelect: true,
-                        innerSize: 50,
-                        depth: 45,
-                        dataLabels: {
-                            style: {
-                                color: '#c9c9c9'
-                            },
-                            useHTML: true
-                        },
-                        colors: [
-                            Highcharts.getOptions().colors[9],
-                            Highcharts.getOptions().colors[7],
-                            Highcharts.getOptions().colors[2],
-                            Highcharts.getOptions().colors[6],
-                            Highcharts.getOptions().colors[3],
-                            Highcharts.getOptions().colors[8],
-                            Highcharts.getOptions().colors[4],
-                            Highcharts.getOptions().colors[0]
-                        ]
-                    }
-                },
-                credits: {
-                    enabled: false
-                },
-                series: [{
-                    dataLabels: {
-                        format: '<div style="width: 100%; text-align: center;">' + 
-                                    '<span style="color: {point.color}; font-weight: bold;">{point.name}</span><br>' + 
-                                    '<span style="color: {point.color};">{point.y} %</span>' + 
-                                '</div>'
-                    },
-                    name: '<strong>Usage</strong>',
-                    data: [
-                        ['GitHub', 5],
-                        ['Bitbucket', 12],
-                        ['Git', 13],
-                        ['Sourcetree', 12],
-                        ['Visual Studio', 22],
-                        ['Atlassian', 12],
-                        ['TFS', 6],
-                        ['SQL server', 19],
-                    ]
-                }]
-            }
-            break;
-        case 'Career':
-            chartOption = {
-                chart: {
-                    type: 'timeline',
-                    renderTo: $('#divCareerChart')[0],
-                    backgroundColor: '#474747',
-                },
-                xAxis: {
-                    visible: false,
-                },
-                yAxis: {
-                    visible: false
-                },
-                title: {
-                    text: '<strong>Education & Employment<strong>',
-                    style: {
-                        color: '#ffffff'
-                    }
-                },
-                subtitle: {
-                    text: 'Achievements acquired in University (click timeline)',
-                    style: {
-                        color: '#c9c9c9'
-                    }
-                },
-                credits: {
-                    enabled: false
-                },
-                colors: [
-                    '#4185F3',
-                    '#427CDD',
-                    '#406AB2',
-                    '#3E5A8E',
-                    '#3B4A68',
-                    '#363C46'
-                ],
-                series: [{
-                    dataLabels: {
-                        allowOverlap: false,
-                        style: {
-                            fontSize: 10
-                        }
-                    },
-                    data: [{
-                        name: '<em>2008 - 2012</em>',
-                        label: '<strong>Shih Hsin University (Taiwan):</strong><br>Batchlor of Communication Management',
-                        description: '<strong>Honours & Awards:</strong><br>None'
-                    }, {
-                        name: '<em>2013 - 2014</em>',
-                        label: '<strong>Dashi Junior High School (Taiwan):</strong><br>Mathematics Teacher',
-                        description: '<strong>Honours & Awards:</strong><br>None'
-                    }, {
-                        name: '<em>2015 - 2016</em>',
-                        label: '<strong>Sushi Train (Australia):</strong><br>Waiter',
-                        description: '<strong>Honours & Awards:</strong><br>None'
-                    },{
-                        name: '<em>2017 - 2018</em>',
-                        label: '<strong>Queensland University of Technology (Australia):</strong><br>Master of IT (GPA: 6.3/7)',
-                        description: '<strong>Honours & Awards:</strong>' + 
-                                        '<br>Member of Golden Key International Student Society - Sep 2018 ~ current' + 
-                                        '<br>Dean\'s list - Semester 1, 2018' + 
-                                        '<br>Dean\'s list - Semester 2, 2017'
-                    }, {
-                        name: '<em>2019 - Current</em>',
-                        label: '<strong>Tyeware (Australia):</strong><br>Web developer',
-                        description: '<strong>Honours & Awards:</strong><br>None'
-                    }]
-                }]
+                }];
             }
             break;
     }
-    return chartOption;
+    
+    // Add attributes to chartOption
+    chartOption = {
+        chart: {
+            renderTo: chartContainer,
+            type: chartActualType,
+            backgroundColor: chartBackgroundColor,
+            marginRight: chartMarginRight,
+            marginLeft: chartMarginLeft,
+            marginTop: chartMarginTop
+        },
+        title: {
+            text: titleText,
+            style: {
+                color: titleTextColor
+            }
+        },
+        subtitle: {
+            text: subtitleText,
+            style: {
+                color: subtitleTextColor
+            }
+        },
+        credits: {
+            enabled: false
+        },
+        series: seriesData
+    }
+
+    // Add chart-specific attributes to different charts
+    switch (chartType) {
+        case 'Skill':
+            chartOption.xAxis = {
+                categories: ['Python', 'C#', 'Visual Basic', 'HTML', 'CSS', 'Javascript', 
+                            'TSQL', '.NET', 'ASP.NET', 'Xamarin', 'Jquery', 'Java'],
+                title: {
+                    text: '<strong>Skills</strong>',
+                    style: {
+                        color: titleTextColor
+                    }
+                },
+                labels: {
+                    style: {
+                        color: subtitleTextColor
+                    }
+                }
+            };
+            chartOption.yAxis = {
+                min: 0,
+                max: 100,
+                title: {
+                    text: '<strong>Skill level</strong>',
+                    align: 'high',
+                    style: {
+                        color: titleTextColor
+                    }
+                },
+                labels: {
+                    overflow: 'justify',
+                    style: {
+                        color: subtitleTextColor
+                    }
+                }
+            };
+            chartOption.tooltip = {
+                valueSuffix: ' %'
+            };
+            chartOption.plotOptions = {
+                bar: {
+                    dataLabels: {
+                        enabled: true
+                    }
+                }
+            };
+            chartOption.legend = {
+                enabled: false
+            };
+            break;
+        case 'Tool':
+            chartOption.chart.options3d = {
+                enabled: true,
+                alpha: 45
+            };
+            chartOption.tooltip = {
+                valueSuffix: ' %'
+            };
+            chartOption.plotOptions = {
+                pie: {
+                    allowPointSelect: true,
+                    innerSize: 50,
+                    depth: 45,
+                    dataLabels: {
+                        style: {
+                            color: subtitleTextColor
+                        },
+                        useHTML: true
+                    },
+                    colors: [
+                        Highcharts.getOptions().colors[9],
+                        Highcharts.getOptions().colors[7],
+                        Highcharts.getOptions().colors[2],
+                        Highcharts.getOptions().colors[6],
+                        Highcharts.getOptions().colors[3],
+                        Highcharts.getOptions().colors[8],
+                        Highcharts.getOptions().colors[4],
+                        Highcharts.getOptions().colors[0]
+                    ]
+                }
+            };
+            break;
+        case 'Career':
+            chartOption.xAxis = {
+                visible: false
+            };
+            chartOption.yAxis = {
+                visible: false
+            };
+            chartOption.colors = [
+                '#4185F3',
+                '#427CDD',
+                '#406AB2',
+                '#3E5A8E',
+                '#3B4A68',
+                '#363C46'
+            ];
+            break;
+        case 'English':
+        case 'Chinese':
+            chartOption.tooltip = {
+                enabled: false
+            };
+            chartOption.pane = {
+                startAngle: 0,
+                endAngle: 360,
+                background: [{
+                    outerRadius: '118%',
+                    innerRadius: '88%',
+                    backgroundColor: Highcharts.Color(Highcharts.getOptions().colors[0])
+                        .setOpacity(0.3)
+                        .get(),
+                    borderWidth: 0
+                }]
+            };
+            chartOption.yAxis = {
+                min: 0,
+                max: 100,
+                lineWidth: 0,
+                tickPositions: []
+            };
+            chartOption.plotOptions = {
+                solidgauge: {
+                    dataLabels: {
+                        enabled: true,
+                        y: -30,
+                        borderWidth: 0,
+                        useHTML: true,
+                        formatter: function() {
+                            return '<div style="width: 100%; text-align: center;">' +
+                                        '<span style="font-size: 1.2em; color: ' + '#c9c9c9' + '; font-weight: bold;">' + this.point.series.name + '</span><br/>' + 
+                                        '<span style="font-size: 2em; color: ' + Highcharts.getOptions().colors[4] + '; font-weight: bold;">' + this.y + '%</span>' + 
+                                    '</div>';
+                        }
+                    },
+                    linecap: 'round',
+                    rounded: true
+                }
+            };
+            break;
+    }
+    return chartOption;   
 }

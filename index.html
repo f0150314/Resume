@@ -16,10 +16,10 @@
             <div id="divNavRow">
                 <div id="divName" class="divNavCol">John Chen</div>
                 <div class="divNavCol divHover" onclick="showContent('ABOUT')">About</div>
+                <div class="divNavCol divHover" onclick="showContent('EDUCATION')">Education</div>
                 <div class="divNavCol divHover" onclick="showContent('SKILLS')">Skills</div>
                 <div class="divNavCol divHover" onclick="showContent('EXPERIENCE')">Experiences</div>
                 <div class="divNavCol divHover" onclick="showContent('PORTFOLIO')">Portfolios</div>
-                <div class="divNavCol divHover" onclick="showContent('CONTACT')">Contact</div>
             </div>
     
             <div id="divMenu" class="openbtn" onclick="openSidebar()">☰</div>
@@ -27,62 +27,103 @@
                 <a href="javascript:void(0)" onclick="closeSidebar()">×</a>
                 <div onclick="showContent('ABOUT')">About</div>
                 <div onclick="showContent('CAREER')">Career</div>
-                <div onclick="showContent('EXPERIENCE')">Experiences</div>
-                <div onclick="showContent('PORTFOLIO')">Portfolios</div>
                 <div onclick="showContent('ABILITIES')">Abilities</div>
                 <div onclick="showContent('SKILLS')">Skills</div>
                 <div onclick="showContent('TOOLS')">Tools</div>
+                <div onclick="showContent('EXPERIENCE')">Experiences</div>
+                <div onclick="showContent('PORTFOLIO')">Portfolios</div>
                 <div onclick="showContent('CONTACT')">Contact</div>
             </div>
         </header>
             
         <!-- Main content -->
         <div id="divMainBody">
-            <!-- About & Education & Skills & Contact-->
             <div class="divContentBody container">
-                
                 <!-- First row -->
                 <div class="divContentRow">
+                    <!-- About me -->
                     <div id="divAboutMe" class="divContentCell">
-                    TO DO: Add brief introduction 
+                        <div class="divInnerCell">
+                            <span><h5>About me</h5></span>                            
+                            <div id="divIntro">
+                                <div id="divPhotoContainer"></div>
+                                <span><strong>Greeting everyone,</strong></span>
+                                <p>
+                                    I am John from Taiwan. I am a sofware developer currently seeking for suitable position 
+                                    that can upskill myself and also devote what I have learnt to the company. 
+                                    I have just completed one year industry experience of web development and 
+                                    ready to embrance the next opportunity waving at me. 
+                                </p>
+                                <p>
+                                    I am a proactive and self-motivated individual. I am enthusiastically keen and willing to learn a variety of skills and technologies. 
+                                    I have proven to be a fast learner by achieving academic success throughout my studies. 
+                                    I am also a team-oriented person, I believe collaboration plays a pivotal role when business project comes to fruition. 
+                                    It would be a real privilege to work with talented individuals and make contributions to bring the company to flourish. 
+                                </p>
+                            </div>
+                        </div>
                     </div>
 
-                    <div id="divCareerChart" class="divContentCell"></div>
+                    <!-- Personal info -->
+                    <div id="divContactInfo" class="divContentCell">
+                        <div class="divInnerCell">
+                            <span><h5>Personal Information</h5></span>
+                            <table id="tblInfo">
+                                <tbody>
+                                    <tr><td class="tdInfoName">• Full name:</td>
+                                        <td>Yen Chang Chen (John)</td>
+                                    </tr>
+                                    <tr><td class="tdInfoName">• Education:</td>
+                                        <td>Queensland University of Technology</td>
+                                    </tr>
+                                    <tr><td class="tdInfoName">• Specialty:</td>
+                                        <td>Master of IT (Computer Science)</td>
+                                    </tr>
+                                    <tr><td class="tdInfoName">• Address:</td>
+                                        <td>Please see my CV (Relocatable)</td>
+                                    </tr>
+                                    <tr><td class="tdInfoName">• E-mail:</td>
+                                        <td>Please see my CV</td>
+                                    </tr>
+                                    <tr><td class="tdInfoName">• Mobile:</td>
+                                        <td>Please see my CV</td>
+                                    </tr>
+                                    <tr><td class="tdInfoName">• Referees:</td>
+                                        <td>Available upon request</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>                
+                    </div>
                 </div>
 
                 <!-- Second row -->
                 <div class="divContentRow">
+                    <!-- Career chart-->
+                    <div id="divCareerChart" class="divContentCell"></div>
                     
+                    <!-- Abilities chart -->
                     <div id="divAbilityChart" class="divContentCell">
                         <div class="divInnerCell">
-
                             <span><h5>Languages</h5></span>
                             <div class="divLangContainer">
                                 <div id="divEnglishChart" class="divLanguageCell"></div>
                                 <div id="divChineseChart" class="divLanguageCell"></div>
-                            </div>
-                            
+                            </div>   
                             <div class="divLine"></div>
-                            
                             <span><h5>Characteristics</h5></span>
                             <table id="tblCharacteristics"></table>
                         </div>
                     </div>
-
-                    <div id="divSkillChart" class="divContentCell"></div>
                 </div>
 
                 <!-- Third row -->
                 <div class="divContentRow">
+                    <!-- Skill chart -->
+                    <div id="divSkillChart" class="divContentCell"></div>
 
-                    <!-- Tool chart container -->
-                    <div id="divToolChart" class="divContentCell"></div>
-
-                    <!-- Personal info section -->
-                    <div id="divContactInfo" class="divContentCell">
-                    TO DO: Add personal information
-                    
-                    </div>
+                    <!-- Tool chart -->
+                    <div id="divToolChart" class="divContentCell"></div> 
                 </div>
             </div>
     
@@ -101,11 +142,11 @@
                     <img src="css/img/icons/icnFacebook.svg" alt="Facebook" class="ftrIcon">
                     <span class="ftrIconText">Facebook</span>
                 </div>
-                <div onclick="location.href='https://www.linkedin.com/'">
+                <div onclick="location.href='https://www.linkedin.com/in/john-chen-919295164/'">
                     <img src="css/img/icons/icnLinkedIn.svg" alt="LinkedIn" class="ftrIcon">
                     <span class="ftrIconText">LinkedIn</span>
                 </div>
-                <div onclick="location.href='https://github.com/'">
+                <div onclick="location.href='https://github.com/f0150314'">
                     <img src="css/img/icons/icnGitHub.svg" alt="GitHub" class="ftrIcon">
                     <span class="ftrIconText">GitHub</span>
                 </div>
@@ -132,6 +173,7 @@
     
     <script>
         $(document).ready(function () {
+            'use strict';
             init();
 
             //Resize navigation bar when window width is changing
