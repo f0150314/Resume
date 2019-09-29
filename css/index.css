@@ -8,6 +8,12 @@ h1, h2, h3, h4, h5 {
     color: white;
 }
 
+p {
+    color: #c9c9c9;
+    text-align: justify;
+    font-size: 0.8em;
+}
+
 #divBase {
     background-color: #474747;
 }
@@ -142,11 +148,11 @@ h1, h2, h3, h4, h5 {
 .divContentBody .divContentRow .divContentCell .divInnerCell {
     height: 100%;
     padding-top: 4px;
-    /* border: 2px solid white; */
 }
 
 .divContentCell .divInnerCell span {
     text-align: center;
+    color: white;
 }
 
 .divContentCell .divInnerCell .divLangContainer {
@@ -159,10 +165,20 @@ h1, h2, h3, h4, h5 {
     height: 160px;
 }
 
-.divInnerCell table {
+.divInnerCell table, .divInnerCell #divIntro {
     margin: 15px auto;
     width: 85%;
     height: 85%;
+}
+
+#divPhotoContainer {
+    background-image: url('img/profile.svg');
+    width: 20%;
+    height: 20%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin: 0.5em 0.5em 0;
+    float: left;
 }
 
 .divInnerCell #tblCharacteristics {
@@ -178,7 +194,7 @@ h1, h2, h3, h4, h5 {
 .divInnerCell #tblInfo td {
     vertical-align: text-top;
     font-size: 1em;
-    color: #999999;
+    color: #a3a3a3;
 }
 
 .divInnerCell #tblInfo .tdInfoName {

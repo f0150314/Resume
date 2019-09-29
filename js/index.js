@@ -1,7 +1,8 @@
 "use strict";
 
 var divNavColArray = [],
-    divContentArray = [];
+    divContentArray = [],
+    chartNames = [];
 
 function init() {
     //Set Chart timeozonOffset
@@ -20,19 +21,15 @@ function init() {
         divContentArray.push($(this));
     });
 
-    // Initialize body content and hover behavior
+    // Populate chartName array
+    chartNames.push('Skill', 'English', 'Chinese', 'Tool', 'Career');
+    
+    // Initialize body content, hover behavior and charts
     showContent('ABOUT');
     divNavColArray[0].removeClass('divSelected');
 
     // Initialize navigation bar
     resizeNavbar();
-
-    // Initialize skill chart
-    renderChart('Skill');
-    renderChart('English');
-    renderChart('Chinese');
-    renderChart('Tool');
-    renderChart('Career');
 
     // Initialize characteristic tables
     createAttributeTables();
@@ -48,8 +45,7 @@ function showContent(category) {
         closeSidebar();
     }
 
-    // Hide all contents and add hover behavior 
-    // and remove selected behavior for all navigation columns
+    // Add hover behavior and remove selected behavior for all navigation columns
     for (var i = 0; i < divNavColArray.length; i++) {
         if (!divNavColArray[i].hasClass(hoverClass)) {
             divNavColArray[i].addClass(hoverClass);
@@ -60,6 +56,7 @@ function showContent(category) {
         }
     }
 
+    // Hide all contents
     for (var i = 0; i < divContentArray.length; i++) {
         divContentArray[i].hide();
     }
@@ -71,45 +68,51 @@ function showContent(category) {
             divContentArray[0].show();
             focusDiv = $('#divAboutMe');
             break;
+        case 'EDUCATION':    
+        case 'CAREER': 
+            divContentArray[0].show();
+            focusDiv = $('#divCareerChart');
+            if (category == 'EDUCATION') {
+                divNavColArray[1].removeClass(hoverClass).addClass(selectedClass);
+            }
+            break;
         case 'SKILLS':
-            divNavColArray[1].removeClass(hoverClass).addClass(selectedClass);
+            divNavColArray[2].removeClass(hoverClass).addClass(selectedClass);
             divContentArray[0].show();
             focusDiv = $('#divSkillChart');
-            renderChart('Skill');
             break;
         case 'EXPERIENCE':
-            divNavColArray[2].removeClass(hoverClass).addClass(selectedClass);
+            divNavColArray[3].removeClass(hoverClass).addClass(selectedClass);
             divContentArray[1].show();
             focusDiv = $('#divExperience');
             break;
         case 'PORTFOLIO':
-            divNavColArray[3].removeClass(hoverClass).addClass(selectedClass);
+            divNavColArray[4].removeClass(hoverClass).addClass(selectedClass);
             divContentArray[1].show();
             focusDiv = $('#divPortfolio');
-            break;
-        case 'CONTACT':
-            divNavColArray[4].removeClass(hoverClass).addClass(selectedClass);
-            divContentArray[0].show();
-            focusDiv = $('#divContactInfo');
             break;
         case 'TOOLS': 
             divContentArray[0].show();
             focusDiv = $('#divToolChart');
-            renderChart('Tool');
-            break;
-        case 'CAREER':
-            divContentArray[0].show();
-            focusDiv = $('#divCareerChart');
-            renderChart('Career');
             break;
         case 'ABILITIES':
             divContentArray[0].show();
             focusDiv = $('#divEnglishChart');
-            renderChart('English');
-            renderChart('Chinese');
+            break;
+        case 'CONTACT':
+            divContentArray[0].show();
+            focusDiv = $('#divContactInfo');
             break;
     }
+    
+    // Scroll to selected category
     getFocus(focusDiv);
+
+    // Show chart annivation by reloading charts
+    for (var i = 0; i < chartNames.length; i++)
+    {
+        renderChart(chartNames[i]);
+    }
 }
 
 function resizeNavbar() {
@@ -179,7 +182,6 @@ function buildHTML() {
                     rowHTML += '<td class="tdAttrName">Problem-solver</td>';
                 }
 
-                // Add thumbs up
                 for (var j = 0; j < numThumbs; j++) {
                     if (j < 4) {
                         rowHTML += addThumbsUp_fill;
@@ -196,7 +198,6 @@ function buildHTML() {
                     rowHTML += '<td class="tdAttrName">Team-oriented</td>';
                 }
                 
-                // Add thumbs up
                 for (var j = 0; j < numThumbs; j++) {
                     rowHTML += addThumbsUp_fill;
                 }
