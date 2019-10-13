@@ -44,7 +44,7 @@
                     <!-- About me -->
                     <div id="divAboutMe" class="divContentCell">
                         <span><h5>About me</h5></span>                            
-                        <div id="divIntro">
+                        <div id="divIntro" class="divContentBlock">
                             <div id="divPhotoContainer"></div>
                             <span><strong>Greetings everyone,</strong></span>
                             <p>
@@ -64,30 +64,35 @@
                     <!-- Personal info -->
                     <div id="divContactInfo" class="divContentCell">
                         <span><h5>Personal Information</h5></span>
-                        <table id="tblInfo">
-                            <tbody>
-                                <tr><td class="tdInfoName">• Full name:</td>
-                                    <td>Yen Chang Chen (John)</td>
-                                </tr>
-                                <tr><td class="tdInfoName">• Education:</td>
-                                    <td>Queensland University of Technology</td>
-                                </tr>
-                                <tr><td class="tdInfoName">• Specialty:</td>
-                                    <td>Master of IT (Computer Science)</td>
-                                </tr>
-                                <tr><td class="tdInfoName">• Address:</td>
-                                    <td>343 Alfred st, Mackay 4740, Australia (Relocatable)</td>
-                                </tr>
-                                <tr><td class="tdInfoName">• E-mail:</td>
-                                    <td>f0150314@gmail.com</td>
-                                </tr>
-                                <tr><td class="tdInfoName">• Mobile:</td>
-                                    <td>0412 715 467</td>
-                                </tr>
-                                <tr><td class="tdInfoName">• Referees:</td>
-                                    <td>Available upon request</td>
-                                </tr>
-                            </tbody>
+                        <table class="tblInfo">
+                            <tr>
+                                <td class="tdInfoName">• Full name:</td>
+                                <td>Yen Chang Chen (John)</td>
+                            </tr>
+                            <tr>
+                                <td class="tdInfoName">• Education:</td>
+                                <td>Queensland University of Technology</td>
+                            </tr>
+                            <tr>
+                                <td class="tdInfoName">• Specialty:</td>
+                                <td>Master of IT (Computer Science)</td>
+                            </tr>
+                            <tr>
+                                <td class="tdInfoName">• Address:</td>
+                                <td>343 Alfred st, Mackay, QLD 4740 (Relocatable)</td>
+                            </tr>
+                            <tr>
+                                <td class="tdInfoName">• E-mail:</td>
+                                <td>f0150314@gmail.com</td>
+                            </tr>
+                            <tr>
+                                <td class="tdInfoName">• Mobile:</td>
+                                <td>0412-715-467</td>
+                            </tr>
+                            <tr>
+                                <td class="tdInfoName">• Referees:</td>
+                                <td>Available upon request</td>
+                            </tr>
                         </table>
                     </div>
                 </div>
@@ -103,8 +108,7 @@
                         <div class="divLangContainer">
                             <div id="divEnglishChart" class="divLanguageCell"></div>
                             <div id="divChineseChart" class="divLanguageCell"></div>
-                        </div
-                        >   
+                        </div>   
                         <div class="divLine"></div>
 
                         <span><h5>Characteristics</h5></span>
@@ -125,8 +129,43 @@
             <!-- Experience & Portfolio-->
             <div class="divContentBody container">
                 <!-- Work experience  -->
-                <div id="divExperience" class="divContentCell divContentBlock">
+                <div id="divExperience" class="divContentCell">
                     <span><h5>Work Experiences</h5></span>
+                    <div class="divContentBlock">  
+                        <!-- Tyeware -->
+                        <img class="jobImg" src="css/img/tyeware.png" alt="Tyeware logo"></img>
+                        <p>
+                            <span>Period: </span>
+                            Febuary 2019 - Current
+                        </p>
+                        <p>
+                            <span>Main duties: </span>
+                            asdfsad fafas dfsa
+                        </p>
+                        <p>
+                            <span>Skills developed: </span>
+                            adfadf sfsdkfjk f df  df dafsdf f dfdfdaf sdf dfskd dsf sdf kdsf jaskfjsdf skfj askfj ksf asf ksfk ajfk sd
+                        </p>  
+                        <div class="clearFloat" style="padding-bottom: 1.5em;"></div>
+                    </div>
+
+                    <div class="divContentBlock">    
+                        <!-- Sushi Train -->
+                        <img class="jobImg" src="css/img/sushi_train.png" alt="Sushi Train logo"></img>
+                        <p>
+                            <span>Period: </span>
+                            Febuary 2019 - Current
+                        </p>
+                        <p>
+                            <span>Main duties: </span>
+                            asdfsad fafas dfsa
+                        </p>
+                        <p>
+                            <span>Skills developed: </span>
+                            adfadf sfsdkfjk f df  df dafsdf f dfdfdaf sdf dfskd dsf sdf kdsf jaskfjsdf skfj askfj ksf asf ksfk ajfk sd
+                        </p>
+                        <div class="clearFloat"></div>  
+                    </div>      
                 </div>
 
                 <div class="divLine"></div>
@@ -134,6 +173,7 @@
                 <!-- Portfolios -->
                 <div id="divPortfolio" class="divContentCell divContentBlock">
                     <span><h5>Portfolios</h5></span>
+
                 </div>
             </div>
         </div>
@@ -182,6 +222,7 @@
             //Resize navigation bar when window width is changing
             $(window).resize(function () {
                 resizeNavbar();
+                resizeImages();
             });
         });
     </script>

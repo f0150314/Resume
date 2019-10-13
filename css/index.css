@@ -11,7 +11,6 @@ h1, h2, h3, h4, h5 {
 p {
     color: #c9c9c9;
     text-align: justify;
-    font-size: 0.8em;
 }
 
 #divBase {
@@ -138,11 +137,11 @@ p {
     }
 }
 
-@media screen and (min-width: 400px) {
+/* @media screen and (min-width: 400px) {
     p {
         line-height: 2em;
     }
-}
+} */
 
 .divContentCell {
     width: 100%;
@@ -169,7 +168,7 @@ p {
     height: 160px;
 }
 
-table, #divIntro {
+table, .divContentBlock {
     margin: 15px auto;
     width: 85%;
     height: 85%;
@@ -195,13 +194,13 @@ td {
     color: #c9c9c9;
 }
 
-#tblInfo td {
+.tblInfo td {
     vertical-align: text-top;
     font-size: 1em;
     color: #a3a3a3;
 }
 
-#tblInfo .tdInfoName {
+.tblInfo .tdInfoName {
     width: 8%;
     color: #c9c9c9;
 }
@@ -222,10 +221,12 @@ td {
     border-top: 1px solid grey;
 }
 
-.divContentBlock {
-    width: 80%;
-    margin: 0 auto;
-    border: 1px solid white;
+.jobImg {
+    padding: 0 1em 0.5em;
+}
+
+.clearFloat {
+    clear: both;
 }
 
 /* Footer */
