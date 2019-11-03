@@ -13,6 +13,11 @@ p {
     text-align: justify;
 }
 
+li {
+    margin: 15px 0;
+    color: #c9c9c9;
+}
+
 #divBase {
     background-color: #474747;
 }
@@ -137,21 +142,10 @@ p {
     }
 }
 
-/* @media screen and (min-width: 400px) {
-    p {
-        line-height: 2em;
-    }
-} */
-
 .divContentCell {
     width: 100%;
     padding: 15px;
 }
-
-/* .divContentBody .divContentRow .divContentCell .divInnerCell {
-    height: 100%;
-    padding-top: 4px;
-} */
 
 .divContentCell span {
     text-align: center;
@@ -222,7 +216,7 @@ td {
 }
 
 .jobImg {
-    padding: 0 1em 0.5em;
+    padding: 0 2em 0.5em;
 }
 
 .clearFloat {

@@ -44,7 +44,7 @@
                     <!-- About me -->
                     <div id="divAboutMe" class="divContentCell">
                         <span><h5>About me</h5></span>                            
-                        <div id="divIntro" class="divContentBlock">
+                        <div class="divContentBlock">
                             <div id="divPhotoContainer"></div>
                             <span><strong>Greetings everyone,</strong></span>
                             <p>
@@ -133,37 +133,41 @@
                     <span><h5>Work Experiences</h5></span>
                     <div class="divContentBlock">  
                         <!-- Tyeware -->
-                        <img class="jobImg" src="css/img/tyeware.png" alt="Tyeware logo"></img>
-                        <p>
-                            <span>Period: </span>
-                            Febuary 2019 - Current
-                        </p>
-                        <p>
-                            <span>Main duties: </span>
-                            asdfsad fafas dfsa
-                        </p>
-                        <p>
-                            <span>Skills developed: </span>
-                            adfadf sfsdkfjk f df  df dafsdf f dfdfdaf sdf dfskd dsf sdf kdsf jaskfjsdf skfj askfj ksf asf ksfk ajfk sd
-                        </p>  
+                        <img class="jobImg" src="css/img/tyeware.png" alt="Tyeware"></img>
+                        <ul>
+                            <li>
+                                <span>Period: </span>
+                                Febuary 2019 - Current
+                            </li>
+                            <li>
+                                <span>Main duties: </span>
+                                Website maintenace, Bug fixing, Feature development, Client technical support
+                            </li>
+                            <li>
+                                <span>Skills developed: </span>
+                                Teamwork, Problem solving, Time arrangement, Multiple programming languages
+                            </li>
+                        </ul> 
                         <div class="clearFloat" style="padding-bottom: 1.5em;"></div>
                     </div>
 
                     <div class="divContentBlock">    
                         <!-- Sushi Train -->
-                        <img class="jobImg" src="css/img/sushi_train.png" alt="Sushi Train logo"></img>
-                        <p>
-                            <span>Period: </span>
-                            Febuary 2019 - Current
-                        </p>
-                        <p>
-                            <span>Main duties: </span>
-                            asdfsad fafas dfsa
-                        </p>
-                        <p>
-                            <span>Skills developed: </span>
-                            adfadf sfsdkfjk f df  df dafsdf f dfdfdaf sdf dfskd dsf sdf kdsf jaskfjsdf skfj askfj ksf asf ksfk ajfk sd
-                        </p>
+                        <img class="jobImg" src="css/img/sushi_train.png" alt="Sushi Train"></img>
+                        <ul>
+                            <li>
+                                <span>Period: </span>
+                                November 2015 - August 2016
+                            </li>
+                            <li>
+                                <span>Main duties: </span>
+                                Customer services, Customer complaints handling
+                            </li>
+                            <li>
+                                <span>Skills developed: </span>
+                                Organization and management skill, Perseverance, Strong adaptaility, Communication skill
+                            </li>
+                        </ul>
                         <div class="clearFloat"></div>  
                     </div>      
                 </div>
@@ -219,7 +223,7 @@
             'use strict';
             init();
 
-            //Resize navigation bar when window width is changing
+            //Resize navigation bar and images when window width is changing
             $(window).resize(function () {
                 resizeNavbar();
                 resizeImages();

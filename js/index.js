@@ -143,6 +143,7 @@ function resizeImages () {
         $('.jobImg').width('80%');
         $('.jobImg').height('80%');
         $('.jobImg').css('float', 'none');
+        $('.jobImg').css('margin', '0 auto');
     } else {
         $('.jobImg').width('50%');
         $('.jobImg').height('50%');

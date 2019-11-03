@@ -36,8 +36,8 @@ function createChartOptions(chartType) {
             subtitleText = 'Programming languages';
             seriesData = [{
                 name: '<strong>Level</strong>',
-                data: [70, 75, 65, 70, 65, 70, 
-                        70, 65, 50, 35, 70, 35]
+                data: [70, 75, 70, 70, 60, 75, 
+                        75, 70, 50, 20, 70, 20]
             }];
             break;
         case 'Tool':
