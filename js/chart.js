@@ -36,8 +36,8 @@ function createChartOptions(chartType) {
             subtitleText = 'Programming languages';
             seriesData = [{
                 name: '<strong>Level</strong>',
-                data: [70, 75, 65, 70, 65, 70, 
-                        70, 65, 50, 35, 70, 35]
+                data: [70, 75, 70, 70, 60, 75, 
+                        75, 70, 50, 20, 70, 20]
             }];
             break;
         case 'Tool':
@@ -80,26 +80,26 @@ function createChartOptions(chartType) {
                 },
                 data: [{
                     name: '<em>2008 - 2012</em>',
-                    label: '<strong>Shih Hsin University (Taiwan):</strong><br>Batchlor of Communication Management',
+                    label: '<strong>Shih Hsin University:</strong><br>Bachlor of Communication Management',
                     description: '<strong>Honours & Awards:</strong><br>None'
                 }, {
                     name: '<em>2013 - 2014</em>',
-                    label: '<strong>Dashi Junior High School (Taiwan):</strong><br>Mathematics Teacher',
+                    label: '<strong>Dashi Junior High School:</strong><br>Mathematics Teacher',
                     description: '<strong>Honours & Awards:</strong><br>None'
                 }, {
                     name: '<em>2015 - 2016</em>',
-                    label: '<strong>Sushi Train (Australia):</strong><br>Waiter',
+                    label: '<strong>Sushi Train:</strong><br>Waiter',
                     description: '<strong>Honours & Awards:</strong><br>None'
                 },{
                     name: '<em>2017 - 2018</em>',
-                    label: '<strong>Queensland University of Technology (Australia):</strong><br>Master of IT (GPA: 6.3/7)',
+                    label: '<strong>Queensland University of Technology:</strong><br>Master of IT (GPA: 6.3/7)',
                     description: '<strong>Honours & Awards:</strong>' + 
                                     '<br>Member of Golden Key International Student Society - Sep 2018 ~ current' + 
                                     '<br>Dean\'s list - Semester 1, 2018' + 
                                     '<br>Dean\'s list - Semester 2, 2017'
                 }, {
                     name: '<em>2019 - Current</em>',
-                    label: '<strong>Tyeware (Australia):</strong><br>Web developer',
+                    label: '<strong>Tyeware:</strong><br>Web developer',
                     description: '<strong>Honours & Awards:</strong><br>None'
                 }]
             }];
