@@ -28,8 +28,9 @@ function init() {
     showContent('ABOUT');
     divNavColArray[0].removeClass('divSelected');
 
-    // Initialize navigation bar
+    // Initialize navigation bar and images
     resizeNavbar();
+    resizeImages();
 
     // Initialize characteristic tables
     createAttributeTables();
@@ -85,11 +86,13 @@ function showContent(category) {
             divNavColArray[3].removeClass(hoverClass).addClass(selectedClass);
             divContentArray[1].show();
             focusDiv = $('#divExperience');
+            resizeImages();
             break;
         case 'PORTFOLIO':
             divNavColArray[4].removeClass(hoverClass).addClass(selectedClass);
             divContentArray[1].show();
             focusDiv = $('#divPortfolio');
+            resizeImages();
             break;
         case 'TOOLS': 
             divContentArray[0].show();
@@ -131,6 +134,20 @@ function resizeNavbar() {
             $('#divMenu').hide();
             closeSidebar();
         })
+    }
+}
+
+function resizeImages () { 
+    // re-organize images when window size is changing
+    if ($(window).width() < 750) {
+        $('.jobImg').width('80%');
+        $('.jobImg').height('80%');
+        $('.jobImg').css('float', 'none');
+        $('.jobImg').css('margin', '0 auto');
+    } else {
+        $('.jobImg').width('50%');
+        $('.jobImg').height('50%');
+        $('.jobImg').css('float', 'left');
     }
 }
 
