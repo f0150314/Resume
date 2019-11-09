@@ -5,13 +5,6 @@ var divNavColArray = [],
     chartNames = [];
 
 function init() {
-    //Set Chart timeozonOffset
-    Highcharts.setOptions({
-        time: {
-            timezoneOffset: -10 * 60
-        }
-    });
-
     // Populate div arrays
     $('.divHover').each(function () {
         divNavColArray.push($(this));
@@ -32,8 +25,11 @@ function init() {
     resizeNavbar();
     resizeImages();
 
-    // Initialize characteristic tables
-    createAttributeTables();
+    // Build up HTML for characteristic tables
+    createMarkUpWithHTML();
+
+    // Build up HTML for profolios
+    createMarkUpWithHTML(myProfolioArray);
 }
 
 function showContent(category) {
@@ -165,64 +161,125 @@ function getFocus(focusDiv) {
     }, 300);
 }
 
-function createAttributeTables() {
+function createMarkUpWithHTML(myProfolioArray) {
     var htmlText = null;  
-    htmlText = buildHTML();
+    htmlText = buildHTML(myProfolioArray);
 
-    if ($('#tblCharacteristics').length) {
-        $('#tblCharacteristics').append(htmlText);
-    }     
+    if (myProfolioArray == null) {
+        if ($('#tblCharacteristics').length) {
+            $('#tblCharacteristics').append(htmlText);
+        }     
+    } else {
+        if ($('#divPortfolio').length) {
+            $('#divPortfolio').append(htmlText);
+        }
+    }   
 }
 
-function buildHTML() {
-    var rowHTML = '',
-        numChar = 5,
+function buildHTML(myProfolioArray) {
+    var rowHTML = '';
+
+    if (myProfolioArray == null) {
+        var numChar = 5,
         numThumbs = 5,
         addThumbsUp_fill = '<td><img src="css/img/icons/icnThumbsUp_fill.svg" alt="ThumbsUp" class="icnThumbUp"></td>',
         addThumbsUp = '<td><img src="css/img/icons/icnThumbsUp.svg" alt="ThumbsUp" class="icnThumbUp"></td>';
 
-    rowHTML += '<tbody>';
-    // Add characteristic section
-    for (var i = 0; i < numChar; i++) {
-        rowHTML += '<tr>'
+        rowHTML += '<tbody>';
+        // Add characteristic section
+        for (var i = 0; i < numChar; i++) {
+            rowHTML += '<tr>'
 
-        // Five characteristics
-        switch (i) {
-            case 1:
-            case 2:
-            case 4:
-                if (i == 1) {
-                    rowHTML += '<td class="tdAttrName">Multi-tasking</td>';
-                } else if (i == 2) {
-                    rowHTML += '<td class="tdAttrName">Fast-learner</td>';
-                } else if (i == 4) {
-                    rowHTML += '<td class="tdAttrName">Problem-solver</td>';
-                }
-
-                for (var j = 0; j < numThumbs; j++) {
-                    if (j < 4) {
-                        rowHTML += addThumbsUp_fill;
-                    } else {
-                        rowHTML += addThumbsUp;
+            // Five characteristics
+            switch (i) {
+                case 1:
+                case 2:
+                case 4:
+                    if (i == 1) {
+                        rowHTML += '<td class="tdAttrName">Multi-tasking</td>';
+                    } else if (i == 2) {
+                        rowHTML += '<td class="tdAttrName">Fast-learner</td>';
+                    } else if (i == 4) {
+                        rowHTML += '<td class="tdAttrName">Problem-solver</td>';
                     }
-                } 
-                break;
-            case 0:
-            case 3:
-                if (i == 0) {
-                    rowHTML += '<td class="tdAttrName">Self-motivated</td>';
-                } else if (i == 3) {
-                    rowHTML += '<td class="tdAttrName">Team-oriented</td>';
-                }
-                
-                for (var j = 0; j < numThumbs; j++) {
-                    rowHTML += addThumbsUp_fill;
-                }
-                break;
+
+                    for (var j = 0; j < numThumbs; j++) {
+                        if (j < 4) {
+                            rowHTML += addThumbsUp_fill;
+                        } else {
+                            rowHTML += addThumbsUp;
+                        }
+                    } 
+                    break;
+                case 0:
+                case 3:
+                    if (i == 0) {
+                        rowHTML += '<td class="tdAttrName">Self-motivated</td>';
+                    } else if (i == 3) {
+                        rowHTML += '<td class="tdAttrName">Team-oriented</td>';
+                    }
+                    
+                    for (var j = 0; j < numThumbs; j++) {
+                        rowHTML += addThumbsUp_fill;
+                    }
+                    break;
+            }
+            rowHTML += '</tr>';
         }
-        rowHTML += '</tr>';
+        rowHTML += '</tbody';
+        
+        return rowHTML;      
+    } else {
+        for (var i = 0; i < myProfolioArray.length; i++) {
+            rowHTML += '<div class="divContentBlock" style="padding-top: 20px;">';
+            
+            $.each(myProfolioArray[i], function(key, value) {
+                if (key == 'project') {                  
+                    // Add onclick to show image
+                    if (value.toUpperCase() == 'SEARCH ENGINE PROJECT' ||
+                        value.toUpperCase() == 'BUS TRACKING PROJECT') {
+                        rowHTML += '<span style="font-size: 1.1rem; float: left; padding-right: 15px;">' + 
+                                    '<strong>' + value.toUpperCase() + '</strong></span>' + 
+                                    '<img src="css/img/icons/icnPicture.svg" alt="View Image" title="View Image" class="imgView" ' +  
+                                    'onclick="setDefaultImage(\'' + value.toUpperCase() + '\');"' + 
+                                    'data-toggle="modal" data-target="#popupBackground">' + 
+                                    //clear float
+                                    '<div class="clearFloat"></div><ul>';
+                    } else {
+                        rowHTML += '<span style="font-size: 1.2rem;"><strong>' + value.toUpperCase() + '</strong></span><ul>';
+                    }
+                } else {
+                    rowHTML += '<li><span>' + key.toUpperCase() + ': </span><br>';
+                    rowHTML += (key == 'timestamp') ? moment(value).format('MMM YYYY') : value;                    
+                    rowHTML += '</li>';
+                }
+            });           
+            rowHTML += '</ul></div>';
+        }
+        return rowHTML;
+    } 
+}
+
+function setDefaultImage(project) {
+    $('.imgProfolios, .imgSmallProfolios').hide();
+
+    // Only show particular project small img for selection and default large image for view
+    if (project == 'SEARCH ENGINE PROJECT') {
+        $('.imgProfolios.searchEngine:first').show();
+        $('.imgSmallProfolios.searchEngine').show();
+    } else if (project == 'BUS TRACKING PROJECT') {    
+        $('.imgProfolios.busTracking:first').show();
+        $('.imgSmallProfolios.busTracking').show();
     }
-    rowHTML += '</tbody';
-    return rowHTML;
+}
+
+function selectImage(index) {
+    // all child img tag under modal-body class
+    $('.modal-body > img').each(function () {
+        $(this).hide();
+    });
+    
+    // Only show the selected image
+    $('.imgProfolios:eq(' + index + ')').show();
 }
 
