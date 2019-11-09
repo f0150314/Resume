@@ -15,24 +15,56 @@
         <header>
             <div id="divNavRow">
                 <div id="divName" class="divNavCol">John Chen</div>
-                <div class="divNavCol divHover" onclick="showContent('ABOUT')">About</div>
-                <div class="divNavCol divHover" onclick="showContent('EDUCATION')">Education</div>
-                <div class="divNavCol divHover" onclick="showContent('SKILLS')">Skills</div>
-                <div class="divNavCol divHover" onclick="showContent('EXPERIENCE')">Experiences</div>
-                <div class="divNavCol divHover" onclick="showContent('PORTFOLIO')">Portfolios</div>
+                <div class="divNavCol divHover" onclick="showContent('ABOUT');">About</div>
+                <div class="divNavCol divHover" onclick="showContent('EDUCATION');">Education</div>
+                <div class="divNavCol divHover" onclick="showContent('SKILLS');">Skills</div>
+                <div class="divNavCol divHover" onclick="showContent('EXPERIENCE');">Experiences</div>
+                <div class="divNavCol divHover" onclick="showContent('PORTFOLIO');">Portfolios</div>                
             </div>
     
-            <div id="divMenu" class="openbtn" onclick="openSidebar()">☰</div>
+            <div id="divMenu" class="openbtn" onclick="openSidebar();">☰</div>
             <div id="divSidebar">
-                <a href="javascript:void(0)" onclick="closeSidebar()">×</a>
-                <div onclick="showContent('ABOUT')">About</div>
-                <div onclick="showContent('CAREER')">Career</div>
-                <div onclick="showContent('ABILITIES')">Abilities</div>
-                <div onclick="showContent('SKILLS')">Skills</div>
-                <div onclick="showContent('TOOLS')">Tools</div>
-                <div onclick="showContent('EXPERIENCE')">Experiences</div>
-                <div onclick="showContent('PORTFOLIO')">Portfolios</div>
-                <div onclick="showContent('CONTACT')">Contact</div>
+                <a href="javascript: void(0);" onclick="closeSidebar();">×</a>
+                <div onclick="showContent('ABOUT');">About</div>
+                <div onclick="showContent('CAREER');">Career</div>
+                <div onclick="showContent('ABILITIES');">Abilities</div>
+                <div onclick="showContent('SKILLS');">Skills</div>
+                <div onclick="showContent('TOOLS');">Tools</div>
+                <div onclick="showContent('EXPERIENCE');">Experiences</div>
+                <div onclick="showContent('PORTFOLIO');">Portfolios</div>
+                <div onclick="showContent('CONTACT');">Contact</div>
+            </div>
+            
+            <!-- Popup Modal -->
+            <div class="modal fade" id="popupBackground" tabindex="-1" role="dialog" aria-labelledby="modalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content" >
+                        <!-- Modal header -->
+                        <div class="modal-header">
+                            <span class="modal-title" id="modalCenterTitle"><strong>Photos</strong></span>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <!-- Large image for view -->
+                        <div class="modal-body" style="text-align: center;">
+                            <img src="css/img/searchEngine_interface.png" alt="searchEngine_interface" class="imgProfolios searchEngine">
+                            <img src="css/img/searchEngine_result.png" alt="searchEngine_result" class="imgProfolios searchEngine">
+                            <img src="css/img/busTracking_interface.png" alt="busTracking_interface" class="imgProfolios busTracking">
+                            <img src="css/img/busTraking_result.png" alt="busTraking_result" class="imgProfolios busTracking">
+                        </div>
+                        <div class="modal-footer">
+                            <!-- Small image for selection -->
+                            <div class="modelFooter">
+                                <img src="css/img/searchEngine_interface.png" alt="searchEngine_interface" class="imgSmallProfolios searchEngine" onclick="selectImage(0);">
+                                <img src="css/img/searchEngine_result.png" alt="searchEngine_result" class="imgSmallProfolios searchEngine" onclick="selectImage(1);">        
+                                <img src="css/img/busTracking_interface.png" alt="busTracking_interface" class="imgSmallProfolios busTracking" onclick="selectImage(2);">
+                                <img src="css/img/busTraking_result.png" alt="busTraking_result" class="imgSmallProfolios busTracking" onclick="selectImage(3);">
+                            </div>                         
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </header>
             
@@ -48,7 +80,7 @@
                             <div id="divPhotoContainer"></div>
                             <span><strong>Greetings everyone,</strong></span>
                             <p>
-                                I am John, Taiwan, who has just completed one year industry experience in web development. 
+                                I am John, Taiwan, who has just completed one year work experience in web development. 
                                 I am a sofware developer currently seeking for a suitable position 
                                 that can upskill myself and also devote what I have learnt to the company. 
                             </p>
@@ -74,13 +106,19 @@
                                 <td>Queensland University of Technology</td>
                             </tr>
                             <tr>
-                                <td class="tdInfoName">• Specialty:</td>
+                                <td class="tdInfoName">• Major:</td>
                                 <td>Master of IT (Computer Science)</td>
                             </tr>
                             <tr>
                                 <td class="tdInfoName">• Address:</td>
-                                <td>343 Alfred st, Mackay, QLD 4740 (Relocatable)</td>
+                                <td>343 Alfred st, Mackay, QLD 4740<br> 
+                                    <a href="https://www.google.com/maps/search/-21.144709,149.179514">
+                                        <img src="css/img/icons/icnMap.svg" alt="location" title="View Map" class="imgView">
+                                    </a>
+                                    (Relocatable)
+                                </td>
                             </tr>
+                            
                             <tr>
                                 <td class="tdInfoName">• E-mail:</td>
                                 <td>f0150314@gmail.com</td>
@@ -136,16 +174,16 @@
                         <img class="jobImg" src="css/img/tyeware.png" alt="Tyeware"></img>
                         <ul>
                             <li>
-                                <span>Period: </span>
+                                <span>PERIOD: </span>
                                 Febuary 2019 - Current
                             </li>
                             <li>
-                                <span>Main duties: </span>
+                                <span>MAIN DUTIES: </span>
                                 Website maintenace, Bug fixing, Feature development, Client technical support
                             </li>
                             <li>
-                                <span>Skills developed: </span>
-                                Teamwork, Problem solving, Time management, Programming languages
+                                <span>SKILLS DEVELOPED: </span>
+                                Teamwork, Problem solving, Time management
                             </li>
                         </ul> 
                         <div class="clearFloat" style="padding-bottom: 1.5em;"></div>
@@ -156,15 +194,15 @@
                         <img class="jobImg" src="css/img/sushi_train.png" alt="Sushi Train"></img>
                         <ul>
                             <li>
-                                <span>Period: </span>
+                                <span>PERIOD: </span>
                                 November 2015 - August 2016
                             </li>
                             <li>
-                                <span>Main duties: </span>
+                                <span>MAIN DUTIES: </span>
                                 Customer services, Customer complaints handling
                             </li>
                             <li>
-                                <span>Skills developed: </span>
+                                <span>SKILLS DEVELOPED: </span>
                                 Organization and management skill, Perseverance, Strong adaptaility, Communication skill
                             </li>
                         </ul>
@@ -175,16 +213,15 @@
                 <div class="divLine"></div>
 
                 <!-- Portfolios -->
-                <div id="divPortfolio" class="divContentCell divContentBlock">
+                <div id="divPortfolio" class="divContentCell">
                     <span><h5>Portfolios</h5></span>
-
                 </div>
             </div>
         </div>
-            
+
         <!-- footer -->
         <footer>
-            <div id="divIconRow">
+            <div class="divIconRow">
                 <div onclick="location.href='https://www.facebook.com/'">
                     <img src="css/img/icons/icnFacebook.svg" alt="Facebook" class="ftrIcon">
                     <span class="ftrIconText">Facebook</span>
@@ -197,7 +234,7 @@
                     <img src="css/img/icons/icnGitHub.svg" alt="GitHub" class="ftrIcon">
                     <span class="ftrIconText">GitHub</span>
                 </div>
-                <div onclick="showContent('CONTACT')">
+                <div onclick="showContent('CONTACT');">
                     <img src="css/img/icons/icnContact.svg" alt="Contact Details" class="ftrIcon">
                     <span class="ftrIconText">Contact</span>
                 </div>
@@ -217,11 +254,12 @@
     <script src="js/solid-gauge.js"></script>
     <script src="js/timeline.js"></script>
     <script src="js/moment.min.js"></script>
+    <script src="js/myprofolio.js"></script>
     
     <script>
         $(document).ready(function () {
             'use strict';
-            init();
+            init();           
 
             //Resize navigation bar and images when window width is changing
             $(window).resize(function () {
