@@ -117,7 +117,7 @@ function createChartOptions(chartType) {
                         color: Highcharts.getOptions().colors[0],
                         radius: '118%',
                         innerRadius: '88%',
-                        y: 83
+                        y: 70
                     }]
                 }];
             } else {
@@ -129,7 +129,7 @@ function createChartOptions(chartType) {
                         color: Highcharts.getOptions().colors[0],
                         radius: '118%',
                         innerRadius: '88%',
-                        y: 95
+                        y: 100
                     }]
                 }];
             }
