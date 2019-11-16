@@ -231,7 +231,7 @@ function buildHTML(myProfolioArray) {
         return rowHTML;      
     } else {
         for (var i = 0; i < myProfolioArray.length; i++) {
-            rowHTML += '<div class="divContentBlock" style="padding-top: 20px;">';
+            rowHTML += '<div class="divContentBlock" style="padding-bottom: 5px;">';
             
             $.each(myProfolioArray[i], function(key, value) {
                 if (key == 'project') {                  
