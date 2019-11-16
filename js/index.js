@@ -96,7 +96,7 @@ function showContent(category) {
             break;
         case 'ABILITIES':
             divContentArray[0].show();
-            focusDiv = $('#divEnglishChart');
+            focusDiv = $('#divAbilityChart');
             break;
         case 'CONTACT':
             divContentArray[0].show();
