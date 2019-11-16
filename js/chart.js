@@ -36,8 +36,8 @@ function createChartOptions(chartType) {
             subtitleText = 'Programming languages';
             seriesData = [{
                 name: '<strong>Level</strong>',
-                data: [70, 75, 70, 70, 60, 75, 
-                        75, 70, 50, 20, 70, 20]
+                data: [70, 75, 70, 70, 65, 75, 
+                        75, 70, 50, 20, 82, 20]
             }];
             break;
         case 'Tool':
@@ -58,11 +58,11 @@ function createChartOptions(chartType) {
                     ['GitHub', 5],
                     ['Bitbucket', 12],
                     ['Git', 13],
-                    ['Sourcetree', 12],
+                    ['SSMS', 19],
                     ['Visual Studio', 22],
                     ['Atlassian', 12],
                     ['TFS', 6],
-                    ['SQL server', 19]
+                    ['Sourcetree', 12]
                 ]
             }];
             break;
@@ -226,6 +226,7 @@ function createChartOptions(chartType) {
                     allowPointSelect: true,
                     innerSize: 50,
                     depth: 45,
+                    size: $('#divToolChart').width() < 370 ? '50%' : null,
                     dataLabels: {
                         style: {
                             color: subtitleTextColor
@@ -246,6 +247,7 @@ function createChartOptions(chartType) {
             };
             break;
         case 'Career':
+            chartOption.chart.height = $('#divCareerChart').width() < 370 ? null : '90%';
             chartOption.xAxis = {
                 visible: false
             };
