@@ -144,7 +144,7 @@ li {
 
 .divContentCell {
     width: 100%;
-    padding: 15px;
+    padding: 0 0 20px;
 }
 
 .divContentCell span {
@@ -157,14 +157,14 @@ li {
 }
 
 .divContentCell .divLangContainer .divLanguageCell {
-    padding: 5px;
+    padding: 0 5px 10px;
     width: 85%;
     height: 160px;
 }
 
 table, .divContentBlock {
     margin: 15px auto;
-    width: 85%;
+    width: 90%;
     height: 85%;
 }
 
@@ -183,7 +183,7 @@ table, .divContentBlock {
 } 
 
 td {
-    width: 11%;
+    width: 15%;
     text-align: left;
     color: #c9c9c9;
 }
@@ -200,7 +200,7 @@ td {
 }
 
 .tdAttrName {
-    width: 45%;
+    width: 40%;
 }
 
 .icnThumbUp {
