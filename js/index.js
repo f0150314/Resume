@@ -246,7 +246,7 @@ function buildHTML(myProfolioArray) {
                                     //clear float
                                     '<div class="clearFloat"></div><ul>';
                     } else {
-                        rowHTML += '<span style="font-size: 1.2rem;"><strong>' + value.toUpperCase() + '</strong></span><ul>';
+                        rowHTML += '<span style="font-size: 1.1rem;"><strong>' + value.toUpperCase() + '</strong></span><ul>';
                     }
                 } else {
                     rowHTML += '<li><span>' + key.toUpperCase() + ': </span><br>';
