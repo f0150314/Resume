@@ -30,6 +30,9 @@ function init() {
 
     // Build up HTML for profolios
     createMarkUpWithHTML(myProfolioArray);
+      
+    // Initialize Minesweeper
+    libMinesweeper.init();
 }
 
 function showContent(category) {
@@ -165,7 +168,7 @@ function createMarkUpWithHTML(myProfolioArray) {
     var htmlText = null;  
     htmlText = buildHTML(myProfolioArray);
 
-    if (myProfolioArray == null) {
+    if (myProfolioArray === undefined) {
         if ($('#tblCharacteristics').length) {
             $('#tblCharacteristics').append(htmlText);
         }     
@@ -179,13 +182,13 @@ function createMarkUpWithHTML(myProfolioArray) {
 function buildHTML(myProfolioArray) {
     var rowHTML = '';
 
-    if (myProfolioArray == null) {
+    if (myProfolioArray === undefined) {
         var numChar = 5,
         numThumbs = 5,
         addThumbsUp_fill = '<td><img src="css/img/icons/icnThumbsUp_fill.svg" alt="ThumbsUp" class="icnThumbUp"></td>',
         addThumbsUp = '<td><img src="css/img/icons/icnThumbsUp.svg" alt="ThumbsUp" class="icnThumbUp"></td>';
 
-        rowHTML += '<tbody>';
+        rowHTML += '<table>';
         // Add characteristic section
         for (var i = 0; i < numChar; i++) {
             rowHTML += '<tr>'
@@ -226,7 +229,7 @@ function buildHTML(myProfolioArray) {
             }
             rowHTML += '</tr>';
         }
-        rowHTML += '</tbody';
+        rowHTML += '</table>';
         
         return rowHTML;      
     } else {
@@ -241,7 +244,7 @@ function buildHTML(myProfolioArray) {
                         rowHTML += '<span style="font-size: 1.1rem; float: left; padding-right: 15px;">' + 
                                     '<strong>' + value.toUpperCase() + '</strong></span>' + 
                                     '<img src="css/img/icons/icnPicture.svg" alt="View Image" title="View Image" class="imgView" ' +  
-                                    'onclick="setDefaultImage(\'' + value.toUpperCase() + '\');"' + 
+                                    'onclick="openPopup(\'' + value.toUpperCase() + '\');"' + 
                                     'data-toggle="modal" data-target="#popupBackground">' + 
                                     //clear float
                                     '<div class="clearFloat"></div><ul>';
@@ -260,8 +263,14 @@ function buildHTML(myProfolioArray) {
     } 
 }
 
-function setDefaultImage(project) {
+function openPopup(project) {
+    closeSidebar();
+
     $('.imgProfolios, .imgSmallProfolios').hide();
+    $('#divBtnGame').hide();
+    $('#divBtnRow').css('width', '');        
+    $('#modalCenterTitle').html('<strong>Photos</strong>');
+    $('#divMinsweeper').hide();
 
     // Only show particular project small img for selection and default large image for view
     if (project == 'SEARCH ENGINE PROJECT') {
@@ -270,6 +279,11 @@ function setDefaultImage(project) {
     } else if (project == 'BUS TRACKING PROJECT') {    
         $('.imgProfolios.busTracking:first').show();
         $('.imgSmallProfolios.busTracking').show();
+    } else if (project == 'GAMES') {
+        $('#modalCenterTitle').html('<strong>Minesweeper</strong>');
+        $('#divBtnGame').show();
+        $('#divBtnRow').width('100%');
+        $('#divMinsweeper').show();
     }
 }
 
