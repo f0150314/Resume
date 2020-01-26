@@ -22,12 +22,13 @@ var libMinesweeper = (function () {
             mine.imgHTML = '<div class="divMine"></div>';
 
             if (mine.row < maxCellIndex && 
-                mine.col < maxCellIndex ) {
+                mine.col < maxCellIndex && 
+                mineLocations.findIndex(x => x.id == mine.id) == -1) {
                 
+                // Add object into array if it doesn't exist
                 mineLocations.push(mine);           
             }
         }
-        debugger;
     }
 
     function _buildMinesweeperTable () {
@@ -38,7 +39,7 @@ var libMinesweeper = (function () {
             rowHTML += '<tr>';
             
             // Filter Mines based on rows
-            var filteredMines = mineLocations.filter(mine => mine.row == row);
+            var filteredMines = mineLocations.filter(x => x.row == row);
 
             // Add cells
             for (var col = 0; col < maxCellIndex; col++) {
@@ -108,12 +109,12 @@ var libMinesweeper = (function () {
                     break;
                 case 2:
                     btnLevel.html('MEDIUM');
-                    numOfMines = 40; 
+                    numOfMines = 30; 
                     maxCellIndex = 12;
                     break;
                 case 3:
                     btnLevel.html('DIFFICULT');
-                    numOfMines = 99;
+                    numOfMines = 60;
                     maxCellIndex = 16;
                     break;
             }
