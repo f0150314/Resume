@@ -15,21 +15,31 @@
 }
 
 .modal-content table, .modal-content tr, .modal-content td {
-    border: 1px solid black !important;
+    /* border: 1px solid black !important; */
 }
 
 .modal-content table {
-    width: 360px;
-    height: 360px;
+    width: 400px;
+    height: 400px;
 }
 
 .modal-content td {
     width: auto !important;
     cursor: pointer;
+    text-align: center;
+    color: white;
 }
 
 .modal-content td:hover {
     background-color: #e3ffff !important;
+}
+
+.modal-content .tdCellLightBlue {
+    background-color: #a8d9ff;
+}
+
+.modal-content .tdCellBlue {
+    background-color: #7cc4fc;
 }
 
 .divMine {

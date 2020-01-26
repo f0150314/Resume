@@ -1,19 +1,21 @@
 'use strict';
 var libMinesweeper = (function () {
-    // Declare private variables
+    // Private variables
     var divMinsweeper,
         btnLevel,     
         mineLocations,
+        cellLocations,
 
         // Default level configurations;
-        numOfMines = 10,
+        numMines = 10,
         maxCellIndex = 8; //It's actually 7 (zero based index)
 
+    // Private functions
     function _generateMines () {
         // Clear out mines
         mineLocations = [];
 
-        while (mineLocations.length < numOfMines) {
+        while (mineLocations.length < numMines) {
             // Create new mine
             var mine = new Object();
             mine.row = Math.floor(Math.random() * 100);
@@ -21,12 +23,90 @@ var libMinesweeper = (function () {
             mine.id = 'mine_' + mine.row + '_' + mine.col;
             mine.imgHTML = '<div class="divMine"></div>';
 
+            // Add object into array if it doesn't exist and in a valid position
             if (mine.row < maxCellIndex && 
                 mine.col < maxCellIndex && 
                 mineLocations.findIndex(x => x.id == mine.id) == -1) {
                 
-                // Add object into array if it doesn't exist
-                mineLocations.push(mine);           
+                mineLocations.push(mine);    
+            }
+        }
+    }
+
+    function _generateCells () {
+        // Clear out cells
+        cellLocations = [];
+
+        for (var i = 0; i < maxCellIndex; i++) {
+            for (var j = 0; j < maxCellIndex; j++) {
+                // Create cell object
+                var cell = new Object();
+                cell.row = i;
+                cell.col = j;
+                cell.id = 'cell_' + cell.row + '_' + cell.col;
+                cell.mineCount = 0;
+                cell.span = '';
+                
+                // If the cell doesn't match a mine position
+                if (mineLocations.findIndex(x => x.id == 'mine_' + cell.row + '_' + cell.col) == -1) {
+                    
+                    // Get number of mine adjacent to this cell
+                    // Not the first row and top tile is mine
+                    if (!(i == 0) && 
+                        !(mineLocations.findIndex(x => x.id == 'mine_' + (cell.row - 1) + '_' + cell.col) == -1)) {
+                        cell.mineCount++;
+                    }
+
+                    // Not the first row and and first column and top-left tile is mine
+                    if (!(i == 0) && 
+                        !(j == 0) &&
+                        !(mineLocations.findIndex(x => x.id == 'mine_' + (cell.row - 1) + '_' + (cell.col - 1)) == -1)) {
+                        cell.mineCount++;
+                    }
+
+                    // Not the first row and and last column and top-right tile is mine
+                    if (!(i == 0) && 
+                        !(j == maxCellIndex - 1) &&
+                        !(mineLocations.findIndex(x => x.id == 'mine_' + (cell.row - 1) + '_' + (cell.col + 1)) == -1)) {
+                        cell.mineCount++;
+                    }
+
+                    // Not the first column and left tile is mine
+                    if (!(j == 0) && 
+                        !(mineLocations.findIndex(x => x.id == 'mine_' + cell.row + '_' + (cell.col - 1)) == -1)) {
+                        cell.mineCount++;
+                    }
+
+                    // Not the last column and right tile is mine
+                    if (!(j == maxCellIndex - 1) && 
+                        !(mineLocations.findIndex(x => x.id == 'mine_' + cell.row + '_' + (cell.col + 1)) == -1)) {
+                        cell.mineCount++;
+                    }
+                    
+                    // Not the last row and bottom tile is mine
+                    if (!(i == maxCellIndex - 1) && 
+                        !(mineLocations.findIndex(x => x.id == 'mine_' + (cell.row + 1) + '_' + cell.col) == -1)) {
+                        cell.mineCount++;
+                    }
+                    
+                    // Not the last row and and first column and bottom-left tile is mine
+                    if (!(i == maxCellIndex - 1) && 
+                        !(j == 0) &&
+                        !(mineLocations.findIndex(x => x.id == 'mine_' + (cell.row + 1) + '_' + (cell.col - 1)) == -1)) {
+                        cell.mineCount++;
+                    }
+
+                    // Not the last row and and last column and bottom-right tile is mine
+                    if (!(i == maxCellIndex - 1) && 
+                        !(j == maxCellIndex - 1) &&
+                        !(mineLocations.findIndex(x => x.id == 'mine_' + (cell.row + 1) + '_' + (cell.col + 1)) == -1)) {
+                        cell.mineCount++;
+                    }
+                    
+                    // Add number count to span tag
+                    cell.span = '<span>' + cell.mineCount + '</span>';
+                    cellLocations.push(cell);
+                }
             }
         }
     }
@@ -36,38 +116,32 @@ var libMinesweeper = (function () {
 
         // Add rows
         for (var row = 0; row < maxCellIndex; row++) {
-            // Filter Mines based on rows
-            var filteredMines = mineLocations.filter(x => x.row == row);
+            // Filter Mines and cells based on rows
+            var filteredMines = mineLocations.filter(x => x.row == row),
+                filteredCells = cellLocations.filter(x => x.row == row);
             
             rowHTML += '<tr>';
 
             // Add cells
             for (var col = 0; col < maxCellIndex; col++) {
-                // Get col index in filteredMines array
-                var filteredMines_colIndex = filteredMines.findIndex(x => x.col == col);
+                // Get col index from two arrays
+                var mineIndex = filteredMines.findIndex(x => x.col == col),
+                    cellIndex = filteredCells.findIndex(x => x.col == col);
 
-                // Even rows
+                // Add cell colo based on odd or even rows
                 if ((row % 2 == 0 && col % 2 == 0) || 
-                    (row % 2 != 0 && col % 2 != 0)) {              
-  
-                    // No bombs
-                    if (filteredMines_colIndex == -1) {
-                        rowHTML += '<td style="background-color: #a8d9ff;"></td>';
-                    } else {
-                        rowHTML += '<td style="background-color: #a8d9ff;">' + filteredMines[filteredMines_colIndex].imgHTML + '</td>';
-                    }
+                    (row % 2 != 0 && col % 2 != 0)) {                 
+                    rowHTML += '<td class="tdCellLightBlue">';
                 } else {
-                    if (filteredMines_colIndex == -1) {
-                        rowHTML += '<td style="background-color: #7cc4fc;"></td>';
-                    } else {
-                        rowHTML += '<td style="background-color: #7cc4fc;">' + filteredMines[filteredMines_colIndex].imgHTML + '</td>';
-                    }   
+                    rowHTML += '<td class="tdCellBlue">';
                 }
-            }
 
+                // Add mine or mine count 
+                rowHTML += (mineIndex == -1) ? filteredCells[cellIndex].span : filteredMines[mineIndex].imgHTML;
+                rowHTML += '</td>';
+            }
             rowHTML += '</tr>'
         }
-
         rowHTML += '</table>';
 
         // Append to the div
@@ -76,6 +150,7 @@ var libMinesweeper = (function () {
 
     function _startGame () {
         _generateMines();
+        _generateCells();
         _buildMinesweeperTable();
     } 
 
@@ -86,21 +161,21 @@ var libMinesweeper = (function () {
             btnLevel = $('#btnLevel');
         },
 
-        changeLevel: function (level) {
+        setLevel: function (level) {
             switch (level) {
                 case 1: 
                     btnLevel.html('EASY ');
-                    numOfMines = 10;
+                    numMines = 10;
                     maxCellIndex = 8;
                     break;
                 case 2:
                     btnLevel.html('MEDIUM');
-                    numOfMines = 30; 
+                    numMines = 30; 
                     maxCellIndex = 12;
                     break;
                 case 3:
                     btnLevel.html('DIFFICULT');
-                    numOfMines = 60;
+                    numMines = 60;
                     maxCellIndex = 16;
                     break;
             }

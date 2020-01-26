@@ -286,7 +286,7 @@ function openPopup(project) {
         $('#divMinsweeper').show();
 
         // Generate minesweeper game at default level
-        libMinesweeper.changeLevel(1);
+        libMinesweeper.setLevel(1);
         libMinesweeper.startGame();
     }
 }
