@@ -33,7 +33,7 @@
                 <div onclick="showContent('TOOLS');">TOOL</div>
                 <div onclick="showContent('EXPERIENCE');">EXPERIENCE</div>
                 <div onclick="showContent('PORTFOLIO');">PORTFOLIO</div>
-                <div onclick="openPopup('GAMES'); closeSidebar();" data-toggle="modal" data-target="#popupBackground">GAME</div>
+                <div onclick="openPopup('GAMES');" data-toggle="modal" data-target="#popupBackground">GAME</div>
                 <div onclick="showContent('CONTACT');">CONTACT</div>
             </div>
             
@@ -77,7 +77,7 @@
                                             <button class="dropdown-item activeItem" type="button" onclick="libMinesweeper.changeLevel(3)">DIFFICULT</button>
                                         </div>
                                     </div>
-                                    <button id="btnMSRestart" type="button" class="btn btn-secondary" onclick="libMinesweeper.restartGame();">Restart</button>                         
+                                    <button id="btnMSRestart" type="button" class="btn btn-secondary" onclick="libMinesweeper.startGame();">Restart</button>                         
                                 </div>
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal" style="float: right;">Close</button>
                             </div>

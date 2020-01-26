@@ -29,8 +29,8 @@ function init() {
     createMarkUpWithHTML();
 
     // Build up HTML for profolios
-    createMarkUpWithHTML(myProfolioArray);
-      
+    createMarkUpWithHTML(myProfolioArray);   
+
     // Initialize Minesweeper
     libMinesweeper.init();
 }
@@ -284,6 +284,10 @@ function openPopup(project) {
         $('#divBtnGame').show();
         $('#divBtnRow').width('100%');
         $('#divMinsweeper').show();
+
+        // Generate minesweeper game at default level
+        libMinesweeper.changeLevel(1);
+        libMinesweeper.startGame();
     }
 }
 

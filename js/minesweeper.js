@@ -36,28 +36,20 @@ var libMinesweeper = (function () {
 
         // Add rows
         for (var row = 0; row < maxCellIndex; row++) {
-            rowHTML += '<tr>';
-            
             // Filter Mines based on rows
             var filteredMines = mineLocations.filter(x => x.row == row);
+            
+            rowHTML += '<tr>';
 
             // Add cells
             for (var col = 0; col < maxCellIndex; col++) {
+                // Get col index in filteredMines array
+                var filteredMines_colIndex = filteredMines.findIndex(x => x.col == col);
+
                 // Even rows
                 if ((row % 2 == 0 && col % 2 == 0) || 
-                    (row % 2 != 0 && col % 2 != 0)) {
-                    
-                    // This row has no bombs
-                    if (filteredMines.length == 0) {
-                        rowHTML += '<td style="background-color: #a8d9ff;"></td>';
-                        
-                        // Ignore below set bombs action
-                        continue;
-                    }
-
-                    // Get col index in filteredMines array
-                    var filteredMines_colIndex = filteredMines.findIndex(mine => mine.col == col);
-                    
+                    (row % 2 != 0 && col % 2 != 0)) {              
+  
                     // No bombs
                     if (filteredMines_colIndex == -1) {
                         rowHTML += '<td style="background-color: #a8d9ff;"></td>';
@@ -65,13 +57,6 @@ var libMinesweeper = (function () {
                         rowHTML += '<td style="background-color: #a8d9ff;">' + filteredMines[filteredMines_colIndex].imgHTML + '</td>';
                     }
                 } else {
-                    if (filteredMines.length == 0) {
-                        rowHTML += '<td style="background-color: #7cc4fc;"></td>';
-                        continue;
-                    }
-
-                    var filteredMines_colIndex = filteredMines.findIndex(mine => mine.col == col);
-
                     if (filteredMines_colIndex == -1) {
                         rowHTML += '<td style="background-color: #7cc4fc;"></td>';
                     } else {
@@ -89,15 +74,16 @@ var libMinesweeper = (function () {
         divMinsweeper.append(rowHTML);
     }
 
+    function _startGame () {
+        _generateMines();
+        _buildMinesweeperTable();
+    } 
+
     // Public variables and functions
     return {
         init: function () {
             divMinsweeper = $('#divMinsweeper');
             btnLevel = $('#btnLevel');
-
-            // Build the table
-            _generateMines();
-            _buildMinesweeperTable();
         },
 
         changeLevel: function (level) {
@@ -120,13 +106,12 @@ var libMinesweeper = (function () {
             }
         },
 
-        restartGame: function () {
-            // Clear out HTML
+        startGame: function () {
+            // Clear out minesweeper HTML
             divMinsweeper.html('');
 
             // Reconfigure minesweeper
-            _generateMines();
-            _buildMinesweeperTable();
+            _startGame();
         }
     };
 })();
