@@ -21,7 +21,7 @@ var libMinesweeper = (function () {
             mine.row = Math.floor(Math.random() * 100);
             mine.col = Math.floor(Math.random() * 100);
             mine.id = 'mine_' + mine.row + '_' + mine.col;
-            mine.imgHTML = '<div class="divMine"></div>';
+            mine.div = '<div class="divMine"></div>';
 
             // Add object into array if it doesn't exist and in a valid position
             if (mine.row < maxCellIndex && 
@@ -38,19 +38,20 @@ var libMinesweeper = (function () {
         cellLocations = [];
 
         for (var i = 0; i < maxCellIndex; i++) {
-            for (var j = 0; j < maxCellIndex; j++) {
+            for (var j = 0; j < maxCellIndex; j++) {           
                 // Create cell object
                 var cell = new Object();
                 cell.row = i;
                 cell.col = j;
-                cell.id = 'cell_' + cell.row + '_' + cell.col;
                 cell.mineCount = 0;
-                cell.span = '';
+                cell.div = '';
                 
                 // If the cell doesn't match a mine position
-                if (mineLocations.findIndex(x => x.id == 'mine_' + cell.row + '_' + cell.col) == -1) {
+                if (mineLocations.findIndex(x => x.id == 'mine_' + cell.row + '_' + cell.col) == -1) {                 
                     
                     // Get number of mine adjacent to this cell
+                    cell.div += '<div class="';
+                    
                     // Not the first row and top tile is mine
                     if (!(i == 0) && 
                         !(mineLocations.findIndex(x => x.id == 'mine_' + (cell.row - 1) + '_' + cell.col) == -1)) {
@@ -103,8 +104,37 @@ var libMinesweeper = (function () {
                         cell.mineCount++;
                     }
                     
-                    // Add number count to span tag
-                    cell.span = '<span>' + cell.mineCount + '</span>';
+                    // Add number img to div tag
+                    switch (cell.mineCount) {
+                        case 1: 
+                            cell.div += 'divOne';
+                            break;
+                        case 2:
+                            cell.div += 'divTwo';
+                            break;
+                        case 3:
+                            cell.div += 'divThree';
+                            break;
+                        case 4:
+                            cell.div += 'divFour';
+                            break;
+                        case 5:
+                            cell.div += 'divFive';
+                            break;
+                        case 6:
+                            cell.div += 'divSix';
+                            break;
+                        case 7:
+                            cell.div += 'divSeven';
+                            break;
+                        case 8:
+                            cell.div += 'divEight';
+                            break;
+                        default:
+                            cell.div += 'divZero';
+                    }
+
+                    cell.div += '"></div>';
                     cellLocations.push(cell);
                 }
             }
@@ -131,13 +161,15 @@ var libMinesweeper = (function () {
                 // Add cell colo based on odd or even rows
                 if ((row % 2 == 0 && col % 2 == 0) || 
                     (row % 2 != 0 && col % 2 != 0)) {                 
-                    rowHTML += '<td class="tdCellLightBlue">';
+                    rowHTML += '<td class="tdCellLightBlue tdHover" ';
                 } else {
-                    rowHTML += '<td class="tdCellBlue">';
+                    rowHTML += '<td class="tdCellBlue tdHover" ';
                 }
+                // Add onclick event
+                rowHTML += 'onclick="libMinesweeper.revealTiles(this);">';
 
                 // Add mine or mine count 
-                rowHTML += (mineIndex == -1) ? filteredCells[cellIndex].span : filteredMines[mineIndex].imgHTML;
+                rowHTML += (mineIndex == -1) ? filteredCells[cellIndex].div : filteredMines[mineIndex].div;
                 rowHTML += '</td>';
             }
             rowHTML += '</tr>'
@@ -152,7 +184,97 @@ var libMinesweeper = (function () {
         _generateMines();
         _generateCells();
         _buildMinesweeperTable();
-    } 
+    }
+
+    function _setLevel (level) {
+        switch (level) {
+            case 1: 
+                btnLevel.html('EASY ');
+                numMines = 10;
+                maxCellIndex = 8;
+                break;
+            case 2:
+                btnLevel.html('MEDIUM');
+                numMines = 30; 
+                maxCellIndex = 12;
+                break;
+            case 3:
+                btnLevel.html('DIFFICULT');
+                numMines = 60;
+                maxCellIndex = 16;
+                break;
+        }
+    }
+    
+    function _revealTiles (obj) {
+        // Only reveal those tiles that have not been revealed yet
+        if (!($(obj).find('div').is(':visible'))) {
+            // If the tile contains a mine, reveal all mines
+            if ($(obj).find('div.divMine').length > 0) {
+                $('.divMine').show();
+                $('.tdHover').removeClass('tdHover')
+                            .prop('onclick', null);
+            
+            // If the tile not contains a mine, show number of mine adjacent to this tile
+            } else {
+                $(obj).find('div').show();
+                $(obj).removeClass('tdHover')
+                    .prop('onclick', null);
+
+                // If the tile has no mine adjacent to it, recursively reveal every adjacent tile
+                if ($(obj).find('div.divZero').length > 0) {
+
+                    // Get tile row and column index
+                    var objRowIndex = $(obj).closest('tr').index(),
+                        objColIndex = $(obj).closest('td').index();
+
+                    // If it's not in top row
+                    if (!(objRowIndex == 0)) {
+                        _revealTiles($('tr:eq(' + (objRowIndex - 1) + ') td:eq(' + objColIndex + ')'));
+                    }
+
+                    // If it's not in top row and left-most column
+                    if (!(objRowIndex == 0) &&
+                        !(objColIndex == 0)) {
+                        _revealTiles($('tr:eq(' + (objRowIndex - 1) + ') td:eq(' + (objColIndex - 1) + ')'));
+                    }
+
+                    // If it's not in top row and right-most column
+                    if (!(objRowIndex == 0) &&
+                        !(objColIndex == maxCellIndex - 1)) {
+                        _revealTiles($('tr:eq(' + (objRowIndex - 1) + ') td:eq(' + (objColIndex + 1) + ')'));
+                    }
+
+                    // If it's not in left-most column
+                    if (!(objColIndex == 0)) {
+                        _revealTiles($('tr:eq(' + objRowIndex + ') td:eq(' + (objColIndex - 1) + ')'));
+                    }
+
+                    // If it's not in right-most column
+                    if (!(objColIndex == maxCellIndex - 1)) {
+                        _revealTiles($('tr:eq(' + objRowIndex + ') td:eq(' + (objColIndex + 1) + ')'));
+                    }
+
+                    // If it's not in bottom row
+                    if (!(objRowIndex == maxCellIndex - 1)) {
+                        _revealTiles($('tr:eq(' + (objRowIndex + 1) + ') td:eq(' + objColIndex + ')'));
+                    }
+
+                    // If it's not in bottom row and left-most column
+                    if (!(objRowIndex == maxCellIndex - 1) &&
+                        !(objColIndex == 0)) {
+                        _revealTiles($('tr:eq(' + (objRowIndex + 1) + ') td:eq(' + (objColIndex - 1) + ')'));
+                    }
+
+                    // If it's not in bottom row and right-most column
+                    if (!(objRowIndex == maxCellIndex - 1) &&
+                        !(objColIndex == maxCellIndex - 1)) {
+                        _revealTiles($('tr:eq(' + (objRowIndex + 1) + ') td:eq(' + (objColIndex + 1) + ')'));
+                    }
+                }  
+            }
+        }  
+    }
 
     // Public variables and functions
     return {
@@ -162,23 +284,7 @@ var libMinesweeper = (function () {
         },
 
         setLevel: function (level) {
-            switch (level) {
-                case 1: 
-                    btnLevel.html('EASY ');
-                    numMines = 10;
-                    maxCellIndex = 8;
-                    break;
-                case 2:
-                    btnLevel.html('MEDIUM');
-                    numMines = 30; 
-                    maxCellIndex = 12;
-                    break;
-                case 3:
-                    btnLevel.html('DIFFICULT');
-                    numMines = 60;
-                    maxCellIndex = 16;
-                    break;
-            }
+            _setLevel(level);
         },
 
         startGame: function () {
@@ -187,6 +293,10 @@ var libMinesweeper = (function () {
 
             // Reconfigure minesweeper
             _startGame();
+        },
+
+        revealTiles: function (obj) {
+            _revealTiles(obj);
         }
     };
 })();
