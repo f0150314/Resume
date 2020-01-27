@@ -135,7 +135,7 @@ var libMinesweeper = (function () {
                             cell.div += 'divZero';
                     }
 
-                    cell.div += '"></div>';
+                    cell.div += ' mineCount"></div>';
                     cellLocations.push(cell);
                 }
             }
@@ -171,6 +171,9 @@ var libMinesweeper = (function () {
                 }
                 // Add onclick event
                 rowHTML += 'onclick="libMinesweeper.revealTiles(this);">';
+                
+                // Add flag
+                rowHTML += (mineIndex == -1) ? '<div class="divFlag number"></div>' : '<div class="divFlag mine"></div>';
 
                 // Add mine or mine count 
                 rowHTML += (mineIndex == -1) ? filteredCells[cellIndex].div : filteredMines[mineIndex].div;
@@ -217,23 +220,22 @@ var libMinesweeper = (function () {
         if (!($(obj).find('div').is(':visible'))) {
             
             // If the tile contains a mine, reveal all mines
-            if ($(obj).find('div.divMine').length > 0) {
+            if ($(obj).find('.divMine').length > 0) {
                 $('.divMine').show();
                 $('.tdHover').removeClass('tdHover')
                              .prop('onclick', null);
             
             // If the tile not contains a mine, show number of mine adjacent to this tile
             } else {
-                $(obj).find('div').show();
+                $(obj).find('.mineCount').show();
                 $(obj).removeClass('tdHover')
                       .prop('onclick', null);
 
                 totalNonMineTiles--;
 
-                // If no more non-mine tiles, player wins 
+                // If no more unrevealed non-mine tiles, player wins 
                 if (totalNonMineTiles == 0) {
-                    $('.divMine').css('background-image', 'url(\'css/img/icons/icnFlag.svg\')');
-                    $('.divMine').show();
+                    $('.divFlag.mine').show();
                     $('.tdHover').removeClass('tdHover')
                                  .prop('onclick', null);
                 }

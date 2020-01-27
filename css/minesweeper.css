@@ -50,6 +50,14 @@
     display: none;
 }
 
+.modal-content .divFlag {
+    background-image: url('img/icons/icnFlag.svg');
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
 .modal-content .divEight {
     background-image: url('img/icons/icnEight.svg');
     background-repeat: no-repeat;
