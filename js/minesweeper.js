@@ -7,8 +7,9 @@ var libMinesweeper = (function () {
         cellLocations,
 
         // Default level configurations;
-        numMines = 10,
-        maxCellIndex = 8; //It's actually 7 (zero based index)
+        numMines,
+        maxCellIndex, //It's actually 7 (zero based index)
+        totalNonMineTiles;
 
     // Private functions
     function _generateMines () {
@@ -142,6 +143,9 @@ var libMinesweeper = (function () {
     }
 
     function _buildMinesweeperTable () {
+        //Clear table
+        divMinsweeper.html('');
+
         var rowHTML = '<table>';
 
         // Add rows
@@ -195,31 +199,44 @@ var libMinesweeper = (function () {
                 break;
             case 2:
                 btnLevel.html('MEDIUM');
-                numMines = 30; 
+                numMines = 25; 
                 maxCellIndex = 12;
                 break;
             case 3:
                 btnLevel.html('DIFFICULT');
-                numMines = 60;
+                numMines = 50;
                 maxCellIndex = 16;
                 break;
         }
+        // Set total non mine tiles for win condition check
+        totalNonMineTiles = Math.pow(maxCellIndex, 2) - numMines;
     }
     
     function _revealTiles (obj) {
         // Only reveal those tiles that have not been revealed yet
         if (!($(obj).find('div').is(':visible'))) {
+            
             // If the tile contains a mine, reveal all mines
             if ($(obj).find('div.divMine').length > 0) {
                 $('.divMine').show();
                 $('.tdHover').removeClass('tdHover')
-                            .prop('onclick', null);
+                             .prop('onclick', null);
             
             // If the tile not contains a mine, show number of mine adjacent to this tile
             } else {
                 $(obj).find('div').show();
                 $(obj).removeClass('tdHover')
-                    .prop('onclick', null);
+                      .prop('onclick', null);
+
+                totalNonMineTiles--;
+
+                // If no more non-mine tiles, player wins 
+                if (totalNonMineTiles == 0) {
+                    $('.divMine').css('background-image', 'url(\'css/img/icons/icnFlag.svg\')');
+                    $('.divMine').show();
+                    $('.tdHover').removeClass('tdHover')
+                                 .prop('onclick', null);
+                }
 
                 // If the tile has no mine adjacent to it, recursively reveal every adjacent tile
                 if ($(obj).find('div.divZero').length > 0) {
@@ -288,10 +305,6 @@ var libMinesweeper = (function () {
         },
 
         startGame: function () {
-            // Clear out minesweeper HTML
-            divMinsweeper.html('');
-
-            // Reconfigure minesweeper
             _startGame();
         },
 
