@@ -1,4 +1,5 @@
 'use strict';
+
 var libMinesweeper = (function () {
     // Private variables
     var divMinsweeper,
@@ -12,6 +13,28 @@ var libMinesweeper = (function () {
         totalNonMineTiles;
 
     // Private functions
+    function _setLevel (level) {
+        switch (level) {
+            case 1: 
+                btnLevel.html('EASY ');
+                numMines = 10;
+                maxCellIndex = 8;
+                break;
+            case 2:
+                btnLevel.html('MEDIUM');
+                numMines = 25; 
+                maxCellIndex = 12;
+                break;
+            case 3:
+                btnLevel.html('DIFFICULT');
+                numMines = 50;
+                maxCellIndex = 16;
+                break;
+        }
+        // Set total non mine tiles for win condition check
+        totalNonMineTiles = Math.pow(maxCellIndex, 2) - numMines;
+    }
+    
     function _generateMines () {
         // Clear out mines
         mineLocations = [];
@@ -34,7 +57,7 @@ var libMinesweeper = (function () {
         }
     }
 
-    function _generateCells () {
+    function _generateMineCounts () {
         // Clear out cells
         cellLocations = [];
 
@@ -169,8 +192,9 @@ var libMinesweeper = (function () {
                 } else {
                     rowHTML += '<td class="tdCellBlue tdHover" ';
                 }
-                // Add onclick event
-                rowHTML += 'onclick="libMinesweeper.revealTiles(this);">';
+                // Add onclick and right-click event (disable menu when right clicking the cell)
+                rowHTML += 'onclick="libMinesweeper.revealTiles(this);" ' + 
+                           'oncontextmenu="libMinesweeper.setFlags(this); return false;">';
                 
                 // Add flag
                 rowHTML += (mineIndex == -1) ? '<div class="divFlag number"></div>' : '<div class="divFlag mine"></div>';
@@ -186,35 +210,7 @@ var libMinesweeper = (function () {
         // Append to the div
         divMinsweeper.append(rowHTML);
     }
-
-    function _startGame () {
-        _generateMines();
-        _generateCells();
-        _buildMinesweeperTable();
-    }
-
-    function _setLevel (level) {
-        switch (level) {
-            case 1: 
-                btnLevel.html('EASY ');
-                numMines = 10;
-                maxCellIndex = 8;
-                break;
-            case 2:
-                btnLevel.html('MEDIUM');
-                numMines = 25; 
-                maxCellIndex = 12;
-                break;
-            case 3:
-                btnLevel.html('DIFFICULT');
-                numMines = 50;
-                maxCellIndex = 16;
-                break;
-        }
-        // Set total non mine tiles for win condition check
-        totalNonMineTiles = Math.pow(maxCellIndex, 2) - numMines;
-    }
-    
+  
     function _revealTiles (obj) {
         // Only reveal those tiles that have not been revealed yet
         if (!($(obj).find('div').is(':visible'))) {
@@ -295,7 +291,18 @@ var libMinesweeper = (function () {
         }  
     }
 
-    // Public variables and functions
+    function _setFlags (obj) {
+        //TODO: 
+        $(obj).find('.divFlag').show();
+    }
+
+    function _startGame () {
+        _generateMines();
+        _generateMineCounts();
+        _buildMinesweeperTable();
+    }
+
+    // Public functions
     return {
         init: function () {
             divMinsweeper = $('#divMinsweeper');
@@ -312,6 +319,10 @@ var libMinesweeper = (function () {
 
         revealTiles: function (obj) {
             _revealTiles(obj);
+        },
+
+        setFlags: function (obj) {
+            _setFlags(obj);
         }
     };
 })();
