@@ -9,7 +9,7 @@ var libMinesweeper = (function () {
         // Default level configurations;
         numMines,
         flagCount,
-        maxCellIndex, //(zero based index)
+        maxCellRowCol, //(zero based index)
         totalNonMineTiles,
         mineLocations,
         cellLocations;
@@ -20,29 +20,29 @@ var libMinesweeper = (function () {
             case 1: 
                 btnLevel.html('EASY ');
                 numMines = flagCount = 10;
-                maxCellIndex = 8;
+                maxCellRowCol = 8;
                 break;
             case 2:
                 btnLevel.html('MEDIUM');
                 numMines = flagCount = 25; 
-                maxCellIndex = 12;
+                maxCellRowCol = 12;
                 break;
             case 3:
                 btnLevel.html('DIFFICULT');
-                numMines = flagCount = 50;
-                maxCellIndex = 16;
+                numMines = flagCount = 40;
+                maxCellRowCol = 16;
                 break;
         }
         
         // Set total non mine tiles for win condition check
-        totalNonMineTiles = Math.pow(maxCellIndex, 2) - numMines;
+        totalNonMineTiles = Math.pow(maxCellRowCol, 2) - numMines;
     }
     
     function _resetConfig () {
         // Reset flagCount and totalNonMineTIles
         flagCount = numMines;
         spFlagCount.text(flagCount);
-        totalNonMineTiles = Math.pow(maxCellIndex, 2) - numMines;
+        totalNonMineTiles = Math.pow(maxCellRowCol, 2) - numMines;
         
         //Clear table
         divMinsweeper.html('');
@@ -61,8 +61,8 @@ var libMinesweeper = (function () {
             mine.div = '<div class="divMine"></div>';
 
             // Add object into array if it doesn't exist and in a valid position
-            if (mine.row < maxCellIndex && 
-                mine.col < maxCellIndex && 
+            if (mine.row < maxCellRowCol && 
+                mine.col < maxCellRowCol && 
                 mineLocations.findIndex(x => x.id == mine.id) == -1) {
                 
                 mineLocations.push(mine);    
@@ -74,8 +74,8 @@ var libMinesweeper = (function () {
         // Clear out cells
         cellLocations = [];
 
-        for (var i = 0; i < maxCellIndex; i++) {
-            for (var j = 0; j < maxCellIndex; j++) {           
+        for (var i = 0; i < maxCellRowCol; i++) {
+            for (var j = 0; j < maxCellRowCol; j++) {           
                 // Create cell object
                 var cell = new Object();
                 cell.row = i;
@@ -104,7 +104,7 @@ var libMinesweeper = (function () {
 
                     // Not the first row and and last column and top-right tile is mine
                     if (!(i == 0) && 
-                        !(j == maxCellIndex - 1) &&
+                        !(j == maxCellRowCol - 1) &&
                         !(mineLocations.findIndex(x => x.id == 'mine_' + (cell.row - 1) + '_' + (cell.col + 1)) == -1)) {
                         cell.mineCount++;
                     }
@@ -116,27 +116,27 @@ var libMinesweeper = (function () {
                     }
 
                     // Not the last column and right tile is mine
-                    if (!(j == maxCellIndex - 1) && 
+                    if (!(j == maxCellRowCol - 1) && 
                         !(mineLocations.findIndex(x => x.id == 'mine_' + cell.row + '_' + (cell.col + 1)) == -1)) {
                         cell.mineCount++;
                     }
                     
                     // Not the last row and bottom tile is mine
-                    if (!(i == maxCellIndex - 1) && 
+                    if (!(i == maxCellRowCol - 1) && 
                         !(mineLocations.findIndex(x => x.id == 'mine_' + (cell.row + 1) + '_' + cell.col) == -1)) {
                         cell.mineCount++;
                     }
                     
                     // Not the last row and and first column and bottom-left tile is mine
-                    if (!(i == maxCellIndex - 1) && 
+                    if (!(i == maxCellRowCol - 1) && 
                         !(j == 0) &&
                         !(mineLocations.findIndex(x => x.id == 'mine_' + (cell.row + 1) + '_' + (cell.col - 1)) == -1)) {
                         cell.mineCount++;
                     }
 
                     // Not the last row and and last column and bottom-right tile is mine
-                    if (!(i == maxCellIndex - 1) && 
-                        !(j == maxCellIndex - 1) &&
+                    if (!(i == maxCellRowCol - 1) && 
+                        !(j == maxCellRowCol - 1) &&
                         !(mineLocations.findIndex(x => x.id == 'mine_' + (cell.row + 1) + '_' + (cell.col + 1)) == -1)) {
                         cell.mineCount++;
                     }
@@ -182,7 +182,7 @@ var libMinesweeper = (function () {
         var rowHTML = '<table>';
 
         // Add rows
-        for (var row = 0; row < maxCellIndex; row++) {
+        for (var row = 0; row < maxCellRowCol; row++) {
             // Filter Mines and cells based on rows
             var filteredMines = mineLocations.filter(x => x.row == row),
                 filteredCells = cellLocations.filter(x => x.row == row);
@@ -190,7 +190,7 @@ var libMinesweeper = (function () {
             rowHTML += '<tr>';
 
             // Add cells
-            for (var col = 0; col < maxCellIndex; col++) {
+            for (var col = 0; col < maxCellRowCol; col++) {
                 // Get col index from two arrays
                 var mineIndex = filteredMines.findIndex(x => x.col == col),
                     cellIndex = filteredCells.findIndex(x => x.col == col);
@@ -297,7 +297,7 @@ var libMinesweeper = (function () {
 
                     // If it's not in top row and right-most column
                     if (!(objRowIndex == 0) &&
-                        !(objColIndex == maxCellIndex - 1)) {
+                        !(objColIndex == maxCellRowCol - 1)) {
                         _revealTiles($('tr:eq(' + (objRowIndex - 1) + ') td:eq(' + (objColIndex + 1) + ')'));
                     }
 
@@ -307,24 +307,24 @@ var libMinesweeper = (function () {
                     }
 
                     // If it's not in right-most column
-                    if (!(objColIndex == maxCellIndex - 1)) {
+                    if (!(objColIndex == maxCellRowCol - 1)) {
                         _revealTiles($('tr:eq(' + objRowIndex + ') td:eq(' + (objColIndex + 1) + ')'));
                     }
 
                     // If it's not in bottom row
-                    if (!(objRowIndex == maxCellIndex - 1)) {
+                    if (!(objRowIndex == maxCellRowCol - 1)) {
                         _revealTiles($('tr:eq(' + (objRowIndex + 1) + ') td:eq(' + objColIndex + ')'));
                     }
 
                     // If it's not in bottom row and left-most column
-                    if (!(objRowIndex == maxCellIndex - 1) &&
+                    if (!(objRowIndex == maxCellRowCol - 1) &&
                         !(objColIndex == 0)) {
                         _revealTiles($('tr:eq(' + (objRowIndex + 1) + ') td:eq(' + (objColIndex - 1) + ')'));
                     }
 
                     // If it's not in bottom row and right-most column
-                    if (!(objRowIndex == maxCellIndex - 1) &&
-                        !(objColIndex == maxCellIndex - 1)) {
+                    if (!(objRowIndex == maxCellRowCol - 1) &&
+                        !(objColIndex == maxCellRowCol - 1)) {
                         _revealTiles($('tr:eq(' + (objRowIndex + 1) + ') td:eq(' + (objColIndex + 1) + ')'));
                     }
                 }  
