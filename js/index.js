@@ -267,7 +267,7 @@ function openPopup(project) {
     closeSidebar();
 
     $('.imgProfolios, .imgSmallProfolios').hide();
-    $('#divBtnGame').hide();
+    $('.divGameControls').hide();
     $('#divBtnRow').css('width', '');        
     $('#modalCenterTitle').html('<strong>Photos</strong>');
     $('#divMinsweeper').hide();
@@ -281,7 +281,7 @@ function openPopup(project) {
         $('.imgSmallProfolios.busTracking').show();
     } else if (project == 'GAMES') {
         $('#modalCenterTitle').html('<strong>Minesweeper</strong>');
-        $('#divBtnGame').show();
+        $('.divGameControls').show();
         $('#divBtnRow').width('100%');
         $('#divMinsweeper').show();
 

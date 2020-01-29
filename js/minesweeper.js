@@ -3,36 +3,49 @@
 var libMinesweeper = (function () {
     // Private variables
     var divMinsweeper,
-        btnLevel,     
-        mineLocations,
-        cellLocations,
+        btnLevel,
+        spFlagCount,
 
         // Default level configurations;
         numMines,
-        maxCellIndex, //It's actually 7 (zero based index)
-        totalNonMineTiles;
+        flagCount,
+        maxCellIndex, //(zero based index)
+        totalNonMineTiles,
+        mineLocations,
+        cellLocations;
 
     // Private functions
     function _setLevel (level) {
         switch (level) {
             case 1: 
                 btnLevel.html('EASY ');
-                numMines = 10;
+                numMines = flagCount = 10;
                 maxCellIndex = 8;
                 break;
             case 2:
                 btnLevel.html('MEDIUM');
-                numMines = 25; 
+                numMines = flagCount = 25; 
                 maxCellIndex = 12;
                 break;
             case 3:
                 btnLevel.html('DIFFICULT');
-                numMines = 50;
+                numMines = flagCount = 50;
                 maxCellIndex = 16;
                 break;
         }
+        
         // Set total non mine tiles for win condition check
         totalNonMineTiles = Math.pow(maxCellIndex, 2) - numMines;
+    }
+    
+    function _resetConfig () {
+        // Reset flagCount and totalNonMineTIles
+        flagCount = numMines;
+        spFlagCount.text(flagCount);
+        totalNonMineTiles = Math.pow(maxCellIndex, 2) - numMines;
+        
+        //Clear table
+        divMinsweeper.html('');
     }
     
     function _generateMines () {
@@ -166,9 +179,6 @@ var libMinesweeper = (function () {
     }
 
     function _buildMinesweeperTable () {
-        //Clear table
-        divMinsweeper.html('');
-
         var rowHTML = '<table>';
 
         // Add rows
@@ -212,36 +222,67 @@ var libMinesweeper = (function () {
     }
   
     function _revealTiles (obj) {
+        var thisTile = $(obj);
         // Only reveal those tiles that have not been revealed yet
-        if (!($(obj).find('div').is(':visible'))) {
+        if (!(thisTile.find('div').is(':visible'))) {
             
             // If the tile contains a mine, reveal all mines
-            if ($(obj).find('.divMine').length > 0) {
+            if (thisTile.find('.divMine').length > 0) {
                 $('.divMine').show();
+                      
+                // Hide bombs that have been flagged,
+                // Replace cross with flag if the user placing flag at no bomb area
+                $('.flagged').each(function() {
+                    var thisTileMine = $(this).find('.divMine');
+
+                    if (thisTileMine.length > 0 && thisTileMine.is(':visible')) {
+                        thisTileMine.hide();
+                    } else if (thisTileMine.length == 0) {
+                        $(this).find('.divFlag').css('background-image', 'url(\'css/img/icons/icnCross.svg\')');
+                    }
+                });
+
+                // Remove hover and click events 
                 $('.tdHover').removeClass('tdHover')
-                             .prop('onclick', null);
+                             .prop('onclick', null)
+                             .prop('oncontextmenu', null);
+                $('.modal-body td').on('contextmenu', function(event) {
+                    event.preventDefault();
+                });             
             
             // If the tile not contains a mine, show number of mine adjacent to this tile
             } else {
-                $(obj).find('.mineCount').show();
-                $(obj).removeClass('tdHover')
-                      .prop('onclick', null);
-
+                // Reduce non-mine tile count and show the number of adjacent bombs
                 totalNonMineTiles--;
-
+                thisTile.find('.mineCount').show();              
+                
+                // Remove hover and click events 
+                thisTile.removeClass('tdHover')
+                      .prop('onclick', null)
+                      .prop('oncontextmenu', null);
+                thisTile.on('contextmenu', function(event) {
+                    event.preventDefault();
+                });
+                
                 // If no more unrevealed non-mine tiles, player wins 
                 if (totalNonMineTiles == 0) {
                     $('.divFlag.mine').show();
+                    
+                    // Remove hover and click events 
                     $('.tdHover').removeClass('tdHover')
-                                 .prop('onclick', null);
+                                 .prop('onclick', null)
+                                 .prop('oncontextmenu', null);
+                    $('.modal-body td').on('contextmenu', function(event) {
+                        event.preventDefault();
+                    });
                 }
 
                 // If the tile has no mine adjacent to it, recursively reveal every adjacent tile
-                if ($(obj).find('div.divZero').length > 0) {
+                if (thisTile.find('div.divZero').length > 0) {
 
                     // Get tile row and column index
-                    var objRowIndex = $(obj).closest('tr').index(),
-                        objColIndex = $(obj).closest('td').index();
+                    var objRowIndex = thisTile.closest('tr').index(),
+                        objColIndex = thisTile.closest('td').index();
 
                     // If it's not in top row
                     if (!(objRowIndex == 0)) {
@@ -292,11 +333,26 @@ var libMinesweeper = (function () {
     }
 
     function _setFlags (obj) {
-        //TODO: 
-        $(obj).find('.divFlag').show();
+        var thisTile = $(obj);
+        
+        if (thisTile.find('.divFlag').is(':visible')) {
+            thisTile.find('.divFlag').hide();
+            thisTile.removeClass('flagged');
+
+            flagCount++;
+        } else {
+            thisTile.find('.divFlag').show();
+            thisTile.addClass('flagged');
+
+            flagCount--;
+        }
+
+        // Refresh remaining flag
+        spFlagCount.text(flagCount);
     }
 
     function _startGame () {
+        _resetConfig();
         _generateMines();
         _generateMineCounts();
         _buildMinesweeperTable();
@@ -307,6 +363,7 @@ var libMinesweeper = (function () {
         init: function () {
             divMinsweeper = $('#divMinsweeper');
             btnLevel = $('#btnLevel');
+            spFlagCount = $('#spFlagCount');
         },
 
         setLevel: function (level) {

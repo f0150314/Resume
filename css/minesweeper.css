@@ -42,6 +42,24 @@
     background-color: #7cc4fc;
 }
 
+.modal-content .divFlagSet {
+    display: flex;
+    margin-left: 20px;
+}
+
+.modal-content .divFlagSet .divFlag {
+    display: block;
+    width: 25px;
+    height: 25px;
+}
+
+.modal-content .divFlagSet #spFlagCount {
+    font-size: 20px;
+    padding-left: 5px;
+    font-weight: bold;
+    color: rgb(250, 154, 143);
+}
+
 .modal-content .divMine {
     background-image: url('img/icons/icnBomb.svg');
     background-repeat: no-repeat;
