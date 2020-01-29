@@ -5,6 +5,7 @@
     <!-- External reference  -->
     <link rel="stylesheet" href="css/index.css" />
     <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="css/minesweeper.css">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Resume</title>
@@ -15,24 +16,25 @@
         <header>
             <div id="divNavRow">
                 <div id="divName" class="divNavCol">John Chen</div>
-                <div class="divNavCol divHover" onclick="showContent('ABOUT');">About</div>
-                <div class="divNavCol divHover" onclick="showContent('EDUCATION');">Education</div>
-                <div class="divNavCol divHover" onclick="showContent('SKILLS');">Skills</div>
-                <div class="divNavCol divHover" onclick="showContent('EXPERIENCE');">Experiences</div>
-                <div class="divNavCol divHover" onclick="showContent('PORTFOLIO');">Portfolios</div>                
+                <div class="divNavCol divHover" onclick="showContent('ABOUT');">ABOUT</div>
+                <div class="divNavCol divHover" onclick="showContent('EDUCATION');">EDUCATION</div>
+                <div class="divNavCol divHover" onclick="showContent('SKILLS');">SKILL</div>
+                <div class="divNavCol divHover" onclick="showContent('EXPERIENCE');">EXPERIENCE</div>
+                <div class="divNavCol divHover" onclick="showContent('PORTFOLIO');">PORTFOLIO</div>                
             </div>
     
             <div id="divMenu" class="openbtn" onclick="openSidebar();">☰</div>
             <div id="divSidebar">
                 <a href="javascript: void(0);" onclick="closeSidebar();">×</a>
-                <div onclick="showContent('ABOUT');">About</div>
-                <div onclick="showContent('CAREER');">Career</div>
-                <div onclick="showContent('ABILITIES');">Abilities</div>
-                <div onclick="showContent('SKILLS');">Skills</div>
-                <div onclick="showContent('TOOLS');">Tools</div>
-                <div onclick="showContent('EXPERIENCE');">Experiences</div>
-                <div onclick="showContent('PORTFOLIO');">Portfolios</div>
-                <div onclick="showContent('CONTACT');">Contact</div>
+                <div onclick="showContent('ABOUT');">ABOUT</div>
+                <div onclick="showContent('CAREER');">CAREER</div>
+                <div onclick="showContent('ABILITIES');">ABILITY</div>
+                <div onclick="showContent('SKILLS');">SKILL</div>
+                <div onclick="showContent('TOOLS');">TOOL</div>
+                <div onclick="showContent('EXPERIENCE');">EXPERIENCE</div>
+                <div onclick="showContent('PORTFOLIO');">PORTFOLIO</div>
+                <div onclick="openPopup('GAMES');" data-toggle="modal" data-target="#popupBackground">GAME</div>
+                <div onclick="showContent('CONTACT');">CONTACT</div>
             </div>
             
             <!-- Popup Modal -->
@@ -42,6 +44,12 @@
                         <!-- Modal header -->
                         <div class="modal-header">
                             <span class="modal-title" id="modalCenterTitle"><strong>Photos</strong></span>
+                            <div class="divGameControls" style="margin: 0px auto;">
+                                <div class="divFlagSet">
+                                    <div class="divFlag"></div>
+                                    <span id="spFlagCount"></span>
+                                </div>      
+                            </div>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -52,6 +60,9 @@
                             <img src="css/img/searchEngine_result.png" alt="searchEngine_result" class="imgProfolios searchEngine">
                             <img src="css/img/busTracking_interface.png" alt="busTracking_interface" class="imgProfolios busTracking">
                             <img src="css/img/busTraking_result.png" alt="busTraking_result" class="imgProfolios busTracking">
+                            
+                            <!-- Minesweeper -->
+                            <div id="divMinsweeper"></div>
                         </div>
                         <div class="modal-footer">
                             <!-- Small image for selection -->
@@ -60,8 +71,22 @@
                                 <img src="css/img/searchEngine_result.png" alt="searchEngine_result" class="imgSmallProfolios searchEngine" onclick="selectImage(1);">        
                                 <img src="css/img/busTracking_interface.png" alt="busTracking_interface" class="imgSmallProfolios busTracking" onclick="selectImage(2);">
                                 <img src="css/img/busTraking_result.png" alt="busTraking_result" class="imgSmallProfolios busTracking" onclick="selectImage(3);">
-                            </div>                         
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                            <div id="divBtnRow">
+                                <div class="divGameControls"  style="float: left;">
+                                    <div class="dropdown"  style="float: left; padding-right: 10px;">
+                                        <button id="btnLevel" class="btn btn-seondary dropdown-toggle btnBorderDark" type="button" data-toggle="dropdown">EASY
+                                        <span class="caret"></span></button>
+                                        <div class="dropdown-menu" aria-labelledby="btnLevel">
+                                            <button class="dropdown-item activeItem" type="button" onclick="libMinesweeper.setLevel(1)">EASY</button>
+                                            <button class="dropdown-item activeItem" type="button" onclick="libMinesweeper.setLevel(2)">MEDIUM</button>
+                                            <button class="dropdown-item activeItem" type="button" onclick="libMinesweeper.setLevel(3)">DIFFICULT</button>
+                                        </div>
+                                    </div>
+                                    <button id="btnMSRestart" type="button" class="btn btn-secondary" onclick="libMinesweeper.startGame();">Restart</button>                         
+                                </div>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="float: right;">Close</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -247,7 +272,7 @@
     <script src="js/index.js"></script>
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/chart.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/highcharts.js"></script>
     <script src="js/highcharts-more.js"></script>
     <script src="js/highcharts-3d.js"></script>
@@ -255,11 +280,12 @@
     <script src="js/timeline.js"></script>
     <script src="js/moment.min.js"></script>
     <script src="js/myprofolio.js"></script>
+    <script src="js/minesweeper.js"></script>
     
     <script>
         $(document).ready(function () {
             'use strict';
-            init();           
+            init();          
 
             //Resize navigation bar and images when window width is changing
             $(window).resize(function () {

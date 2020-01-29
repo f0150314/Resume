@@ -1,0 +1,145 @@
+.modal-content .btnBorderDark {
+    box-shadow: 0px 0px 0px 0.5px #888888 !important; 
+}
+
+.modal-content .btnBorderDark:hover {
+    box-shadow: 0px 0px 0px 1.2px #888888 !important; 
+}
+
+.modal-content .activeItem:hover, .modal-content .activeItem:active {
+    background-color: #c7c7c7 !important; 
+}
+
+.modal-content button.activeItem:focus {
+    outline: 0px !important;
+}
+
+.modal-content table {
+    width: 300px;
+    height: 300px;
+}
+
+.modal-content td {
+    width: auto !important;
+    text-align: center;
+    color: white;
+}
+
+.modal-content .tdHover:hover {
+    background-color: #e3ffff !important;
+    cursor: pointer;
+}
+
+.modal-content .tdCellLightBlue {
+    background-color: #a8d9ff;
+}
+
+.modal-content .tdCellBlue {
+    background-color: #7cc4fc;
+}
+
+.modal-content .divFlagSet {
+    display: flex;
+    margin-left: 20px;
+}
+
+.modal-content .divFlagSet .divFlag {
+    display: block;
+    width: 25px;
+    height: 25px;
+}
+
+.modal-content .divFlagSet #spFlagCount {
+    font-size: 20px;
+    padding-left: 5px;
+    font-weight: bold;
+    color: rgb(250, 154, 143);
+}
+
+.modal-content .divMine {
+    background-image: url('img/icons/icnBomb.svg');
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.modal-content .divFlag {
+    background-image: url('img/icons/icnFlag.svg');
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.modal-content .divEight {
+    background-image: url('img/icons/icnEight.svg');
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.modal-content .divSeven {
+    background-image: url('img/icons/icnSeven.svg');
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.modal-content .divSix {
+    background-image: url('img/icons/icnSix.svg');
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.modal-content .divFive {
+    background-image: url('img/icons/icnFive.svg');
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.modal-content .divFour {
+    background-image: url('img/icons/icnFour.svg');
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.modal-content .divThree {
+    background-image: url('img/icons/icnThree.svg');
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.modal-content .divTwo {
+    background-image: url('img/icons/icnTwo.svg');
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.modal-content .divOne {
+    background-image: url('img/icons/icnOne.svg');
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.modal-content .divZero {
+    background-image: url('img/icons/icnZero.svg');
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
