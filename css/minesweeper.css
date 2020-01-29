@@ -14,13 +14,9 @@
     outline: 0px !important;
 }
 
-.modal-content table, .modal-content tr, .modal-content td {
-    /* border: 0px !important; */
-}
-
 .modal-content table {
-    width: 400px;
-    height: 400px;
+    width: 300px;
+    height: 300px;
 }
 
 .modal-content td {
