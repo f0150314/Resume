@@ -24,8 +24,8 @@ var libMinesweeper = (function () {
                 break;
             case 2:
                 btnLevel.html('MEDIUM');
-                numMines = flagCount = 25; 
-                maxCellRowCol = 12;
+                numMines = flagCount = 20; 
+                maxCellRowCol = 11;
                 break;
             case 3:
                 btnLevel.html('DIFFICULT');
