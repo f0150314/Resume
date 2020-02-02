@@ -135,7 +135,7 @@ li {
     display: none;
 }
 
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 1200px) {
     #divMainBody .divContentBody .divContentRow {
         display: flex;
         display: -webkit-flex;
@@ -231,6 +231,7 @@ td {
 
 .imgProfolios {
     height: 300px;
+    weight: 300px;
 }
 
 .imgSmallProfolios {

@@ -12,7 +12,9 @@ var libMinesweeper = (function () {
         maxCellRowCol, //(zero based index)
         totalNonMineTiles,
         mineLocations,
-        cellLocations;
+        cellLocations,
+        mounseDownTimestamp,
+        _clickTimelapsed;
 
     // Private functions
     function _setLevel (level) {
@@ -203,7 +205,9 @@ var libMinesweeper = (function () {
                     rowHTML += '<td class="tdCellBlue tdHover" ';
                 }
                 // Add onclick and right-click event (disable menu when right clicking the cell)
-                rowHTML += 'onclick="libMinesweeper.revealTiles(this);" ' + 
+                rowHTML += 'onmousedown="libMinesweeper.getMouseDownTimestamp();" ' +
+                           'onmouseup="libMinesweeper.calculateMouseUpTimestampDiff(this);" ' +
+                           'onclick="if (libMinesweeper.clickTimelapsed() < 0.5) { libMinesweeper.revealTiles(this); }" ' +
                            'oncontextmenu="libMinesweeper.setFlags(this); return false;">';
                 
                 // Add flag
@@ -267,6 +271,7 @@ var libMinesweeper = (function () {
                 // If no more unrevealed non-mine tiles, player wins 
                 if (totalNonMineTiles == 0) {
                     $('.divFlag.mine').show();
+                    spFlagCount.text(0);
                     
                     // Remove hover and click events 
                     $('.tdHover').removeClass('tdHover')
@@ -331,6 +336,18 @@ var libMinesweeper = (function () {
             }
         }  
     }
+                      
+    function _getMouseDownTimestamp () {
+        mounseDownTimestamp = Date.now();
+    }
+                      
+    function _calculateMouseUpTimestampDiff (obj) {
+        _clickTimelapsed = (Date.now() - mounseDownTimestamp) / 1000;
+
+        if (!(_clickTimelapsed < 0.5)) {
+            _setFlags(obj);
+        }
+    }
 
     function _setFlags (obj) {
         var thisTile = $(obj);
@@ -365,6 +382,10 @@ var libMinesweeper = (function () {
             btnLevel = $('#btnLevel');
             spFlagCount = $('#spFlagCount');
         },
+                      
+        clickTimelapsed: function () {
+            return _clickTimelapsed;
+        },
 
         setLevel: function (level) {
             _setLevel(level);
@@ -377,7 +398,13 @@ var libMinesweeper = (function () {
         revealTiles: function (obj) {
             _revealTiles(obj);
         },
-
+        
+        getMouseDownTimestamp: _getMouseDownTimestamp,
+                      
+        calculateMouseUpTimestampDiff: function (obj) {
+            _calculateMouseUpTimestampDiff(obj);
+        },
+                      
         setFlags: function (obj) {
             _setFlags(obj);
         }

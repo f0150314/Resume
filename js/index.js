@@ -119,7 +119,7 @@ function showContent(category) {
 
 function resizeNavbar() {
     // Show sidebar and hide navigation bar
-    if ($(window).width() < 1000) {
+    if ($(window).width() < 1200) {
         $.each(divNavColArray, function (index, value) {
             divNavColArray[index].hide();
             $('#divName').css('padding', '41px 0');
