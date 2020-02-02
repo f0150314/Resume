@@ -23,6 +23,8 @@
     width: auto !important;
     text-align: center;
     color: white;
+    -webkit-touch-callout: none !important; /* for Safari */
+    -webkit-user-select: none !important; /* for Safari */
 }
 
 .modal-content .tdHover:hover {
