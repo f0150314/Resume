@@ -23,6 +23,7 @@
     width: auto !important;
     text-align: center;
     color: white;
+    user-select: none;
     -webkit-touch-callout: none !important; /* for Safari */
     -webkit-user-select: none !important; /* for Safari */
 }

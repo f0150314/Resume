@@ -240,20 +240,22 @@ function buildHTML(myProfolioArray) {
                 if (key == 'project') {                  
                     // Add onclick to show image
                     if (value.toUpperCase() == 'SEARCH ENGINE PROJECT' ||
-                        value.toUpperCase() == 'BUS TRACKING PROJECT') {
+                        value.toUpperCase() == 'BUS TRACKING PROJECT' || 
+                        value.toUpperCase() == 'MINESWEEPER GAME') {
                         rowHTML += '<span style="font-size: 1.1rem; float: left; padding-right: 15px;">' + 
                                     '<strong>' + value.toUpperCase() + '</strong></span>' + 
-                                    '<img src="css/img/icons/icnPicture.svg" alt="View Image" title="View Image" class="imgView" ' +  
-                                    'onclick="openPopup(\'' + value.toUpperCase() + '\');"' + 
-                                    'data-toggle="modal" data-target="#popupBackground">' + 
-                                    //clear float
-                                    '<div class="clearFloat"></div><ul>';
+                                    '<img src="css/img/icons/'; 
+                        rowHTML += value.toUpperCase() == 'MINESWEEPER GAME' ? 'icnBomb2.svg' : 'icnPicture.svg'; 
+                        rowHTML += '" alt="View Image" title="';
+                        rowHTML += value.toUpperCase() == 'MINESWEEPER GAME' ? 'Play Game' : 'View Image';
+                        rowHTML += '" class="imgView" onclick="openPopup(\'' + value.toUpperCase() + '\');"' + 
+                                    'data-toggle="modal" data-target="#popupBackground"><div class="clearFloat"></div><ul>';
                     } else {
                         rowHTML += '<span style="font-size: 1.1rem;"><strong>' + value.toUpperCase() + '</strong></span><ul>';
                     }
                 } else {
                     rowHTML += '<li><span>' + key.toUpperCase() + ': </span><br>';
-                    rowHTML += (key == 'timestamp') ? moment(value).format('MMM YYYY') : value;                    
+                    rowHTML += key == 'timestamp' ? moment(value).format('MMM YYYY') : value;                    
                     rowHTML += '</li>';
                 }
             });           
@@ -279,7 +281,7 @@ function openPopup(project) {
     } else if (project == 'BUS TRACKING PROJECT') {    
         $('.imgProfolios.busTracking:first').show();
         $('.imgSmallProfolios.busTracking').show();
-    } else if (project == 'GAMES') {
+    } else if (project == 'MINESWEEPER GAME') {
         $('#modalCenterTitle').html('<strong>Minesweeper</strong>');
         $('.divGameControls').show();
         $('#divBtnRow').width('100%');
