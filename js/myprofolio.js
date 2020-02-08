@@ -1,10 +1,15 @@
 var myProfolioArray = [
     {
+        'project': 'Minesweeper game',
+        'timestamp': '2020-01-24',
+        'aim': 'Enriching game design experience, Having fun, Upskilling myself',
+        'skills': 'JQuery, HTML, CSS, Algorithm analysis, Game design'
+    },
+    {
         'project': 'Resume website',
         'timestamp': '2019-09-04',
         'aim': 'Digital resume presentation',
-        'skills': 'JQuery, GitHub hosting, HighCharts API, Responsive ' + 
-                    'web design, HTML, CSS'
+        'skills': 'JQuery, GitHub hosting, HighCharts API, Responsive design, HTML, CSS'
     },
     {
         'project': 'MiWater & MiSewer industrial website',
